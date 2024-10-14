@@ -110,6 +110,7 @@ static void Task_WhiteBarsFade(u8);
 static void Task_GridSquares(u8);
 static void Task_AngledWipes(u8);
 static void Task_Mugshot(u8);
+static void Task_Helix(u8);
 static void Task_Aqua(u8);
 static void Task_Magma(u8);
 static void Task_Regice(u8);
@@ -154,6 +155,8 @@ static bool8 Swirl_Init(struct Task *);
 static bool8 Swirl_End(struct Task *);
 static bool8 Shuffle_Init(struct Task *);
 static bool8 Shuffle_End(struct Task *);
+static bool8 Helix_Init(struct Task *);
+static bool8 Helix_SetGfx(struct Task *);
 static bool8 Aqua_Init(struct Task *);
 static bool8 Aqua_SetGfx(struct Task *);
 static bool8 Magma_Init(struct Task *);
@@ -212,7 +215,6 @@ static bool8 AngledWipes_TryEnd(struct Task *);
 static bool8 AngledWipes_StartNext(struct Task *);
 static bool8 ShredSplit_Init(struct Task *);
 static bool8 ShredSplit_Main(struct Task *);
-static bool8 ShredSplit_BrokenCheck(struct Task *);
 static bool8 ShredSplit_End(struct Task *);
 static bool8 Blackhole_Init(struct Task *);
 static bool8 Blackhole_Vibrate(struct Task *);
@@ -332,6 +334,9 @@ static const u32 sFrontierSquares_EmptyBg_Tileset[] = INCBIN_U32("graphics/battl
 static const u32 sFrontierSquares_Shrink1_Tileset[] = INCBIN_U32("graphics/battle_transitions/frontier_square_3.4bpp.lz");
 static const u32 sFrontierSquares_Shrink2_Tileset[] = INCBIN_U32("graphics/battle_transitions/frontier_square_4.4bpp.lz");
 static const u32 sFrontierSquares_Tilemap[] = INCBIN_U32("graphics/battle_transitions/frontier_squares.bin");
+static const u16 sTeamHelix_Palette[] = INCBIN_U16("graphics/battle_transitions/team_helix_tiles.gbapal");
+static const u32 sTeamHelix_Tileset[] = INCBIN_U32("graphics/battle_transitions/team_helix_tiles.4bpp.lz");
+static const u32 sTeamHelix_Tilemap[] = INCBIN_U32("graphics/battle_transitions/team_helix_tiles.bin.lz");
 
 // All battle transitions use the same intro
 static const TaskFunc sTasks_Intro[B_TRANSITION_COUNT] =
@@ -381,6 +386,7 @@ static const TaskFunc sTasks_Main[B_TRANSITION_COUNT] =
     [B_TRANSITION_FRONTIER_CIRCLES_CROSS_IN_SEQ] = Task_FrontierCirclesCrossInSeq,
     [B_TRANSITION_FRONTIER_CIRCLES_ASYMMETRIC_SPIRAL_IN_SEQ] = Task_FrontierCirclesAsymmetricSpiralInSeq,
     [B_TRANSITION_FRONTIER_CIRCLES_SYMMETRIC_SPIRAL_IN_SEQ] = Task_FrontierCirclesSymmetricSpiralInSeq,
+    [B_TRANSITION_HELIX] = Task_Helix,
 };
 
 static const TransitionStateFunc sTaskHandlers[] =
@@ -408,6 +414,17 @@ static const TransitionStateFunc sShuffle_Funcs[] =
 {
     Shuffle_Init,
     Shuffle_End,
+};
+
+static const TransitionStateFunc sHelix_Funcs[] =
+{
+    Helix_Init,
+    Helix_SetGfx,
+    PatternWeave_Blend1,
+    PatternWeave_Blend2,
+    PatternWeave_FinishAppear,
+    FramesCountdown,
+    PatternWeave_CircularMask
 };
 
 static const TransitionStateFunc sAqua_Funcs[] =
@@ -561,7 +578,6 @@ static const TransitionStateFunc sShredSplit_Funcs[] =
 {
     ShredSplit_Init,
     ShredSplit_Main,
-    ShredSplit_BrokenCheck,
     ShredSplit_End
 };
 
@@ -1310,6 +1326,11 @@ static void Task_BigPokeball(u8 taskId)
     while (sBigPokeball_Funcs[gTasks[taskId].tState](&gTasks[taskId]));
 }
 
+static void Task_Helix(u8 taskId)
+{
+    while (sHelix_Funcs[gTasks[taskId].tState](&gTasks[taskId]));
+}
+
 static void Task_Aqua(u8 taskId)
 {
     while (sAqua_Funcs[gTasks[taskId].tState](&gTasks[taskId]));
@@ -1362,6 +1383,21 @@ static void InitPatternWeaveTransition(struct Task *task)
         gScanlineEffectRegBuffers[1][i] = DISPLAY_WIDTH;
 
     SetVBlankCallback(VBlankCB_PatternWeave);
+}
+
+static bool8 Helix_Init(struct Task *task)
+{
+    u16 *tilemap, *tileset;
+
+    task->tEndDelay = 60;
+    InitPatternWeaveTransition(task);
+    GetBg0TilesDst(&tilemap, &tileset);
+    CpuFill16(0, tilemap, BG_SCREEN_SIZE);
+    LZ77UnCompVram(sTeamHelix_Tileset, tileset);
+    LoadPalette(sTeamHelix_Palette, BG_PLTT_ID(15), sizeof(sTeamHelix_Palette));
+
+    task->tState++;
+    return FALSE;
 }
 
 static bool8 Aqua_Init(struct Task *task)
@@ -1440,6 +1476,18 @@ static bool8 BigPokeball_SetGfx(struct Task *task)
 
     task->tState++;
     return TRUE;
+}
+
+static bool8 Helix_SetGfx(struct Task *task)
+{
+    u16 *tilemap, *tileset;
+
+    GetBg0TilesDst(&tilemap, &tileset);
+    LZ77UnCompVram(sTeamHelix_Tilemap, tilemap);
+    SetSinWave((s16*)gScanlineEffectRegBuffers[0], 0, task->tSinIndex, 132, task->tAmplitude, DISPLAY_HEIGHT);
+
+    task->tState++;
+    return FALSE;
 }
 
 static bool8 Aqua_SetGfx(struct Task *task)
@@ -2925,29 +2973,6 @@ static bool8 ShredSplit_Main(struct Task *task)
         task->tState++;
 
     sTransitionData->VBlank_DMA++;
-    return FALSE;
-}
-
-// This function never increments the state counter, because the loop condition
-// is always false, resulting in the game being stuck in an infinite loop.
-// It's possible this transition is only partially
-// done and the second part was left out.
-// In any case removing or bypassing this state allows the transition to finish.
-static bool8 ShredSplit_BrokenCheck(struct Task *task)
-{
-    u16 i;
-    bool32 done = TRUE;
-    u16 checkVar2 = 0xFF10;
-
-    for (i = 0; i < DISPLAY_HEIGHT; i++)
-    {
-        if (gScanlineEffectRegBuffers[1][i] != DISPLAY_WIDTH && gScanlineEffectRegBuffers[1][i] != checkVar2)
-            done = FALSE;
-    }
-
-    if (done == TRUE)
-        task->tState++;
-
     return FALSE;
 }
 

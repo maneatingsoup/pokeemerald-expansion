@@ -121,8 +121,6 @@ static void CalculateDaycareMailRandSum(const u8 *);
 static void ReceiveDaycareMailData(struct RecordMixingDaycareMail *, size_t, u8, TVShow *);
 static void ReceiveGiftItem(u16 *, u8 );
 static void Task_DoRecordMixing(u8);
-static void GetSavedApprentices(struct Apprentice *, struct Apprentice *);
-static void ReceiveApprenticeData(struct Apprentice *, size_t, u32);
 static void ReceiveRankingHallRecords(struct PlayerHallRecords *, size_t, u32);
 static void GetRecordMixingDaycareMail(struct RecordMixingDaycareMail *);
 static void SanitizeDaycareMailForRuby(struct RecordMixingDaycareMail *);
@@ -247,7 +245,6 @@ static void PrepareExchangePacket(void)
         if (GetMultiplayerId() == 0)
             sSentRecord->emerald.giftItem = GetRecordMixingGift();
 
-        GetSavedApprentices(sSentRecord->emerald.apprentices, sApprenticesSave);
         GetPlayerHallRecords(&sSentRecord->emerald.hallRecords);
     }
 }
@@ -280,7 +277,6 @@ static void ReceiveExchangePacket(u32 multiplayerId)
         ReceiveBattleTowerData(&sReceivedRecords->emerald.battleTowerRecord, sizeof(sReceivedRecords->emerald), multiplayerId);
         ReceiveGiftItem(&sReceivedRecords->emerald.giftItem, multiplayerId);
         ReceiveLilycoveLadyData(&sReceivedRecords->emerald.lilycoveLady, sizeof(sReceivedRecords->emerald), multiplayerId);
-        ReceiveApprenticeData(sReceivedRecords->emerald.apprentices, sizeof(sReceivedRecords->emerald), (u8)multiplayerId);
         ReceiveRankingHallRecords(&sReceivedRecords->emerald.hallRecords, sizeof(sReceivedRecords->emerald), (u8)multiplayerId);
     }
 }
@@ -1055,60 +1051,6 @@ static void Task_DoRecordMixing(u8 taskId)
     }
 }
 
-static void GetSavedApprentices(struct Apprentice *dst, struct Apprentice *src)
-{
-    s32 i, id;
-    s32 apprenticeSaveId, oldPlayerApprenticeSaveId;
-    s32 numOldPlayerApprentices, numMixApprentices;
-
-    dst[0].playerName[0] = EOS;
-    dst[1].playerName[0] = EOS;
-
-    dst[0] = src[0];
-
-    oldPlayerApprenticeSaveId = 0;
-    numOldPlayerApprentices = 0;
-    apprenticeSaveId = 0;
-    numMixApprentices = 0;
-    for (i = 0; i < 2; i++)
-    {
-        id = (i + gSaveBlock2Ptr->playerApprentice.saveId) % (APPRENTICE_COUNT - 1) + 1;
-        if (src[id].playerName[0] != EOS)
-        {
-            if (GetTrainerId(src[id].playerId) != GetTrainerId(gSaveBlock2Ptr->playerTrainerId))
-            {
-                numMixApprentices++;
-                apprenticeSaveId = id;
-            }
-            if (GetTrainerId(src[id].playerId) == GetTrainerId(gSaveBlock2Ptr->playerTrainerId))
-            {
-                numOldPlayerApprentices++;
-                oldPlayerApprenticeSaveId = id;
-            }
-        }
-    }
-
-    // Prefer passing on other mixed Apprentices rather than old player's Apprentices
-    if (numMixApprentices == 0 && numOldPlayerApprentices != 0)
-    {
-        numMixApprentices = numOldPlayerApprentices;
-        apprenticeSaveId = oldPlayerApprenticeSaveId;
-    }
-
-    switch (numMixApprentices)
-    {
-    case 1:
-        dst[1] = src[apprenticeSaveId];
-        break;
-    case 2:
-        if (Random2() > 0x3333)
-            dst[1] = src[gSaveBlock2Ptr->playerApprentice.saveId + 1];
-        else
-            dst[1] = src[((gSaveBlock2Ptr->playerApprentice.saveId + 1) % (APPRENTICE_COUNT - 1) + 1)];
-        break;
-    }
-}
-
 void GetPlayerHallRecords(struct PlayerHallRecords *dst)
 {
     s32 i, j;
@@ -1145,58 +1087,6 @@ void GetPlayerHallRecords(struct PlayerHallRecords *dst)
         dst->onePlayer[RANKING_HALL_PYRAMID][i].winStreak = gSaveBlock2Ptr->frontier.pyramidRecordStreaks[i];
 
         dst->twoPlayers[i].winStreak = gSaveBlock2Ptr->frontier.towerRecordWinStreaks[FRONTIER_MODE_LINK_MULTIS][i];
-    }
-}
-
-static bool32 IsApprenticeAlreadySaved(struct Apprentice *mixApprentice, struct Apprentice *apprentices)
-{
-    s32 i;
-
-    for (i = 0; i < APPRENTICE_COUNT; i++)
-    {
-        if (GetTrainerId(mixApprentice->playerId) == GetTrainerId(apprentices[i].playerId)
-            && mixApprentice->number == apprentices[i].number)
-            return TRUE;
-    }
-
-    return FALSE;
-}
-
-static void ReceiveApprenticeData(struct Apprentice *records, size_t recordSize, u32 multiplayerId)
-{
-    s32 i, numApprentices, apprenticeId;
-    struct Apprentice *mixApprentice;
-    u32 mixIndices[MAX_LINK_PLAYERS];
-    u32 apprenticeSaveId;
-
-    ShufflePlayerIndices(mixIndices);
-    mixApprentice = (void *)records + (recordSize * mixIndices[multiplayerId]);
-    numApprentices = 0;
-    apprenticeId = 0;
-    for (i = 0; i < 2; i++)
-    {
-        if (mixApprentice[i].playerName[0] != EOS && !IsApprenticeAlreadySaved(&mixApprentice[i], &gSaveBlock2Ptr->apprentices[0]))
-        {
-            numApprentices++;
-            apprenticeId = i;
-        }
-    }
-
-    switch (numApprentices)
-    {
-    case 1:
-        apprenticeSaveId = gSaveBlock2Ptr->playerApprentice.saveId + 1;
-        gSaveBlock2Ptr->apprentices[apprenticeSaveId] = mixApprentice[apprenticeId];
-        gSaveBlock2Ptr->playerApprentice.saveId = (gSaveBlock2Ptr->playerApprentice.saveId + 1) % (APPRENTICE_COUNT - 1);
-        break;
-    case 2:
-        for (i = 0; i < 2; i++)
-        {
-            apprenticeSaveId = ((i ^ 1) + gSaveBlock2Ptr->playerApprentice.saveId) % (APPRENTICE_COUNT - 1) + 1;
-            gSaveBlock2Ptr->apprentices[apprenticeSaveId] = mixApprentice[i];
-        }
-        gSaveBlock2Ptr->playerApprentice.saveId = (gSaveBlock2Ptr->playerApprentice.saveId + 2) % (APPRENTICE_COUNT - 1);
-        break;
     }
 }
 

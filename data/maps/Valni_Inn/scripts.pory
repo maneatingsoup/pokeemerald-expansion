@@ -1,0 +1,38 @@
+mapscripts Valni_Inn_MapScripts {}
+
+script ValniInnKeeper {
+    lock
+    faceplayer
+    if(var(VAR_TEMP_5) == 0){
+    msgbox("Hey, welcome to Valni's Canopy.\n"
+    "I run the inn here.\p"
+    "Wanna take a rest in the treetop?", MSGBOX_YESNO)
+    }
+    elif(var(VAR_TEMP_5) == 1){
+        msgbox("Looking to spend another night in the\n"
+        "treehouse?", MSGBOX_YESNO)
+    }
+    elif(var(VAR_TEMP_5) ==2) {
+        msgbox("Ah, back for another rest already?", MSGBOX_YESNO)
+    }
+    if(var(VAR_RESULT) == YES){
+        setvar(VAR_TEMP_5, 1)
+        setrespawn(HEAL_LOCATION_VALNI)
+        msgbox("Okay, I'll get the room set up.")
+        call(Common_EventScript_OutOfCenterPartyHeal)
+        msgbox("I hope you enjoyed your stay.")
+    }
+    else{
+        setvar(VAR_TEMP_5, 2)
+        msgbox("Alright, let me know if you change\n"
+        "your mind.")
+    }
+    if(!flag(FLAG_INN_PC_INFO)){
+        setflag(FLAG_INN_PC_INFO)
+        msgbox("Oh, by the way, there's a PC over by\n"
+        "the bed.\p" 
+        "You can use it to switch which pokémon\n"
+        "you have with you.")
+    }
+    release
+}

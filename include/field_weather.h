@@ -170,6 +170,7 @@ void SetWeatherScreenFadeOut(void);
 void SetWeatherPalStateIdle(void);
 void PreservePaletteInWeather(u8 preservedPalIndex);
 void ResetPreservedPalettesInWeather(void);
+bool32 IsWeatherAlphaBlend(void);
 
 // field_weather_effect.c
 void Clouds_InitVars(void);
@@ -222,6 +223,10 @@ void Bubbles_InitVars(void);
 void Bubbles_Main(void);
 void Bubbles_InitAll(void);
 bool8 Bubbles_Finish(void);
+void Night_InitVars(void);
+void Night_Main(void);
+void Night_InitAll(void);
+bool8 Night_Finish(void);
 
 u8 GetSavedWeather(void);
 void SetSavedWeather(u32 weather);

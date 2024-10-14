@@ -501,3 +501,14 @@ void InitRamScript_NoObjectEvent(u8 *script, u16 scriptSize)
     InitRamScript(script, scriptSize, MAP_GROUP(UNDEFINED), MAP_NUM(UNDEFINED), NO_OBJECT);
 #endif //FREE_MYSTERY_EVENT_BUFFERS
 }
+
+void GetObjectEventTrainerRangeFromTemplate(void)
+{
+    gSpecialVar_0x8000 = gMapHeader.events->objectEvents[gSpecialVar_LastTalked - 1].trainerRange_berryTreeId;
+}
+
+void GetObjectEventMovementRangeXFromTemplate(void)
+{
+    gSpecialVar_0x8001 = gMapHeader.events->objectEvents[gSpecialVar_LastTalked - 1].movementRangeX;
+    if(VarGet(VAR_0x8001) == 0) VarSet(VAR_0x8001, 1);
+}

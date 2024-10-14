@@ -706,8 +706,9 @@
 #define STRINGID_BIZARREARENACREATED                  704
 #define STRINGID_BIZARREAREACREATED                   705
 #define STRINGID_TIDYINGUPCOMPLETE                    706
+#define STRINGID_CANTRUN                              707
 
-#define BATTLESTRINGS_COUNT                           707
+#define BATTLESTRINGS_COUNT                           708
 
 // This is the string id that gBattleStringsTable starts with.
 // String ids before this (e.g. STRINGID_INTROMSG) are not in the table,
@@ -891,6 +892,7 @@
 #define B_MSG_PREVENTS_ESCAPE      2
 #define B_MSG_CANT_ESCAPE_2        3
 #define B_MSG_ATTACKER_CANT_ESCAPE 4
+#define B_MSG_CANT_RUN             5
 
 // gGotPoisonedStringIds / gGotParalyzedStringIds / gFellAsleepStringIds
 // gGotBurnedStringIds / gGotFrozenStringIds / gAttractUsedStringIds

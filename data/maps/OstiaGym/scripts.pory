@@ -1,0 +1,199 @@
+mapscripts OstiaGym_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION: SetUpOstiaGym
+}
+
+script SetUpOstiaGym {
+    if(var(VAR_CURRENT_RANDOM_WEATHER_VALUE) >= 35) {
+        setflag(FLAG_TEMP_3)
+    }
+}
+
+script OstiaGymGreeter {
+    lock
+    faceplayer
+    if(!flag(FLAG_BADGE01_GET)) {
+        if (!flag(FLAG_TEMP_2)) {
+            setflag(FLAG_TEMP_2)
+            msgbox("Hey there, future champion.\p"
+            "You look like you're ready for a battle\n"
+            "against Joe.\p"
+            "Well, you're going to need to reach him\n"
+            "before you can battle him.\p"
+            "Pick one of these two doors here and\n"
+            "head on through.\p"
+            "But be ready, there are other trainers\n"
+            "in there besides Joe.\p"
+            "You might have to battle them on your\n"
+            "way to the gym leader.", MSGBOX_AUTOCLOSE)
+            specialvar(VAR_RESULT, GetPlayerFacingDirection)
+            delay(15)
+            if(var(VAR_RESULT) == DIR_NORTH) {
+                turnobject(6, DIR_EAST)
+            }
+            else {
+                turnobject(6, DIR_SOUTH)
+            }
+            delay(75)
+            faceplayer
+            delay(15)
+        }
+        msgbox("One piece of advice before you go.\p"
+        "Joe is pretty tough, and so are his\n"
+        "pokémon.\p"
+        "His strongest pokémon is level 16, and\n"
+        "you won't be able to raise yours above\l"
+        "that level until you defeat him.\p"
+        "You can rebattle the gym trainers as\n"
+        "many times as you need to get your\l"
+        "pokémon as tough as Joe's.\p"
+        "Once you leave the gym, they'll be\n"
+        "ready to battle you again.\p"
+        "Keep that in mind when you're ready\n"
+        "to take Joe on, because you'll have\l"
+        "battle them one last time on your\l"
+        "way to him.\p"
+        "Alright, that's all I have.\p"
+        "Good luck!")
+    }
+    else {
+        msgbox("Hey, congrats on defeating Joe!\p"
+        "Many new trainers struggle to take\n"
+        "him on.")
+    }
+    release
+}
+
+script GymLeaderJoe {
+    trainerbattle_double(TRAINER_GYM_LEADER_JOE, GymLeaderJoeIntro, GymLeaderJoeLose, Dummy, GymLeaderJoePostBattle, FALSE)
+    lock
+    faceplayer
+    if(flag(FLAG_TEMP_1)) {
+        msgbox("Congratulations on earning the Basic\n"
+        "Badge.\p"
+        "Now that you have it, you'll be able to\n"
+        "use the Hidden Move Cut outside of\l"
+        "battle.\p"
+        "You don't need to teach the move to a\n"
+        "pokémon to use it in the field.\p"
+        "Just having the Hidden Machine and a\n"
+        "pokémon that can learn it will do.", MSGBOX_AUTOCLOSE)
+    }
+    else {
+        msgbox("Hey kid, good to see you again.\n"
+        "How is your adventure going?\p"
+        "...\p"
+        "Ah, glad to hear you keep toughening up.\p"
+        "You might have what it takes to take on\n"
+        "the pokémon league some day.", MSGBOX_AUTOCLOSE)
+    }
+    release
+}
+
+script GymLeaderJoePostBattle {
+    msgbox("I have to admit, it's been a while since\n"
+    "I've been defeated.\p" 
+    "You battled well.\p"
+    "So here, take this Gym Badge as proof\n"
+    "you beat me.")
+    playfanfare(MUS_OBTAIN_BADGE)
+    msgbox("{PLAYER} received the Basic Badge from\n"
+    "Ostia's Gym Leader!")
+    waitfanfare
+    msgbox("With that badge, you can raise your\n"
+    "pokémon up to level 25.\p"
+    "It will also allow you to use the Hidden\n"
+    "Move Cut outside of battle.\p"
+    "As long as you have the Hidden Machine\n"
+    "and a pokémon in your party is able to\l"
+    "learn it, you can cut down small trees.\p"
+    "You should take this too.")
+    giveitem(ITEM_TM89_FACADE, 1)
+    setflag(FLAG_BADGE01_GET)
+    if(var(VAR_GYM_BADGE_COUNT) < 1) {
+        setvar(VAR_GYM_BADGE_COUNT, 1)
+    }
+    setflag(FLAG_TEMP_1)
+    settrainerflag(TRAINER_YOUNGSTER_ALEXANDER)
+    settrainerflag(TRAINER_LASS_ISABELLA)
+    settrainerflag(TRAINER_LASS_ABIGAIL)
+    settrainerflag(TRAINER_YOUNGSTER_NICHOLAS)
+    clearflag(FLAG_RIVAL_BATTLE_2)
+    setvar(VAR_RIVAL_ENCOUNTER, 2)
+    msgbox("That Technical Machine will teach the\n"
+    "move Facade.\p"
+    "When your pokemon has a status ailment,\n"
+    "that move will deal huge damage!")
+    release
+}
+
+script YoungsterAlexander {
+    trainerbattle_double(TRAINER_YOUNGSTER_ALEXANDER, YoungsterAlexanderIntro, YoungsterAlexanderLose, Dummy)
+    msgbox("You might wanna head through the other\n"
+    "door if you're looking for Joe.", MSGBOX_AUTOCLOSE)
+}
+
+script LassIsabella {
+    trainerbattle_double(TRAINER_LASS_ISABELLA, LassIsabellaIntro, LassIsabellaLose, Dummy)
+    msgbox("You're gonna have to head back. This\n"
+    "way is a dead end.", MSGBOX_AUTOCLOSE)
+}
+
+script LassAbigail {
+    trainerbattle_single(TRAINER_LASS_ABIGAIL, LassAbigailIntro, LassAbigailLose)
+    msgbox("Go on, the gym leader is just ahead.\n", MSGBOX_AUTOCLOSE)
+}
+
+script YoungsterNicholas {
+    trainerbattle_single(TRAINER_YOUNGSTER_NICHOLAS, YoungsterNicholasIntro, YoungsterNicholasLose)
+    msgbox("You might be tough, but you're not\n"
+    "gonna beat Joe so easily!", MSGBOX_AUTOCLOSE)
+}
+
+text GymLeaderJoeIntro {
+    "Hey.\p"
+    "You're here for a pokémon battle I\n"
+    "assume.\p"
+    "I'm Joe, the gym leader here in Ostia.\n"
+    "I like to use Normal type pokémon, and\l"
+    "they can be pretty tough.\p"
+    "I'll show you.\p"
+    "Now, let's begin."
+}
+
+text GymLeaderJoeLose {
+    "Hmph, well done."
+}
+
+text YoungsterAlexanderIntro {
+    "You think you're ready to face Joe?\n"
+    "I'll be the judge of that!"
+}
+
+text YoungsterAlexanderLose {
+    "I guess you are ready..."
+}
+
+text LassIsabellaIntro {
+    "Looks like you went the wrong way!"
+}
+
+text LassIsabellaLose {
+    "Drat!"
+}
+
+text LassAbigailIntro {
+    "You'll have to beat me if you want\n"
+    "to have a battle with Joe!"
+}
+
+text LassAbigailLose {
+    "Oh, wow. You're really strong."
+}
+
+text YoungsterNicholasIntro {
+    "You don't look so tough."
+}
+
+text YoungsterNicholasLose {
+    "You're stronger than you look!"
+}

@@ -8,6 +8,7 @@ BATINTGFXDIR := graphics/battle_interface
 MASKSGFXDIR := graphics/battle_anims/masks
 BATTRANSGFXDIR := graphics/battle_transitions
 TYPESGFXDIR := graphics/types
+TYPESMODERNGFXDIR := graphics/types_modern
 RAYQUAZAGFXDIR := graphics/rayquaza_scene
 ROULETTEGFXDIR := graphics/roulette
 SLOTMACHINEGFXDIR := graphics/slot_machine
@@ -238,6 +239,15 @@ $(FONTGFXDIR)/narrow.latfont: $(FONTGFXDIR)/latin_narrow.png
 $(FONTGFXDIR)/small_narrow.latfont: $(FONTGFXDIR)/latin_small_narrow.png
 	$(GFX) $< $@
 
+$(FONTGFXDIR)/narrower.latfont: $(FONTGFXDIR)/latin_narrower.png
+	$(GFX) $< $@
+
+$(FONTGFXDIR)/small_narrower.latfont: $(FONTGFXDIR)/latin_small_narrower.png
+	$(GFX) $< $@
+
+$(FONTGFXDIR)/short_narrow.latfont: $(FONTGFXDIR)/latin_short_narrow.png
+	$(GFX) $< $@
+
 $(FONTGFXDIR)/small.hwjpnfont: $(FONTGFXDIR)/japanese_small.png
 	$(GFX) $< $@
 
@@ -370,6 +380,14 @@ $(TYPESGFXDIR)/move_types.4bpp: $(types:%=$(TYPESGFXDIR)/%.4bpp) $(contest_types
 $(TYPESGFXDIR)/move_types.gbapal: $(TYPESGFXDIR)/move_types_1.gbapal \
                                   $(TYPESGFXDIR)/move_types_2.gbapal \
                                   $(TYPESGFXDIR)/move_types_3.gbapal
+	@cat $^ >$@
+
+$(TYPESMODERNGFXDIR)/move_types.4bpp: $(types:%=$(TYPESMODERNGFXDIR)/%.4bpp) $(contest_types:%=$(TYPESMODERNGFXDIR)/contest_%.4bpp)
+	@cat $^ >$@
+
+$(TYPESMODERNGFXDIR)/move_types.gbapal: $(TYPESMODERNGFXDIR)/move_types_1.gbapal \
+                                  		$(TYPESMODERNGFXDIR)/move_types_2.gbapal \
+		                                $(TYPESMODERNGFXDIR)/move_types_3.gbapal
 	@cat $^ >$@
 
 graphics/bag/menu.4bpp: %.4bpp: %.png

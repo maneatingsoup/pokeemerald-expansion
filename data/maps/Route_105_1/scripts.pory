@@ -1,0 +1,555 @@
+mapscripts Route_105_1_MapScripts {
+    MAP_SCRIPT_ON_LOAD: Route_105OnLoad
+    MAP_SCRIPT_ON_TRANSITION: SetUpRoute105
+}
+
+script Route_105OnLoad {
+    compare_var_to_value(VAR_CURRENT_RANDOM_WEATHER_VALUE, 35)
+    call_if_ge(Route_105RemovePuddles)
+}
+
+script SetUpRoute105 {
+    special(SetGroupWeather)
+    if(var(VAR_TEAM_HELIX_ENCOUNTER_SEQUENCE) >= 4) {
+        setflag(FLAG_TEMP_A)
+    }
+    elif(var(VAR_TEAM_HELIX_ENCOUNTER_SEQUENCE) == 3) {
+        setobjectxyperm(19, 67, 19)
+        setobjectxyperm(20, 67, 18)
+    }
+}
+
+script Route_105RemovePuddles {
+    setmetatile(11, 20, METATILE_General_Grass, FALSE)
+    setmetatile(12, 20, METATILE_General_Grass, FALSE)
+    setmetatile(11, 21, METATILE_General_Grass, FALSE)
+    setmetatile(12, 21, METATILE_General_Grass, FALSE)
+    setmetatile(14, 30, METATILE_General_Grass, FALSE)
+    setmetatile(15, 30, METATILE_General_Grass, FALSE)
+    setmetatile(14, 29, METATILE_General_Grass, FALSE)
+    setmetatile(15, 29, METATILE_General_Grass, FALSE)
+    setmetatile(17, 13, METATILE_General_Grass, FALSE)
+    setmetatile(18, 13, METATILE_General_Grass, FALSE)
+    setmetatile(17, 14, METATILE_General_Grass, FALSE)
+    setmetatile(18, 14, METATILE_General_Grass, FALSE)
+    setmetatile(18, 21, METATILE_General_Grass, FALSE)
+    setmetatile(19, 21, METATILE_General_Grass, FALSE)
+    setmetatile(20, 21, METATILE_General_Grass, FALSE)
+    setmetatile(21, 21, METATILE_General_Grass, FALSE)
+    setmetatile(18, 22, METATILE_General_Grass, FALSE)
+    setmetatile(19, 22, METATILE_General_Grass, FALSE)
+    setmetatile(20, 22, METATILE_General_Grass, FALSE)
+    setmetatile(21, 22, METATILE_General_Grass, FALSE)
+    setmetatile(10, 42, METATILE_General_Grass, FALSE)
+    setmetatile(11, 42, METATILE_General_Grass, FALSE)
+    setmetatile(10, 43, METATILE_General_Grass, FALSE)
+    setmetatile(11, 43, METATILE_General_Grass, FALSE)
+    setmetatile(17, 37, METATILE_General_Grass, FALSE)
+    setmetatile(18, 37, METATILE_General_Grass, FALSE)
+    setmetatile(17, 38, METATILE_General_Grass, FALSE)
+    setmetatile(18, 38, METATILE_General_Grass, FALSE)
+    setmetatile(46, 35, METATILE_General_Grass, FALSE)
+    setmetatile(47, 35, METATILE_General_Grass, FALSE)
+    setmetatile(46, 36, METATILE_General_Grass, FALSE)
+    setmetatile(47, 36, METATILE_General_Grass, FALSE)
+    setmetatile(64, 37, METATILE_General_Grass, FALSE)
+    setmetatile(65, 37, METATILE_General_Grass, FALSE)
+    setmetatile(64, 38, METATILE_General_Grass, FALSE)
+    setmetatile(65, 38, METATILE_General_Grass, FALSE)
+}
+
+script RunnerJack {
+    trainerbattle_single(TRAINER_RUNNER_JACK, RunnerJackIntro, RunnerJackLose)
+    msgbox("I think I started to work on battling\n"
+    "as often as I work on my legs, I'd\l"
+    "have been able to beat you.", MSGBOX_AUTOCLOSE)
+}
+
+script RunnerKaitlyn {
+    trainerbattle_single(TRAINER_RUNNER_KAITLYN, RunnerKaitlynIntro, RunnerKaitlynLose)
+    msgbox("It's never a bad day to go for a run!", MSGBOX_AUTOCLOSE)
+}
+
+script PsychicJoshua {
+    trainerbattle_single(TRAINER_PSYCHIC_JOSHUA, PsychicJoshuaIntro, PsychicJoshuaLose)
+    msgbox("Psionic powers are rare in people,\n"
+    "but there are many psychic pokémon.", MSGBOX_AUTOCLOSE)
+}
+
+script BlackBeltLogan {
+    trainerbattle_single(TRAINER_BLACK_BELT_LOGAN, BlackBeltLoganIntro, BlackBeltLoganLose)
+    msgbox("Next time, I win.", MSGBOX_AUTOCLOSE)
+}
+
+script BattleGirlHailey {
+    trainerbattle_single(TRAINER_BATTLE_GIRL_HAILEY, BattleGirlHaileyIntro, BattleGirlHaileyLose)
+    msgbox("My pokémon and I spar every morning\n"
+    "to keep ourselves in good shape.", MSGBOX_AUTOCLOSE)
+}
+
+script PicnickerHannah {
+    trainerbattle_double(TRAINER_PICNICKER_HANNAH, PicnickerHannahIntro, PicnickerHannahLose, Dummy)
+    msgbox("I like to hang out in the clearing\n"
+    "here.\p"
+    "It's like my own secret hideout!", MSGBOX_AUTOCLOSE)
+}
+
+script OldCoupleSven {
+    trainerbattle_double(TRAINER_OLD_COUPLE_SVEN_AND_EVA, OldCoupleSvenAndEvaIntro, OldCoupleSvenAndEvaLose, Dummy)
+    msgbox("Thank you for indulging this old\n"
+    "man.\p"
+    "It's been a long time since I've\n"
+    "enjoyed a battle as much as that.\p"
+    "You remind me of myself a bit when\n"
+    "I was a young pokémon trainer.", MSGBOX_AUTOCLOSE)
+}
+
+script OldCoupleEva {
+    trainerbattle_double(TRAINER_OLD_COUPLE_SVEN_AND_EVA, OldCoupleSvenAndEvaIntro, OldCoupleSvenAndEvaLose, Dummy)
+    msgbox("My husband really enjoyed our battle.\p"
+    "He was quite the trainer way back\n"
+    "when he was young.", MSGBOX_AUTOCLOSE)
+}
+
+script BattleCamperConnor {
+    trainerbattle_single(TRAINER_CAMPER_CONNOR, CamperConnorIntro, CamperConnorLose)
+    msgbox("The FitnessGram Pacer Test is a\n"
+    "multistage aerobic capacity test \l"
+    "that progressively gets more\l"
+    "difficult as it continues.\p"
+    "The 20 meter pacer test will begin\n"
+    "in 30 seconds.\p"
+    "Line up at the start.\p"
+    "The running speed starts slowly but\n"
+    "gets faster each minute after you\l"
+    "hear this signal.\p"
+    "BEEP!.\p"
+    "A single lap should be completed\n"
+    "every time you hear this sound\p"
+    "DING!.\p"
+    "Remember to run in a straight line\n"
+    "and run as long as possible.\p"
+    "The second time you fail to complete\n"
+    "a lap before the sound, your test is\l"
+    "over.\p"
+    "The test will begin on the word\n"
+    "start.\p"
+    "On your mark.\p"
+    "Get ready…\p"
+    "Start!", MSGBOX_AUTOCLOSE)
+}
+
+script AromaLadyMadeline {
+    trainerbattle_single(TRAINER_AROMA_LADY_MADELINE, AromaLadyMadelineIntro, AromaLadyMadelineLose)
+    msgbox("It rains all the time here in the\n"
+    "Southern part of the region.\p"
+    "Because of that, you'll find plants\n"
+    "that can't grow anywhere else.", MSGBOX_AUTOCLOSE)
+}
+
+script BirdKeeperJackson {
+    trainerbattle_single(TRAINER_BIRD_KEEPER_JACKSON, BirdKeeperJacksonIntro, BirdKeeperJacksonLose)
+    msgbox("We use flying-type pokémon to help\n"
+    "transport supplies from Port Neleras\l"
+    "all across the region.\p"
+    "Without them, we wouldn't be able to\n"
+    "stock shelves in the general stores.", MSGBOX_AUTOCLOSE)
+}
+
+script HikerCaleb {
+    trainerbattle_double(TRAINER_HIKER_CALEB, HikerCalebIntro, HikerCalebLose, Dummy)
+    msgbox("Golly, Hiking is my favorite of\n"
+    "all activities!", MSGBOX_AUTOCLOSE)
+}
+
+script RunnerJayden {
+    trainerbattle_double(TRAINER_RUNNER_JAYDEN, RunnerJaydenIntro, RunnerJaydenLose, Dummy)
+    msgbox("Running on the bridge or down by\n"
+    "the river is a great way to keep\l"
+    "cool.", MSGBOX_AUTOCLOSE)
+}
+
+script BirdKeeperBrayden {
+    trainerbattle_single(TRAINER_BIRD_KEEPER_BRAYDEN, BirdKeeperBraydenIntro, BirdKeeperBraydenLose)
+    msgbox("I work over in Port Neleras, but\n"
+    "I like to go to Valni on my days\l"
+    "off.\p"
+    "The air is just so clean and I\n"
+    "feel close to nature when I'm\l"
+    "there.", MSGBOX_AUTOCLOSE)
+}
+
+script CamperBenjamin {
+    trainerbattle_single(TRAINER_CAMPER_BENJAMIN, CamperBenjaminIntro, CamperBenjaminLose)
+    msgbox("I wonder why some pokémon are\n"
+    "different colors than normal.\p"
+    "The other kids at school say\n"
+    "it's because they're shiny.\p"
+    "But my Teddiursa is green, not\n"
+    "shiny.", MSGBOX_AUTOCLOSE)
+}
+
+script AceTrainerGavin {
+    trainerbattle_double(TRAINER_ACE_TRAINER_GAVIN, AceTrainerGavinIntro, AceTrainerGavinLose, Dummy)
+    msgbox("You're certainly a tough trainer.\p"
+    "I bet you're gonna go far.", MSGBOX_AUTOCLOSE)
+}
+
+script FishermanEvan {
+    trainerbattle_single(TRAINER_FISHERMAN_EVAN, FishermanEvanIntro, FishermanEvanLose)
+    msgbox("I like gummy worms. I bet fish like\n"
+    "them too.", MSGBOX_AUTOCLOSE)
+}
+
+script FishermanLuke {
+    trainerbattle_double(TRAINER_FISHERMAN_LUKE, FishermanLukeIntro, FishermanLukeLose, Dummy)
+    msgbox("I prefer fishing to battling.\p"
+    "But, not just because I'm better\n"
+    "at it!", MSGBOX_AUTOCLOSE)
+}
+
+script Route105TeamHelixEncounter {
+    lock
+    playbgm(MUS_ENCOUNTER_MAGMA, TRUE)
+    setvar(VAR_TEAM_HELIX_ENCOUNTER_SEQUENCE, 3)
+    msgbox("Scientist: I told you already, I won't\n"
+    "help you Team Helix crooks.")
+    applymovement(20, WalkLeft)
+    waitmovement(0)
+    msgbox("Male Grunt: Oh yeah? I don't remember\n"
+    "asking for your opinion on it.")
+    applymovement(19, WalkLeft)
+    msgbox("Femal Grunt: Yeah, we're not asking.\n"
+    "You're coming with us.\p"
+    "We can do this the easy way, or the hard\n"
+    "way.", MSGBOX_AUTOCLOSE)
+    turnobject(21, DIR_SOUTH)
+    delay(45)
+    turnobject(21, DIR_EAST)
+    delay(30)
+    msgbox("Scientist: Urk...I told you no.\n"
+    "I won't!", MSGBOX_AUTOCLOSE)
+    getplayerxy(VAR_TEMP_0, VAR_TEMP_1)
+    if(var(VAR_TEMP_1) <= 18) {
+        applymovement(OBJ_EVENT_ID_PLAYER, PlayerApproachScientistNorth)
+    }
+    else {
+        applymovement(OBJ_EVENT_ID_PLAYER, PlayerApproachScientistSouth)
+    }
+    waitmovement(0)
+    turnobject(21, DIR_SOUTH)
+    turnobject(OBJ_EVENT_ID_PLAYER, DIR_NORTH)
+    msgbox("Scientist: You're a pokémon trainer!\n"
+    "Please, you've gotta help me.\p"
+    "These Team Helix goons want to kidnap\n"
+    "me and force me to work on their crazy\l"
+    "pokémon gene editing scheme.\p"
+    "And their employment benefits are\n"
+    "horrendous!\p"
+    "Please, you've gotta help me out.")
+    applymovement(20, WalkInPlaceLeft)
+    turnobject(21, DIR_EAST)
+    turnobject(OBJ_EVENT_ID_PLAYER, DIR_EAST)
+    msgbox("Male Grunt: Hey kid, you stay out of\n"
+    "This!\p"
+    "Let the adults talk.")
+    applymovement(19, WalkInPlaceLeft)
+    setflag(FLAG_TEMP_9)
+    goto(Route105GruntBattles)
+}
+
+script Route105GruntBattles {
+    if(!flag(FLAG_TEMP_9)) {
+        playbgm(MUS_ENCOUNTER_MAGMA, TRUE)
+    }
+    msgbox("Female Grunt: Yeah, you don't want\n"
+    "any trouble with us, do you?", MSGBOX_YESNO)
+    if(var(VAR_RESULT) == YES) {
+        msgbox("Female Grunt: Looks like we found\n"
+        "ourselves a feisty one!", MSGBOX_AUTOCLOSE)
+        trainerbattle_no_intro(TRAINER_TEAM_HELIX_ROUTE105_A, HelixRoute105ALose,)
+        applymovement(19, Route105GruntADefeated)
+        waitmovement(0)
+        msgbox("Female Grunt: Ugh, you little twerp!", MSGBOX_AUTOCLOSE)
+        applymovement(20, Route105GruntBChallenge)
+        waitmovement(0)
+        msgbox("Male Grunt: I'm gonna make you regret\n"
+        "crossing Team Helix!")
+        trainerbattle_no_intro(TRAINER_TEAM_HELIX_ROUTE105_B, HelisRoute105BLose,)
+        msgbox("Male Grunt: Hmph, fine.\n"
+        "You win this round.\p"
+        "But we'll be back!")
+        turnobject(20, DIR_EAST)
+        msgbox("Let's ge outta here.\n", MSGBOX_AUTOCLOSE)
+        applymovement(19, Route105GruntALeave)
+        applymovement(20, Route105GruntBLeave)
+        waitmovement(0)
+        removeobject(19)
+        removeobject(20)
+        fadedefaultbgm
+        turnobject(21, DIR_SOUTH)
+        turnobject(OBJ_EVENT_ID_PLAYER, DIR_NORTH)
+        msgbox("Thank you very much!\n"
+        "You really saved me there.\p"
+        "These Team Helix folks, they really\n"
+        "seem like they're up to no good.\p"
+        "They want to create the ultimate\n"
+        "pokémon by manipulating pokémon\l"
+        "DNA.\p"
+        "What a reckless plan...\p"
+        "Oh, but I really owe you big time!\n"
+        "So take this.")
+        giveitem(ITEM_HM05, 1)
+        setflag(FLAG_RECEIVED_HM05)
+        msgbox("With that Hidden Machine, you can\n"
+        "produce your own light on your way\l"
+        "through the Rugged Pass.\p"
+        "I'm sure you'll find other places\n"
+        "where it's useful too.\p"
+        "Now then, I best be off.\n"
+        "Thanks again, and safe travels!", MSGBOX_AUTOCLOSE)
+        setvar(VAR_TEAM_HELIX_ENCOUNTER_SEQUENCE, 4)
+        applymovement(21, LeaveLeft)
+        waitmovement(0)
+    }
+    else {
+        msgbox("Smart choice.\n"
+        "Now scram!", MSGBOX_AUTOCLOSE)
+        fadedefaultbgm
+        clearflag(FLAG_TEMP_9)
+    }
+    release
+}
+
+script Route105Scientist {
+    lock
+    faceplayer
+    msgbox("Please, you've gotta help me!")
+    turnobject(21, DIR_EAST)
+    release
+}
+
+script MoveRoute105Grunts {
+    if(var(VAR_TEAM_HELIX_ENCOUNTER_SEQUENCE) == 3) {
+        setobjectxyperm(19, 67, 19)
+        setobjectxyperm(20, 67, 18)
+    }
+}
+
+movement PlayerApproachScientistNorth {
+    walk_down
+    walk_right*2
+}
+
+movement PlayerApproachScientistSouth {
+    walk_right*2
+}
+
+movement WalkInPlaceLeft {
+    walk_in_place_left
+}
+
+movement Route105GruntADefeated {
+    lock_facing_direction
+    walk_right
+    unlock_facing_direction
+}
+
+movement Route105GruntBChallenge {
+    walk_down
+    face_left
+}
+
+movement Route105GruntALeave {
+    walk_right
+    walk_down*8
+}
+movement Route105GruntBLeave {
+    walk_right*2
+    walk_down*8
+}
+
+movement LeaveLeft {
+    walk_left*8
+}
+
+text HelixRoute105ALose {
+    "You're tougher than you look..."
+}
+
+text HelisRoute105BLose {
+    "But you're just a kid!"
+}
+
+text RunnerJackIntro {
+    "Hey, I could use a break from my run.\n"
+    "Let's have a battle!"
+}
+
+text RunnerJackLose {
+    "I'd have been better off without the\n"
+    "break."
+}
+
+text RunnerKaitlynIntro {
+    "My pokémon like to run just as much as\n"
+    "I do!"
+}
+
+text RunnerKaitlynLose {
+    "Maybe I should do more training than\n"
+    "running if I want to keep battling."
+}
+
+text PsychicJoshuaIntro {
+    "Behold, the psionic power of my psychic\n"
+    "pokémon!"
+}
+
+text PsychicJoshuaLose {
+    "How could we lose?!"
+}
+
+text BlackBeltLoganIntro {
+    "We will battle.\p"
+    "Now!"
+}
+
+text BlackBeltLoganLose {
+    "I lose."
+}
+
+text BattleGirlHaileyIntro {
+    "I spar with my pokémon every monring.\p"
+    "You won't defeat us easily!"
+}
+
+text BattleGirlHaileyLose {
+    "So, you train with your pokémon often\n"
+    "too."
+}
+
+text PicnickerHannahIntro {
+    "Do you like the secret hideaway I\n"
+    "made in the trees here?"
+}
+
+text PicnickerHannahLose {
+    "Okay, I didn't make the hideaway.\n"
+    "I found it."
+}
+
+text OldCoupleSvenAndEvaIntro {
+    "Oh, a youngster!\p"
+    "Let's see if you have what it takes\n"
+    "to beat an old man and his wife."
+}
+
+text OldCoupleSvenAndEvaLose {
+    "I see.\p"
+    "You are more experienced than you\n"
+    "look."
+}
+
+text CamperConnorIntro {
+    "My gym teacher made us do the pacer\n"
+    "test today."
+}
+
+text CamperConnorLose {
+    "I hate running.\n"
+    "But I hate losing more!"
+}
+
+text AromaLadyMadelineIntro {
+    "The flowering plants in this region\n"
+    "are just so lovely.\p"
+    "Don't you think?"
+}
+
+text AromaLadyMadelineLose {
+    "You could have just said no."
+}
+
+text BirdKeeperJacksonIntro {
+    "Flying-type pokémon are vital for\n"
+    "the function of our towns and\l"
+    "cities.\p"
+    "I also like to battle with them!"
+}
+
+text BirdKeeperJacksonLose {
+    "I like to battle with my bird\n"
+    "pokémon.\p"
+    "But I don't think I like battling\n"
+    "against you."
+}
+
+text HikerCalebIntro {
+    "I sure do love hiking!"
+}
+
+text HikerCalebLose {
+    "Hiking is the best!"
+}
+
+text RunnerJaydenIntro {
+    "The breeze on the bridge keeps my\n"
+    "body cool."
+}
+
+text RunnerJaydenLose {
+    "Losing really cools my mood too."
+}
+
+text BirdKeeperBraydenIntro {
+    "Port Neleras is just over the\n"
+    "Rugged Pass.\p"
+    "You'll have to beat me if you're\n"
+    "looking to get there."
+}
+
+text BirdKeeperBraydenLose {
+    "Alright, you beat me.\n"
+    "Go on ahead."
+}
+
+text CamperBenjaminIntro {
+    "I found a green Teddiursa!\p"
+    "Take a look!"
+}
+
+text CamperBenjaminLose {
+    "I guess it's not any tougher than\n"
+    "a normal Teddiursa."
+}
+
+text AceTrainerGavinIntro {
+    "I already have a gym badge from\n"
+    "Valni's gym leader.\p"
+    "Think you have a shot at beating\n"
+    "me?"
+}
+
+text AceTrainerGavinLose {
+    "It looks like you have a pretty\n"
+    "good chance."
+}
+
+text FishermanEvanIntro {
+    "I'm baiting my line with gummy\n"
+    "worms."
+}
+
+text FishermanEvanLose {
+    "Welp, I lost."
+}
+
+text FishermanLukeIntro {
+    "I caught a trainer!"
+}
+
+text FishermanLukeLose {
+    "Maybe I should have let this one\n"
+    "go."
+}

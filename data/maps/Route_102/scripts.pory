@@ -1,0 +1,164 @@
+mapscripts Route_102_MapScripts {
+    MAP_SCRIPT_ON_LOAD: Route_102OnLoad
+    MAP_SCRIPT_ON_TRANSITION: SetUpRoute102
+}
+
+script Route_102OnLoad {
+    compare_var_to_value(VAR_CURRENT_RANDOM_WEATHER_VALUE, 35)
+    call_if_ge(Route_102RemovePuddles)
+}
+
+script Route_102RemovePuddles {
+    setmetatile(11, 12, METATILE_General_Grass, FALSE)
+    setmetatile(12, 12, METATILE_General_Grass, FALSE)
+    setmetatile(11, 13, METATILE_General_Grass, FALSE)
+    setmetatile(12, 13, METATILE_General_Grass, FALSE)
+}
+
+script SetUpRoute102 {
+    special(SetGroupWeather)
+    call(Common_EventScript_SetupRivalGfxId)
+}
+
+script NotifyOverlevel {
+    lock
+    setvar(VAR_RIVAL_ENCOUNTER, 1)
+    clearflag(FLAG_DISOBEY_NOTIF)
+    addobject(4)
+    call(SetRivalEncounterMusic)
+    getplayerxy(VAR_TEMP_0, VAR_TEMP_1)
+    compare(VAR_TEMP_0, 4)
+    call_if(TRUE, RepositionRivalRoute102)
+    applymovement(4, WalkUpThree)
+    waitmovement(0)
+    msgbox("Wait, {PLAYER}!", MSGBOX_AUTOCLOSE)
+    turnobject(OBJ_EVENT_ID_PLAYER, DIR_SOUTH)
+    applymovement(4, WalkUpFour)
+    waitmovement(0)
+    msgbox("I forgot to tell you something important\n"
+    "about training your pokémon!\p"
+    "They can only get so strong with an\n"
+    "inexperienced trainer\p"
+    "A trainer that hasn't defeated thier\n"
+    "first gym can only train a pokémon\l"
+    "to level 16.\p"
+    "If you want to raise your pokémon to\n"
+    "be strong, you'll have to challenge\l"
+    "Joe at the gym in Ostia.", MSGBOX_AUTOCLOSE)
+    delay(15)
+    turnobject(4, DIR_SOUTH)
+    delay(75)
+    turnobject(4, DIR_NORTH)
+    delay(15)
+    msgbox("Looks like you've beaten all those\n"
+    "trainers, huh.\p"
+    "You must be ready to head into the\n"
+    "Valni Forest then.\p"
+    "Well, you're a step ahead of me!\p"
+    "Oh, you should take these before you go.")
+    giveitem(ITEM_ORAN_BERRY, 15)
+    msgbox("Those will help you make it through\n"
+    "the forest.\p"
+    "You can use them to heal your pokémon\n"
+    "a little bit.\p"
+    "You can even give one of them to a\n"
+    "pokémon to hold.\p"
+    "Then, if it starts to tire out in the\n"
+    "middle of a battle, it can eat it on\l"
+    "its own!\p" 
+    "Anyway, that's it from me.\n"
+    "I'll catch up with you again later.\p"
+    "See ya!", MSGBOX_AUTOCLOSE)
+    applymovement(4, RivalLeaveAldus)
+    waitmovement(0)
+    setflag(FLAG_DISOBEY_NOTIF)
+    removeobject(4)
+    fadedefaultbgm
+    release
+}
+
+script RepositionRivalRoute102 {
+    setobjectxy(4, 4, 11)
+}
+
+script SetRivalEncounterMusic {
+    checkplayergender
+    if(var(VAR_RESULT) == MALE){
+        playbgm(MUS_ENCOUNTER_MAY, FALSE)
+    }
+    else{
+        playbgm(MUS_ENCOUNTER_BRENDAN, FALSE)
+    }
+    return
+}
+
+script AldusForestSign {
+    lock
+    msgbox("Valni Forest\n"
+    "South Entrance")
+    release
+}
+
+script LassEmily {
+    trainerbattle_single(TRAINER_LASS_EMILY, LassEmilyIntro, LassEmilyLose)
+    lock
+    faceplayer
+    msgbox("I'm not gonna show you my pokémon\n"
+    "ever again. You're mean.")
+    release
+}
+
+text LassEmilyIntro {
+    "Wanna see my cute pokémon?"
+}
+
+text LassEmilyLose {
+    "You're so mean!"
+}
+
+script YoungsterCameron {
+    trainerbattle_single(TRAINER_YOUNGSTER_CAMERON, YoungsterCameronIntro, YoungsterCameronLose)
+    lock
+    faceplayer
+    msgbox("Wow, you're really tough!")
+    release
+}
+
+text YoungsterCameronIntro {
+    "I see you! Now you have to battle me!"
+}
+
+text YoungsterCameronLose {
+    "Drat, I thought I could take you."
+}
+
+script AceTrainerMichael {
+    trainerbattle_double(TRAINER_ACE_TRAINER_MICHAEL, AceTrainerMichaelIntro, AceTrainerMichaelLose, Dummy)
+    lock
+    faceplayer
+    msgbox("Your battling prowess is something\n"
+    "to be remembered. I'll have to step\l"
+    "up my game for a rematch someday.")
+    release
+
+}
+
+movement WalkUpThree {
+    walk_up*3
+}
+
+text AceTrainerMichaelIntro {
+    "Are you ready to battle a real trainer?\p"
+    "I promise, I'm no pushover!"
+}
+
+text AceTrainerMichaelLose {
+    "You're really something. I bet you'd\n"
+    "be able to take on the gym in Ostia."
+}
+
+text Dummy {
+    "You see this if you only have one\n"
+    "pokémon. You aren't supposed to see it.\p"
+    "Please tell Mitch if you do."
+}

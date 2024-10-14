@@ -1,0 +1,68 @@
+mapscripts OstiaHouse5Floor2_MapScripts {}
+
+script OstiaHouse5Dad {
+    lock
+    faceplayer
+    switch(var(VAR_TEMP_0)) {
+        case 0:
+            setvar(VAR_TEMP_0, 1)
+            msgbox("I'm doing my taxes for the year.\p"
+            "...\p"
+            "...\p"
+            "I sure do love doing taxes.")
+            break
+        case 1:
+            setvar(VAR_TEMP_0, 2)
+            msgbox("I bet you're wondering how my entire\n"
+            "family fits in that tiny bed over there.\p"
+            "...\p"
+            "We don't.\p"
+            "I sleep on this here table and my wife\n"
+            "sleeps on the couch.")
+            break
+        case 2:
+            setvar(VAR_TEMP_0, 3)
+            msgbox("Wanna subscribe to my OnlyFans?\p"
+            "Some of my scenes involve peanut butter,\n"
+            "and in others I wear assless overalls.\p"
+            "But, in all of them, I pretend to be\n"
+            "Super Man.")
+            break
+        case 3:
+            setvar(VAR_TEMP_0, 4)
+            msgbox("You know, I don't really understand\n"
+            "anything about doing taxes.\p"
+            "I've just been writing big numbers in\n"
+            "the boxes and hoped the IRS doesn't\l"
+            "come for me. Which they haven't done\l"
+            "yet. So that means I must be doing a\l"
+            "great job.\p"
+            "...\p"
+            "Maybe I do know a lot about doing taxes.\n"
+            "I'd make a pretty good tax attorney.")
+            break
+        case 4:
+            setvar(VAR_TEMP_0, 5)
+            msgbox("Well, it's decided. I'm gonna go take the\n"
+            "Bar Exam.\p"
+            "If that doesn't work out, there's always\n"
+            "my widely successful OnlyFans career\l"
+            "to fall back on.")
+            break
+        case 5:
+        setvar(VAR_TEMP_0, 6)
+            msgbox("You've really helped me get my life\n"
+            "together just by standing there.\p"
+            "Thanks stranger, who walked into my home\n"
+            "uninvited and came up to my bedroom.\p"
+            "You're a real pal.")
+            break
+        case 6:
+            msgbox("Well, I better get these taxes done now.\n"
+            "It'd be a pretty bad look to end up in\l"
+            "prison for tax evasion while trying to\l"
+            "be a tax attorney.")
+            break
+    }
+    release
+}

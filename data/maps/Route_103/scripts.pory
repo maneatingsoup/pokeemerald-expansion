@@ -1,0 +1,97 @@
+mapscripts Route_103_MapScripts {
+    MAP_SCRIPT_ON_LOAD: Route_103OnLoad
+    MAP_SCRIPT_ON_TRANSITION: SetUpMapWeather
+}
+
+script Route_103OnLoad {
+    compare_var_to_value(VAR_CURRENT_RANDOM_WEATHER_VALUE, 35)
+    call_if_ge(Route_103RemovePuddles)
+}
+
+script Route_103RemovePuddles {
+    setmetatile(5, 8, METATILE_General_Grass, FALSE)
+    setmetatile(6, 8, METATILE_General_Grass, FALSE)
+    setmetatile(5, 9, METATILE_General_Grass, FALSE)
+    setmetatile(6, 9, METATILE_General_Grass, FALSE)
+    setmetatile(14, 26, METATILE_General_Grass, FALSE)
+    setmetatile(15, 26, METATILE_General_Grass, FALSE)
+    setmetatile(14, 27, METATILE_General_Grass, FALSE)
+    setmetatile(15, 27, METATILE_General_Grass, FALSE)
+}
+
+script AldusForestSignNorth {
+    lock
+    msgbox("Valni Forest\n"
+    "North Entrance")
+    release
+}
+
+script Route103Girl {
+    lock
+    faceplayer
+    if ((flag(FLAG_ARUM_TWIG))) {
+        msgbox("I want to see my grandparents in Aldus,\n"
+        "but I'm afraid I'll get lost in there.")
+    }
+    else {
+        msgbox("Oh, you made it through the Valni Forest\n"
+        "all by yourself?\p"
+        "There are a lot of wild pokémon in\n"
+        "the forest, you should take this.")
+        setflag(FLAG_ARUM_TWIG)
+        giveitem(ITEM_ARUM_TWIG)
+        msgbox("That twig came from a flowering plant.\p"
+        "It's pollen smells nice to people,\n"
+        "but pokémon find it repulsive.\p"
+        "Many pokémon will avoid you if you\n"
+        "hold it.")
+    }
+    release
+}
+
+script LassEmma {
+    trainerbattle_double(TRAINER_LASS_EMMA, LassEmmaIntro, LassEmmaLose, Dummy)
+    msgbox("I'll just have to keep practicing.", MSGBOX_AUTOCLOSE)
+}
+
+script FishermanAnthony {
+    trainerbattle_single(TRAINER_FISHERMAN_ANTHONY, FishermanAnthonyIntro, FishermanAnthonyLose)
+    msgbox("Still no bites yet today.", MSGBOX_AUTOCLOSE)
+}
+
+script AceTrainerOlivia {
+    trainerbattle_single(TRAINER_ACE_TRAINER_OLIVIA, AceTrainerOliviaIntro, AceTrainerOliviaLose)
+    msgbox("Maybe if I catch another pokémon.\n"
+    "Then I'd be strong enough for the gym.", MSGBOX_AUTOCLOSE)
+}
+
+text LassEmmaIntro {
+    "My big sis let me borrow her pokémon,\n"
+    "so I could learn how to battle!"
+}
+
+text LassEmmaLose {
+    "Looks like I still have a lot of work\n"
+    "to do before I'm as good as her."
+}
+
+text FishermanAnthonyIntro {
+    "Nothing here has been biting for me\n"
+    "today."
+}
+
+text FishermanAnthonyLose {
+    "Maybe I'll stick to fishing in the\n"
+    "ocean. Nobody asks me to battle on\l"
+    "my boat."
+}
+
+text AceTrainerOliviaIntro {
+    "I haven't lost a single battle today.\n"
+    "If I beat you too, I'm going to\l"
+    "challenge Ostia's gym leader."
+}
+
+text AceTrainerOliviaLose {
+    "Maybe I should train a bit more first."
+}

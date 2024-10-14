@@ -1,0 +1,132 @@
+mapscripts Route_104_2_MapScripts {
+    MAP_SCRIPT_ON_LOAD: Route_104_2OnLoad
+    MAP_SCRIPT_ON_TRANSITION: SetUpMapWeather
+}
+
+script Route_104_2OnLoad {
+    compare_var_to_value(VAR_CURRENT_RANDOM_WEATHER_VALUE, 35)
+    call_if_ge(Route_104_2RemovePuddles)
+}
+
+script Route_104_2RemovePuddles {
+    setmetatile(11, 56, METATILE_General_Grass, FALSE)
+    setmetatile(10, 56, METATILE_General_Grass, FALSE)
+    setmetatile(11, 57, METATILE_General_Grass, FALSE)
+    setmetatile(10, 57, METATILE_General_Grass, FALSE)
+    setmetatile(2, 12, METATILE_General_Grass, FALSE)
+    setmetatile(3, 12, METATILE_General_Grass, FALSE)
+    setmetatile(4, 12, METATILE_General_Grass, FALSE)
+    setmetatile(2, 11, METATILE_General_Grass, FALSE)
+    setmetatile(3, 11, METATILE_General_Grass, FALSE)
+    setmetatile(4, 11, METATILE_General_Grass, FALSE)
+}
+
+script BugCatcherBrandon {
+    trainerbattle_double(TRAINER_BUG_CATCHER_BRANDON, BugCatcherBrandonIntro, BugCatcherBrandonLose, Dummy)
+    msgbox("I think I'll go look elsewhere for bug\n"
+    "pokémon tomorrow.", MSGBOX_AUTOCLOSE)
+}
+
+script HikerDylan {
+    trainerbattle_single(TRAINER_HIKER_DYLAN, HikerDylanIntro, HikerDylanLose)
+    msgbox("Thanks for the battle.\n"
+    "It livened up my day.", MSGBOX_AUTOCLOSE)
+}
+
+script CamperSamuel {
+    trainerbattle_single(TRAINER_ARCHIE, CamperSamuelIntro, CamperSamuelLose)
+    msgbox("I like to hike out here.", MSGBOX_AUTOCLOSE)
+}
+
+script PicnickerAlyssa {
+    trainerbattle_single(TRAINER_PICNICKER_ALYSSA, PicnickerAlyssaIntro, PicnickerAlyssaLose)
+    msgbox("My brother and I hike here a lot.\p"
+    "I like the smell of fresh air and the\n"
+    "breeze you feel on the mountainside.", MSGBOX_AUTOCLOSE)
+}
+
+script HikerBen {
+    trainerbattle_single(TRAINER_HIKER_BEN, HikerBenIntro, HikerBenLose)
+    msgbox("I need to find a way to get my energy\n"
+    "to go running back.", MSGBOX_AUTOCLOSE)
+}
+
+script AceTrainerNathan {
+    trainerbattle_single(TRAINER_ACE_TRAINER_NATHAN, AceTrainerNathanIntro, AceTrainerNathanLose)
+    msgbox("Anyone as strong as you is welcome in\n"
+    "our secret hideout.\p"
+    "Maybe you could teach me a bit about\n"
+    "battling while you're here.", MSGBOX_AUTOCLOSE)
+}
+
+script AceTrainerAva {
+    trainerbattle_single(TRAINER_ACE_TRAINER_AVA, AceTrainerAvaIntro, AceTrainerAvaLose)
+    msgbox("I guess we can let you in, since you\n"
+    "beat us both.", MSGBOX_AUTOCLOSE)
+}
+
+text BugCatcherBrandonIntro {
+    "I thought there would be stronger bug\n"
+    "pokémon here.\p"
+    "All I can find are Pineco."
+}
+
+text BugCatcherBrandonLose {
+    "Maybe I should have just caught a\n"
+    "a Pineco and gone home..."
+}
+
+text HikerDylanIntro {
+    "Ho there, let us now battle!"
+}
+
+text HikerDylanLose {
+    "Maybe I should just talk normally..."
+}
+
+text CamperSamuelIntro {
+    "My sister and I are hiking through\n"
+    "the trails around here.\p"
+    "But I have time for a battle!"
+}
+
+text CamperSamuelLose {
+    "Well, it was still fun."
+}
+
+text PicnickerAlyssaIntro {
+    "My brother and I are hiking today.\p"
+    "We both like battling too, though!"
+}
+
+text PicnickerAlyssaLose {
+    "Can't win'em all."
+}
+
+text HikerBenIntro {
+    "I'm getting my exercise in!"
+}
+
+text HikerBenLose {
+    "How am I supposed to exercise after\n"
+    "losing like that..."
+}
+
+text AceTrainerNathanIntro {
+    "Oh, looks like you've wandered into our\n"
+    "little hideout!\p"
+    "We won't let you out without a battle!"
+}
+
+text AceTrainerNathanLose {
+    "You're strong..."
+}
+
+text AceTrainerAvaIntro {
+    "You can't be here!\p"
+    "This is our secret base!"
+}
+
+text AceTrainerAvaLose {
+    "Ugh, I guess you win."
+}

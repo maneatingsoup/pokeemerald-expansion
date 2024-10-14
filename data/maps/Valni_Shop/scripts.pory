@@ -1,0 +1,35 @@
+mapscripts Valni_Shop_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION: SetUpValniHouses
+}
+
+script ValniStoreMan {
+    lock
+    faceplayer
+    checkplayergender
+    if(var(VAR_RESULT) == MALE) {
+        message("Why, hello young man!\p"
+        "Welcome to the Valni General Store.\p"
+        "What can I do for you?")
+    }
+    else {
+        message("Why hello young lady!\n"
+        "Welcome to the Valni General Store.\p"
+        "What can I do for you?")
+    }
+    waitmessage
+    call(CityMart)
+    msgbox("Thank you for your business.")
+    release
+}
+
+script ValniStoreGirl {
+    lockall
+    faceplayer
+    msgbox("Grandpa has lots and lots of boxes full\n"
+    "of all kinds of stuff.\p"
+    "People come by every week to drop them\n"
+    "off, and he sells the stuff inside.\p"
+    "I like to make box forts out of them\n"
+    "when they're empty!")
+    releaseall
+}

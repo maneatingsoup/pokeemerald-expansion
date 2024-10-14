@@ -291,7 +291,7 @@
 // gMapGroup_IndoorRoute121
 #define MAP_ROUTE121_SAFARI_ZONE_ENTRANCE (0 | (23 << 8))
 
-// gMapGroup_Dungeons
+// gMapGroup_DungeonsOld
 #define MAP_METEOR_FALLS_1F_1R                       (0 | (24 << 8))
 #define MAP_METEOR_FALLS_1F_2R                       (1 | (24 << 8))
 #define MAP_METEOR_FALLS_B1F_1R                      (2 | (24 << 8))
@@ -591,6 +591,73 @@
 // gMapGroup_IndoorRoute124
 #define MAP_ROUTE124_DIVING_TREASURE_HUNTERS_HOUSE (0 | (33 << 8))
 
-#define MAP_GROUPS_COUNT 34
+// gMapGroup_Outdoors
+#define MAP_SERAFEW      (0 | (34 << 8))
+#define MAP_ROUTE_101    (1 | (34 << 8))
+#define MAP_ALDUS        (2 | (34 << 8))
+#define MAP_ROUTE_102    (3 | (34 << 8))
+#define MAP_ROUTE_103    (4 | (34 << 8))
+#define MAP_OSTIA        (5 | (34 << 8))
+#define MAP_ROUTE_104_1  (6 | (34 << 8))
+#define MAP_ROUTE_104_2  (7 | (34 << 8))
+#define MAP_VALNI        (8 | (34 << 8))
+#define MAP_ROUTE_105_1  (9 | (34 << 8))
+#define MAP_ROUTE_105_2  (10 | (34 << 8))
+#define MAP_PORT_NELERAS (11 | (34 << 8))
+
+// gMapGroup_Dungeons
+#define MAP_VALNI_FOREST_WEST1 (0 | (35 << 8))
+#define MAP_VALNI_FOREST_WEST2 (1 | (35 << 8))
+#define MAP_VALNI_FOREST_EAST1 (2 | (35 << 8))
+#define MAP_VALNI_FOREST_EAST2 (3 | (35 << 8))
+#define MAP_RUGGED_PASS_F1     (4 | (35 << 8))
+#define MAP_RUGGED_PASS_F2     (5 | (35 << 8))
+#define MAP_RUGGED_PASS_F3     (6 | (35 << 8))
+
+// gMapGroup_IndoorSerafew
+#define MAP_SERAFEW_PLAYER_HOUSE_1F (0 | (36 << 8))
+#define MAP_SERAFEW_PLAYER_HOUSE_2F (1 | (36 << 8))
+#define MAP_SERAFEW_LAB             (2 | (36 << 8))
+
+// gMapGroup_IndoorAldus
+#define MAP_ALDUS_INN_1F          (0 | (37 << 8))
+#define MAP_ALDUS_INN_2F          (1 | (37 << 8))
+#define MAP_ALDUS_FISHERMAN_HOUSE (2 | (37 << 8))
+
+// gMapGroup_IndoorOstia
+#define MAP_OSTIA_HOUSE1                      (0 | (38 << 8))
+#define MAP_OSTIA_HOUSE2                      (1 | (38 << 8))
+#define MAP_OSTIA_HOUSE3                      (2 | (38 << 8))
+#define MAP_OSTIA_HOUSE4                      (3 | (38 << 8))
+#define MAP_OSTIA_HOUSE5FLOOR1                (4 | (38 << 8))
+#define MAP_OSTIA_HOUSE5FLOOR2                (5 | (38 << 8))
+#define MAP_OSTIA_HOUSE6FLOOR1                (6 | (38 << 8))
+#define MAP_OSTIA_HOUSE6FLOOR2                (7 | (38 << 8))
+#define MAP_OSTIA_STORE                       (8 | (38 << 8))
+#define MAP_OSTIA_INN                         (9 | (38 << 8))
+#define MAP_OSTIA_GYM                         (10 | (38 << 8))
+#define MAP_OSTIA_RESEARCH_INSTITUTE_FLOOR1   (11 | (38 << 8))
+#define MAP_OSTIA_RESEARCH_INSTITUTE_FLOOR2   (12 | (38 << 8))
+#define MAP_OSTIA_RESEARCH_INSTITUTE_FLOOR_B1 (13 | (38 << 8))
+
+// gMapGroup_IndoorValni
+#define MAP_VALNI_INN       (0 | (39 << 8))
+#define MAP_VALNI_SHOP      (1 | (39 << 8))
+#define MAP_VALNI_HOUSE1    (2 | (39 << 8))
+#define MAP_VALNI_HOUSE2    (3 | (39 << 8))
+#define MAP_VALNI_HOUSE3    (4 | (39 << 8))
+#define MAP_VALNI_GYM       (5 | (39 << 8))
+#define MAP_VALNI_GYM_LOBBY (6 | (39 << 8))
+
+// gMapGroup_IndoorPortNeleras
+#define MAP_PORT_NELERAS_INN         (0 | (40 << 8))
+#define MAP_PORT_NELERAS_HOUSE1      (1 | (40 << 8))
+#define MAP_PORT_NELERAS_SHOP        (2 | (40 << 8))
+#define MAP_PORT_NELERAS_SHIPYARD_F1 (3 | (40 << 8))
+#define MAP_PORT_NELERAS_SHIPYARD_F2 (4 | (40 << 8))
+#define MAP_PORT_NELERAS_HARBOR      (5 | (40 << 8))
+#define MAP_PORT_NELERAS_MUSEUM      (6 | (40 << 8))
+
+#define MAP_GROUPS_COUNT 41
 
 #endif // GUARD_CONSTANTS_MAP_GROUPS_H

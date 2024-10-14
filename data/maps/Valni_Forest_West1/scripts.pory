@@ -1,0 +1,122 @@
+mapscripts Valni_Forest_West1_MapScripts {
+    MAP_SCRIPT_ON_LOAD: AldusForestWest1OnLoad
+    MAP_SCRIPT_ON_TRANSITION: SetUpMapWeather
+}
+
+script AldusForestWest1OnLoad {
+    compare_var_to_value(VAR_CURRENT_RANDOM_WEATHER_VALUE, 35)
+    call_if_ge(AldusForestWest1RemovePuddles)
+}
+
+script AldusForestWest1RemovePuddles {
+    setmetatile(14, 34, METATILE_General_Grass, FALSE)
+    setmetatile(15, 34, METATILE_General_Grass, FALSE)
+    setmetatile(14, 35, METATILE_General_Grass, FALSE)
+    setmetatile(15, 35, METATILE_General_Grass, FALSE)
+    setmetatile(10, 28, METATILE_General_Grass, FALSE)
+    setmetatile(11, 28, METATILE_General_Grass, FALSE)
+    setmetatile(10, 29, METATILE_General_Grass, FALSE)
+    setmetatile(11, 29, METATILE_General_Grass, FALSE)
+    setmetatile(31, 28, METATILE_General_Grass, FALSE)
+    setmetatile(32, 28, METATILE_General_Grass, FALSE)
+    setmetatile(31, 29, METATILE_General_Grass, FALSE)
+    setmetatile(32, 29, METATILE_General_Grass, FALSE)
+    setmetatile(25, 15, METATILE_General_Grass, FALSE)
+    setmetatile(26, 15, METATILE_General_Grass, FALSE)
+    setmetatile(25, 16, METATILE_General_Grass, FALSE)
+    setmetatile(26, 16, METATILE_General_Grass, FALSE)
+    setmetatile(10, 5, METATILE_General_Grass, FALSE)
+    setmetatile(11, 5, METATILE_General_Grass, FALSE)
+    setmetatile(10, 6, METATILE_General_Grass, FALSE)
+    setmetatile(11, 6, METATILE_General_Grass, FALSE)
+    setmetatile(25, 8, METATILE_General_Grass, FALSE)
+    setmetatile(26, 8, METATILE_General_Grass, FALSE)
+    setmetatile(25, 9, METATILE_General_Grass, FALSE)
+    setmetatile(26, 9, METATILE_General_Grass, FALSE)
+}
+
+script AldusForestSearchingMan {
+    lock
+    faceplayer
+    msgbox("I'm trying to find a Venonat to catch.\n"
+    "But I haven't seen one all morning.\l"
+    "Maybe they only live up by lake...")
+    release
+}
+
+script BugCatcherJacob {
+    trainerbattle_single(TRAINER_BUG_CATCHER_JACOB, BugCatcherJacobIntro, BugCatcherJacobLose)
+    msgbox("You'll come around. Just wait, one day\n"
+    "you'll see how cool bug pokémon are!", MSGBOX_AUTOCLOSE)
+}
+
+script BugCatcherJosh {
+    trainerbattle_double(TRAINER_BUG_CATCHER_JOSH, BugCatcherJoshIntro, BugCatcherJoshLose, Dummy)
+    msgbox("I'll train up my bug pokémon more for\n"
+    "my next battle.", MSGBOX_AUTOCLOSE)
+}
+
+script YoungsterMatthew {
+    trainerbattle_single(TRAINER_YOUNGSTER_MATTHEW, YoungsterMatthewIntro, YoungsterMatthewLose)
+    msgbox("Mom says I should be studying, but I\n"
+    "wanna get better at battling instead.", MSGBOX_AUTOCLOSE)
+}
+
+script YoungsterDaniel {
+    trainerbattle_double(TRAINER_YOUNGSTER_DANIEL, YoungsterDanielIntro, YoungsterDanielLose, Dummy)
+    msgbox("I can hide really well, but I'm not\n"
+    "the best at battling.", MSGBOX_AUTOCLOSE)
+}
+
+script BugCatcherChris {
+    trainerbattle_double(TRAINER_BUG_CATCHER_CHRIS, BugCatcherChrisIntro, BugCatcherChrisLose, Dummy)
+    msgbox("I think I'm just gonna catch bug\n"
+    "pokémon from now on. No more\l"
+    "battling with them for me.", MSGBOX_AUTOCLOSE)
+}
+
+text BugCatcherJacobIntro {
+    "Bug pokémon are the best! Don't you\n"
+    "think so?"
+}
+
+text BugCatcherJacobLose {
+    "I still think they're cool!"
+}
+
+text BugCatcherJoshIntro {
+    "I'm gonna battle with the bug pokémon\n"
+    "that I caught today!"
+}
+
+text BugCatcherJoshLose {
+    "Maybe using newly caught bugs wasn't\n"
+    "the best idea..."
+}
+
+text YoungsterMatthewIntro {
+    "Ha, I see you!"
+}
+
+text YoungsterMatthewLose {
+    "I need to spend less time standing\n"
+    "in the woods looking for battles."
+}
+
+text YoungsterDanielIntro {
+    "Bet you didn't see me!"
+}
+
+text YoungsterDanielLose {
+    "If only I were as good at battles\n"
+    "as I am at hiding."
+}
+
+text BugCatcherChrisIntro {
+    "Thought you could sneak past me?"
+}
+
+text BugCatcherChrisLose {
+    "Maybe I should go back catching\n"
+    "bugs instead of battling."
+}

@@ -10,8 +10,8 @@ const u32 gTrainerPalette_AquaGruntM[] = INCBIN_U32("graphics/trainers/front_pic
 const u32 gTrainerFrontPic_PokemonBreederF[] = INCBIN_U32("graphics/trainers/front_pics/pokemon_breeder_f.4bpp.lz");
 const u32 gTrainerPalette_PokemonBreederF[] = INCBIN_U32("graphics/trainers/front_pics/pokemon_breeder_f.gbapal.lz");
 
-const u32 gTrainerFrontPic_CoolTrainerM[] = INCBIN_U32("graphics/trainers/front_pics/cooltrainer_m.4bpp.lz");
-const u32 gTrainerPalette_CoolTrainerM[] = INCBIN_U32("graphics/trainers/front_pics/cooltrainer_m.gbapal.lz");
+const u32 gTrainerFrontPic_ACE_TRAINERM[] = INCBIN_U32("graphics/trainers/front_pics/cooltrainer_m.4bpp.lz");
+const u32 gTrainerPalette_ACE_TRAINERM[] = INCBIN_U32("graphics/trainers/front_pics/cooltrainer_m.gbapal.lz");
 
 const u32 gTrainerFrontPic_BirdKeeper[] = INCBIN_U32("graphics/trainers/front_pics/bird_keeper.4bpp.lz");
 const u32 gTrainerPalette_BirdKeeper[] = INCBIN_U32("graphics/trainers/front_pics/bird_keeper.gbapal.lz");
@@ -61,8 +61,8 @@ const u32 gTrainerPalette_TuberF[] = INCBIN_U32("graphics/trainers/front_pics/tu
 const u32 gTrainerFrontPic_TuberM[] = INCBIN_U32("graphics/trainers/front_pics/tuber_m.4bpp.lz");
 const u32 gTrainerPalette_TuberM[] = INCBIN_U32("graphics/trainers/front_pics/tuber_m.gbapal.lz");
 
-const u32 gTrainerFrontPic_CoolTrainerF[] = INCBIN_U32("graphics/trainers/front_pics/cooltrainer_f.4bpp.lz");
-const u32 gTrainerPalette_CoolTrainerF[] = INCBIN_U32("graphics/trainers/front_pics/cooltrainer_f.gbapal.lz");
+const u32 gTrainerFrontPic_ACE_TRAINERF[] = INCBIN_U32("graphics/trainers/front_pics/cooltrainer_f.4bpp.lz");
+const u32 gTrainerPalette_ACE_TRAINERF[] = INCBIN_U32("graphics/trainers/front_pics/cooltrainer_f.gbapal.lz");
 
 const u32 gTrainerFrontPic_Lady[] = INCBIN_U32("graphics/trainers/front_pics/lady.4bpp.lz");
 const u32 gTrainerPalette_Lady[] = INCBIN_U32("graphics/trainers/front_pics/lady.gbapal.lz");
@@ -280,6 +280,18 @@ const u32 gTrainerPalette_RubySapphireBrendan[] = INCBIN_U32("graphics/trainers/
 const u32 gTrainerFrontPic_RubySapphireMay[] = INCBIN_U32("graphics/trainers/front_pics/may_rs.4bpp.lz");
 const u32 gTrainerPalette_RubySapphireMay[] = INCBIN_U32("graphics/trainers/palettes/may_rs.gbapal.lz");
 
+const u32 gTrainerFrontPic_HelixGruntM[] = INCBIN_U32("graphics/trainers/front_pics/helix_grunt_m.4bpp.lz");
+const u32 gTrainerPalette_HelixGruntM[] = INCBIN_U32("graphics/trainers/front_pics/helix_grunt_m.gbapal.lz");
+
+const u32 gTrainerFrontPic_HelixGruntF[] = INCBIN_U32("graphics/trainers/front_pics/helix_grunt_f.4bpp.lz");
+const u32 gTrainerPalette_HelixGruntF[] = INCBIN_U32("graphics/trainers/front_pics/helix_grunt_f.gbapal.lz");
+
+const u32 gTrainerFrontPic_Scientist[] = INCBIN_U32("graphics/trainers/front_pics/scientist.4bpp.lz");
+const u32 gTrainerPalette_Scientist[] = INCBIN_U32("graphics/trainers/front_pics/scientist.gbapal.lz");
+
+const u32 gTrainerFrontPic_Aviana[] = INCBIN_U32("graphics/trainers/front_pics/aviana.4bpp.lz");
+const u32 gTrainerPalette_Aviana[] = INCBIN_U32("graphics/trainers/front_pics/aviana.gbapal.lz");
+
 const u8 gTrainerBackPic_Brendan[] = INCBIN_U8("graphics/trainers/back_pics/brendan.4bpp");
 const u8 gTrainerBackPic_May[] = INCBIN_U8("graphics/trainers/back_pics/may.4bpp");
 const u8 gTrainerBackPic_Red[] = INCBIN_U8("graphics/trainers/back_pics/red.4bpp");
@@ -311,7 +323,7 @@ const struct TrainerSprite gTrainerSprites[] =
     TRAINER_SPRITE(HIKER, Hiker),
     TRAINER_SPRITE(AQUA_GRUNT_M, AquaGruntM),
     TRAINER_SPRITE(POKEMON_BREEDER_F, PokemonBreederF),
-    TRAINER_SPRITE(COOLTRAINER_M, CoolTrainerM),
+    TRAINER_SPRITE(ACE_TRAINER_M, ACE_TRAINERM),
     TRAINER_SPRITE(BIRD_KEEPER, BirdKeeper),
     TRAINER_SPRITE(COLLECTOR, Collector),
     TRAINER_SPRITE(AQUA_GRUNT_F, AquaGruntF),
@@ -328,7 +340,7 @@ const struct TrainerSprite gTrainerSprites[] =
     TRAINER_SPRITE(INTERVIEWER, Interviewer),
     TRAINER_SPRITE(TUBER_F, TuberF),
     TRAINER_SPRITE(TUBER_M, TuberM),
-    TRAINER_SPRITE(COOLTRAINER_F, CoolTrainerF),
+    TRAINER_SPRITE(ACE_TRAINER_F, ACE_TRAINERF),
     TRAINER_SPRITE(LADY, Lady),
     TRAINER_SPRITE(BEAUTY, Beauty),
     TRAINER_SPRITE(RICH_BOY, RichBoy),
@@ -401,6 +413,10 @@ const struct TrainerSprite gTrainerSprites[] =
     TRAINER_SPRITE(LEAF, Leaf),
     TRAINER_SPRITE(RS_BRENDAN, RubySapphireBrendan),
     TRAINER_SPRITE(RS_MAY, RubySapphireMay),
+    TRAINER_SPRITE(HELIX_GRUNT_M, HelixGruntM),
+    TRAINER_SPRITE(HELIX_GRUNT_F, HelixGruntF),
+    TRAINER_SPRITE(SCIENTIST, Scientist),
+    TRAINER_SPRITE(AVIANA, Aviana),
 };
 
 static const union AnimCmd sAnimCmd_Hoenn[] =

@@ -221,14 +221,12 @@ static void Chat_Register(void);
 static void Chat_SaveAndExit(void);
 static void SetChatFunction(u16);
 static bool32 HandleDPadInput(void);
-static void AppendTextToMessage(void);
 static void DeleteLastMessageCharacter(void);
 static void SwitchCaseOfLastMessageCharacter(void);
 static bool32 ChatMessageIsNotEmpty(void);
 static void RegisterTextAtRow(void);
 static void ResetMessageEntryBuffer(void);
 static void SaveRegisteredTexts(void);
-static u8 *GetEndOfMessagePtr(void);
 static u8 *GetLastCharOfMessagePtr(void);
 static void PrepareSendBuffer_Null(u8 *);
 static void PrepareSendBuffer_Join(u8 *);
@@ -480,50 +478,6 @@ const u8 gCaseToggleTable[256] = {
     [CHAR_FEMALE] = CHAR_FEMALE,
     [CHAR_CURRENCY] = CHAR_CURRENCY,
     [CHAR_BLACK_TRIANGLE] = CHAR_BLACK_TRIANGLE,
-};
-
-// Excludes UNION_ROOM_KB_PAGE_REGISTER, the text for which is chosen by the player
-static const u8 *const sUnionRoomKeyboardText[UNION_ROOM_KB_PAGE_COUNT - 1][UNION_ROOM_KB_ROW_COUNT] =
-{
-    [UNION_ROOM_KB_PAGE_UPPER] =
-    {
-        gText_UnionRoomChatKeyboard_ABCDE,
-        gText_UnionRoomChatKeyboard_FGHIJ,
-        gText_UnionRoomChatKeyboard_KLMNO,
-        gText_UnionRoomChatKeyboard_PQRST,
-        gText_UnionRoomChatKeyboard_UVWXY,
-        gText_UnionRoomChatKeyboard_Z,
-        gText_UnionRoomChatKeyboard_01234Upper,
-        gText_UnionRoomChatKeyboard_56789Upper,
-        gText_UnionRoomChatKeyboard_PunctuationUpper,
-        gText_UnionRoomChatKeyboard_SymbolsUpper
-    },
-    [UNION_ROOM_KB_PAGE_LOWER] =
-    {
-        gText_UnionRoomChatKeyboard_abcde,
-        gText_UnionRoomChatKeyboard_fghij,
-        gText_UnionRoomChatKeyboard_klmno,
-        gText_UnionRoomChatKeyboard_pqrst,
-        gText_UnionRoomChatKeyboard_uvwxy,
-        gText_UnionRoomChatKeyboard_z,
-        gText_UnionRoomChatKeyboard_01234Lower,
-        gText_UnionRoomChatKeyboard_56789Lower,
-        gText_UnionRoomChatKeyboard_PunctuationLower,
-        gText_UnionRoomChatKeyboard_SymbolsLower
-    },
-    [UNION_ROOM_KB_PAGE_EMOJI] =
-    {
-        gText_UnionRoomChatKeyboard_Emoji1,
-        gText_UnionRoomChatKeyboard_Emoji2,
-        gText_UnionRoomChatKeyboard_Emoji3,
-        gText_UnionRoomChatKeyboard_Emoji4,
-        gText_UnionRoomChatKeyboard_Emoji5,
-        gText_UnionRoomChatKeyboard_Emoji6,
-        gText_UnionRoomChatKeyboard_Emoji7,
-        gText_UnionRoomChatKeyboard_Emoji8,
-        gText_UnionRoomChatKeyboard_Emoji9,
-        gText_UnionRoomChatKeyboard_Emoji10
-    }
 };
 
 static const u16 sUnusedPalette[] = INCBIN_U16("graphics/union_room_chat/unused.gbapal"); // Loaded but never apparently used
@@ -1072,7 +1026,6 @@ static void Chat_HandleInput(void)
         }
         else if (JOY_NEW(A_BUTTON))
         {
-            AppendTextToMessage();
             StartDisplaySubtask(CHATDISPLAY_FUNC_UPDATE_MSG, 0);
             StartDisplaySubtask(CHATDISPLAY_FUNC_CURSOR_BLINK, 1);
             sChat->funcState = 1;
@@ -1663,61 +1616,6 @@ static bool32 HandleDPadInput(void)
     return TRUE;
 }
 
-static void AppendTextToMessage(void)
-{
-    int i;
-    const u8 *charsStr;
-    int strLength;
-    u8 *str;
-    u8 buffer[21];
-
-    if (sChat->currentPage != UNION_ROOM_KB_PAGE_REGISTER)
-    {
-        // Going to append a single character
-        charsStr = sUnionRoomKeyboardText[sChat->currentPage][sChat->currentRow];
-        for (i = 0; i < sChat->currentCol; i++)
-        {
-            if (*charsStr == CHAR_EXTRA_SYMBOL)
-                charsStr++;
-            charsStr++;
-        }
-
-        strLength = 1;
-    }
-    else
-    {
-        // Going to append registered text string
-        u8 *tempStr = StringCopy(buffer, sChat->registeredTexts[sChat->currentRow]);
-        tempStr[0] = CHAR_SPACE;
-        tempStr[1] = EOS;
-        charsStr = buffer;
-        strLength = StringLength_Multibyte(buffer);
-    }
-
-    sChat->lastBufferCursorPos = sChat->bufferCursorPos;
-    if (!charsStr)
-        return;
-
-    str = GetEndOfMessagePtr();
-    while (--strLength != -1 && sChat->bufferCursorPos < MAX_MESSAGE_LENGTH)
-    {
-        if (*charsStr == CHAR_EXTRA_SYMBOL)
-        {
-            *str = *charsStr;
-            charsStr++;
-            str++;
-        }
-
-        *str = *charsStr;
-        charsStr++;
-        str++;
-
-        sChat->bufferCursorPos++;
-    }
-
-    *str = EOS;
-}
-
 static void DeleteLastMessageCharacter(void)
 {
     sChat->lastBufferCursorPos = sChat->bufferCursorPos;
@@ -1778,15 +1676,6 @@ static void SaveRegisteredTexts(void)
 static u8 *GetRegisteredTextByRow(int row)
 {
     return sChat->registeredTexts[row];
-}
-
-static u8 *GetEndOfMessagePtr(void)
-{
-    u8 *str = sChat->messageEntryBuffer;
-    while (*str != EOS)
-        str++;
-
-    return str;
 }
 
 static u8 *GetLastCharOfMessagePtr(void)
@@ -2929,11 +2818,7 @@ static void PrintCurrentKeyboardPage(void)
 
         for (i = 0, top = 0; i < UNION_ROOM_KB_ROW_COUNT; i++, top += 12)
         {
-            if (!sUnionRoomKeyboardText[page][i])
-                return;
-
-            StringCopy(&str[3], sUnionRoomKeyboardText[page][i]);
-            AddTextPrinterParameterized3(WIN_KEYBOARD, FONT_SMALL, left, top, color, TEXT_SKIP_DRAW, str);
+            return;
         }
     }
     else

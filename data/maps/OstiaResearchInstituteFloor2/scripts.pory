@@ -1,0 +1,64 @@
+mapscripts OstiaResearchInstituteFloor2_MapScripts {}
+
+script OstiaResearchTableScientist1 {
+    lock
+    msgbox("What if we tried quantum compression to\n"
+    "bring more fuel?")
+    release
+}
+
+script OstiaResearchTableScientist2 {
+    lock
+    msgbox("No, I don't think that would work.\n"
+    "The particle compiler would take up too\l"
+    "much space.")
+    release
+}
+
+script OstiaResearchTableScientist3 {
+    lock
+    faceplayer
+    msgbox("I'm drafting blueprints for a top secret\n"
+    "project.\p"
+    "Because it's a secret, I can't tell you\n"
+    "any more about it.")
+    release
+}
+
+script OstiaResearchDeskScientist1 {
+    lock
+    faceplayer
+    msgbox("We've been doing a lot of work to extract\n"
+    "DNA from fossils.\p"
+    "So far, the only pokémon we've been able\n"
+    "to get a sample from is Shellos.")
+    release
+}
+
+script OstiaResearchDeskScientist2 {
+    lock
+    faceplayer
+    msgbox("I'm trying to figure out what ancient\n"
+    "pokémon ate and which environments\l"
+    "they may have lived in.\p"
+    "There's a lot that we can learn from the\n"
+    "shapes of their fossils and the areas\l"
+    "in which they were found.")
+    release
+}
+
+script OstiaResearchDeskScientist3 {
+    lock
+    faceplayer
+    msgbox("Recently, we've discovred some evidence\n"
+    "of a strange pokémon from the past.\p"
+    "Many of the prehistorical pokémon we've\n"
+    "documented had similar qualities, but\l"
+    "the pokémon that these fossils depict\l"
+    "share little resemblance to others.\p"
+    "We think they have a hard stone-like\n"
+    "shell hiding a luminous colored body\l"
+    "beneath.\p"
+    "Strange, isn't it?")
+    release
+}

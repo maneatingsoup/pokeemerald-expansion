@@ -1,4 +1,4 @@
-#include "config.h"
+#include "config/general.h"
 #include "config/battle.h"
 #include "config/item.h"
 #include "constants/global.h"
@@ -725,6 +725,8 @@ Common_EventScript_OutOfCenterPartyHeal::
 	playfanfare MUS_HEAL
 	waitfanfare
 	special HealPlayerParty
+	callnative UpdateFollowingPokemon
+	callnative UpdateFollowingPokemon
 	fadescreen FADE_FROM_BLACK
 	return
 
@@ -1069,6 +1071,113 @@ EventScript_VsSeekerChargingDone::
 	.include "data/scripts/move_tutors.inc"
 	.include "data/scripts/trainer_hill.inc"
 	.include "data/scripts/test_signpost.inc"
+	.include "data/scripts/follower.inc"
 	.include "data/text/frontier_brain.inc"
 	.include "data/text/save.inc"
 	.include "data/text/birch_speech.inc"
+
+	.include "data/maps/Serafew/scripts.inc"
+
+	.include "data/maps/Serafew_PlayerHouse_1F/scripts.inc"
+
+	.include "data/maps/Serafew_PlayerHouse_2F/scripts.inc"
+
+	.include "data/maps/Serafew_Lab/scripts.inc"
+
+	.include "data/maps/Route_101/scripts.inc"
+
+	.include "data/maps/Aldus/scripts.inc"
+
+	.include "data/maps/Aldus_Inn_1F/scripts.inc"
+
+	.include "data/maps/Aldus_Inn_2F/scripts.inc"
+
+	.include "data/maps/Aldus_FishermanHouse/scripts.inc"
+
+	.include "data/maps/Route_102/scripts.inc"
+
+	.include "data/maps/Route_103/scripts.inc"
+
+	.include "data/maps/Ostia/scripts.inc"
+
+	.include "data/maps/OstiaHouse1/scripts.inc"
+
+	.include "data/maps/OstiaHouse2/scripts.inc"
+
+	.include "data/maps/OstiaHouse3/scripts.inc"
+
+	.include "data/maps/OstiaHouse4/scripts.inc"
+
+	.include "data/maps/OstiaHouse5Floor1/scripts.inc"
+
+	.include "data/maps/OstiaHouse5Floor2/scripts.inc"
+
+	.include "data/maps/OstiaHouse6Floor1/scripts.inc"
+
+	.include "data/maps/OstiaHouse6Floor2/scripts.inc"
+
+	.include "data/maps/OstiaStore/scripts.inc"
+
+	.include "data/maps/OstiaInn/scripts.inc"
+
+	.include "data/maps/OstiaGym/scripts.inc"
+
+	.include "data/maps/OstiaResearchInstituteFloor1/scripts.inc"
+
+	.include "data/maps/OstiaResearchInstituteFloor2/scripts.inc"
+
+	.include "data/maps/OstiaResearchInstituteFloorB1/scripts.inc"
+
+	.include "data/maps/Route_104_1/scripts.inc"
+
+	.include "data/maps/Route_104_2/scripts.inc"
+
+	.include "data/maps/Valni/scripts.inc"
+
+	.include "data/maps/Valni_Inn/scripts.inc"
+
+	.include "data/maps/Valni_Shop/scripts.inc"
+
+	.include "data/maps/ValniHouse1/scripts.inc"
+
+	.include "data/maps/ValniHouse2/scripts.inc"
+
+	.include "data/maps/ValniHouse3/scripts.inc"
+
+	.include "data/maps/ValniGym/scripts.inc"
+
+	.include "data/maps/ValniGymLobby/scripts.inc"
+
+	.include "data/maps/Valni_Forest_West1/scripts.inc"
+
+	.include "data/maps/Valni_Forest_West2/scripts.inc"
+
+	.include "data/maps/Valni_Forest_East1/scripts.inc"
+
+	.include "data/maps/Valni_Forest_East2/scripts.inc"
+
+	.include "data/maps/Route_105_1/scripts.inc"
+
+	.include "data/maps/Rugged_Pass_F1/scripts.inc"
+
+	.include "data/maps/Rugged_Pass_F2/scripts.inc"
+
+	.include "data/maps/Rugged_Pass_F3/scripts.inc"
+
+	.include "data/maps/Route_105_2/scripts.inc"
+
+	.include "data/maps/Port_Neleras/scripts.inc"
+
+	.include "data/maps/PortNelerasInn/scripts.inc"
+
+	.include "data/maps/PortNelerasHouse1/scripts.inc"
+
+	.include "data/maps/PortNelerasShop/scripts.inc"
+
+	.include "data/maps/PortNelerasShipyard_F1/scripts.inc"
+
+	.include "data/maps/PortNelerasShipyard_F2/scripts.inc"
+
+	.include "data/maps/PortNelerasHarbor/scripts.inc"
+
+	.include "data/maps/PortNelerasMuseum/scripts.inc"

@@ -26,6 +26,15 @@ struct WildPokemonHeader
     const struct WildPokemonInfo *fishingMonsInfo;
 };
 
+struct WeatherGroup
+{
+    u8 mapGroup;
+    u8 mapNum;
+    u8 weatherGroup;
+    const u8 *encounterGroup;
+    u8 weatherRegion;
+};
+
 extern const struct WildPokemonHeader gWildMonHeaders[];
 extern bool8 gIsFishingEncounter;
 extern bool8 gIsSurfingEncounter;
@@ -41,5 +50,7 @@ u16 GetLocalWaterMon(void);
 bool8 UpdateRepelCounter(void);
 bool8 TryDoDoubleWildBattle(void);
 bool8 StandardWildEncounter_Debug(void);
+void SetWeatherFromWeatherGroup(void);
+const u8 GetRegionWeather(void);
 
 #endif // GUARD_WILD_ENCOUNTER_H

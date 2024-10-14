@@ -1,0 +1,220 @@
+{
+  "id": "MAP_SERAFEW",
+  "name": "Serafew",
+  "layout": "LAYOUT_SERAFEW",
+  "music": "MUS_LITTLEROOT",
+  "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_TOWN",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "map": "MAP_ROUTE_101",
+      "offset": -4,
+      "direction": "up"
+    }
+  ],
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_FAT_MAN",
+      "x": 23,
+      "y": 14,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 1,
+      "movement_range_y": 2,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "HomelessFatMan",
+      "flag": "FLAG_TEMP_3"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_LITTLE_GIRL",
+      "x": 19,
+      "y": 31,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 2,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "CoastGirl",
+      "flag": "FLAG_TEMP_1"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 23,
+      "y": 2,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 2,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "SadBoy",
+      "flag": "FLAG_TEMP_2"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_PROF_BIRCH",
+      "x": 21,
+      "y": 6,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "FLAG_SERAFEW_PROF"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 18,
+      "y": 13,
+      "elevation": 0,
+      "dest_map": "MAP_SERAFEW_PLAYER_HOUSE_1F",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 26,
+      "y": 21,
+      "elevation": 0,
+      "dest_map": "MAP_SERAFEW_LAB",
+      "dest_warp_id": "0"
+    }
+  ],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 22,
+      "y": 0,
+      "elevation": 0,
+      "var": "VAR_SERAFEW_STATE",
+      "var_value": "3",
+      "script": "WaitYouNeedTheDexRight"
+    },
+    {
+      "type": "trigger",
+      "x": 21,
+      "y": 0,
+      "elevation": 0,
+      "var": "VAR_SERAFEW_STATE",
+      "var_value": "3",
+      "script": "WaitYouNeedTheDexMiddle"
+    },
+    {
+      "type": "trigger",
+      "x": 20,
+      "y": 0,
+      "elevation": 0,
+      "var": "VAR_SERAFEW_STATE",
+      "var_value": "3",
+      "script": "WaitYouNeedTheDexLeft"
+    },
+    {
+      "type": "trigger",
+      "x": 20,
+      "y": 1,
+      "elevation": 0,
+      "var": "VAR_SERAFEW_STATE",
+      "var_value": "2",
+      "script": "CannotLeaveYetLeft"
+    },
+    {
+      "type": "trigger",
+      "x": 21,
+      "y": 1,
+      "elevation": 0,
+      "var": "VAR_SERAFEW_STATE",
+      "var_value": "2",
+      "script": "CannotLeaveYetMiddle"
+    },
+    {
+      "type": "trigger",
+      "x": 22,
+      "y": 1,
+      "elevation": 0,
+      "var": "VAR_SERAFEW_STATE",
+      "var_value": "2",
+      "script": "CannotLeaveYetRight"
+    },
+    {
+      "type": "trigger",
+      "x": 22,
+      "y": 1,
+      "elevation": 0,
+      "var": "VAR_SERAFEW_STATE",
+      "var_value": "1",
+      "script": "CannotLeaveYetRight"
+    },
+    {
+      "type": "trigger",
+      "x": 21,
+      "y": 1,
+      "elevation": 0,
+      "var": "VAR_SERAFEW_STATE",
+      "var_value": "1",
+      "script": "CannotLeaveYetMiddle"
+    },
+    {
+      "type": "trigger",
+      "x": 20,
+      "y": 1,
+      "elevation": 0,
+      "var": "VAR_SERAFEW_STATE",
+      "var_value": "1",
+      "script": "CannotLeaveYetLeft"
+    },
+    {
+      "type": "trigger",
+      "x": 20,
+      "y": 1,
+      "elevation": 0,
+      "var": "VAR_SERAFEW_STATE",
+      "var_value": "0",
+      "script": "CannotLeaveYetLeft"
+    },
+    {
+      "type": "trigger",
+      "x": 21,
+      "y": 1,
+      "elevation": 0,
+      "var": "VAR_SERAFEW_STATE",
+      "var_value": "0",
+      "script": "CannotLeaveYetMiddle"
+    },
+    {
+      "type": "trigger",
+      "x": 22,
+      "y": 1,
+      "elevation": 0,
+      "var": "VAR_SERAFEW_STATE",
+      "var_value": "0",
+      "script": "CannotLeaveYetMiddle"
+    }
+  ],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 20,
+      "y": 13,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "PlayerHouseSign"
+    },
+    {
+      "type": "sign",
+      "x": 23,
+      "y": 21,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "LabSign"
+    }
+  ]
+}

@@ -1,0 +1,245 @@
+mapscripts Valni_Forest_West2_MapScripts {
+    MAP_SCRIPT_ON_LOAD: AldusForestWest2OnLoad
+    MAP_SCRIPT_ON_TRANSITION: SetUpAldusForestWest2
+}
+
+script AldusForestWest2OnLoad {
+    compare_var_to_value(VAR_CURRENT_RANDOM_WEATHER_VALUE, 35)
+    call_if_ge(AldusForestWest2RemovePuddles)
+}
+
+script AldusForestWest2RemovePuddles {
+    setmetatile(34, 27, METATILE_General_Grass, FALSE)
+    setmetatile(35, 27, METATILE_General_Grass, FALSE)
+    setmetatile(34, 28, METATILE_General_Grass, FALSE)
+    setmetatile(35, 28, METATILE_General_Grass, FALSE)
+    setmetatile(8, 33, METATILE_General_Grass, FALSE)
+    setmetatile(9, 33, METATILE_General_Grass, FALSE)
+    setmetatile(8, 34, METATILE_General_Grass, FALSE)
+    setmetatile(9, 34, METATILE_General_Grass, FALSE)
+    setmetatile(17, 25, METATILE_General_Grass, FALSE)
+    setmetatile(18, 25, METATILE_General_Grass, FALSE)
+    setmetatile(17, 24, METATILE_General_Grass, FALSE)
+    setmetatile(18, 24, METATILE_General_Grass, FALSE)
+    setmetatile(9, 23, METATILE_General_Grass, FALSE)
+    setmetatile(10, 23, METATILE_General_Grass, FALSE)
+    setmetatile(9, 24, METATILE_General_Grass, FALSE)
+    setmetatile(10, 24, METATILE_General_Grass, FALSE)
+    setmetatile(6, 18, METATILE_General_Grass, FALSE)
+    setmetatile(7, 18, METATILE_General_Grass, FALSE)
+    setmetatile(6, 19, METATILE_General_Grass, FALSE)
+    setmetatile(7, 19, METATILE_General_Grass, FALSE)
+    setmetatile(2, 4, METATILE_General_Grass, FALSE)
+    setmetatile(3, 4, METATILE_General_Grass, FALSE)
+    setmetatile(2, 5, METATILE_General_Grass, FALSE)
+    setmetatile(3, 5, METATILE_General_Grass, FALSE)
+    setmetatile(24, 4, METATILE_General_Grass, FALSE)
+    setmetatile(25, 4, METATILE_General_Grass, FALSE)
+    setmetatile(24, 5, METATILE_General_Grass, FALSE)
+    setmetatile(25, 5, METATILE_General_Grass, FALSE)
+    setmetatile(34, 9, METATILE_General_Grass, FALSE)
+    setmetatile(35, 9, METATILE_General_Grass, FALSE)
+    setmetatile(34, 10, METATILE_General_Grass, FALSE)
+    setmetatile(35, 10, METATILE_General_Grass, FALSE)
+}
+
+script SetUpAldusForestWest2 {
+    special(SetGroupWeather)
+    getplayerxy(VAR_TEMP_0, VAR_TEMP_1)
+    setflag(FLAG_TEMP_A)
+    if(var(VAR_TEMP_0) == 5) {
+        setflag(FLAG_TEMP_B)
+    }
+}
+
+script AldusForestLostMan {
+    lock
+    faceplayer
+    msgbox("I'm lost in these thick woods and\n"
+    "I've gotten myself all worked up.\p"
+    "Do you know which way leads out of\n"
+    "here?\p"
+    "...\p"
+    "Thanks! Why don't you take this as\n"
+    "a token of my appreciation.")
+    giveitem(ITEM_TM06_WORK_UP, 1)
+    msgbox("Time to head back home.", MSGBOX_AUTOCLOSE)
+    specialvar(VAR_RESULT, GetPlayerFacingDirection)
+    compare(VAR_RESULT, DIR_NORTH)
+    call_if(TRUE, LostManSideLeaveScript)
+    applymovement(4, LostManLeave)
+    waitmovement(0)
+    removeobject(4)
+    setflag(FLAG_LOST_MAN)
+    release
+}
+
+script LostManSideLeaveScript {
+    applymovement(4, LostManSideStep)
+    waitmovement(0)
+}
+
+script LassMadison {
+    trainerbattle_single(TRAINER_LASS_MADISON, LassMadisonIntro, LassMadisonLose)
+    msgbox("Maybe you don't need directions...\n", MSGBOX_AUTOCLOSE)
+}
+
+script FishermanAndrew {
+    trainerbattle_double(TRAINER_FISHERMAN_ANDREW, FishermanAndrewIntro, FishermanAndrewLose, Dummy)
+    msgbox("Oh well, not like I was getting\n"
+    "anywhere anyway...", MSGBOX_AUTOCLOSE)
+}
+
+script YoungsterEthan {
+    trainerbattle_single(TRAINER_YOUNGSTER_ETHAN, YoungsterEthanIntro, YoungsterEthanLose)
+    msgbox("I wanna go swimming in the pond,\n"
+    "but it looks kinda gross.", MSGBOX_AUTOCLOSE)
+}
+
+script BugCatcherJoseph {
+    trainerbattle_single(TRAINER_BUG_CATCHER_JOSEPH, BugCatcherJosephIntro, BugCatcherJosephLose)
+    msgbox("I'll just have to wait until they\n"
+    "evolve again.", MSGBOX_AUTOCLOSE)
+}
+
+script FishermanWilliam {
+    trainerbattle_double(TRAINER_FISHERMAN_WILLIAM, FishermanWilliamIntro, FishermanWilliamLose, Dummy)
+    msgbox("I shouldn't get so distracted\n"
+    "while I'm fishing.", MSGBOX_AUTOCLOSE)
+}
+
+script HelixFirstEncounter {
+    lock
+    getplayerxy(VAR_TEMP_0, VAR_TEMP_1)
+    playse(SE_EXIT)
+    addobject(9)
+    playbgm(MUS_ENCOUNTER_MAGMA, TRUE)
+    delay(30)
+    turnobject(9, DIR_NORTH)
+    delay(60)
+    msgbox("Heh, I think I lost them.", MSGBOX_AUTOCLOSE)
+    turnobject(9, DIR_SOUTH)
+    playse(SE_PIN)
+    applymovement(9, Exclamation)
+    delay(60)
+    if(var(VAR_TEMP_0) >=31) {
+        applymovement(9, WalkRightWalkDownTwo)
+    }
+    else {
+        applymovement(9, WalkDownTwo)
+    }
+    waitmovement(0)
+    applymovement(OBJ_EVENT_ID_PLAYER, FaceUp)
+    delay(30)
+    msgbox("You're a pokémon trainer?\p"
+    "Oh, I get it.\p"
+    "You must be here to take the parts and\n"
+    "the blueprints I stole.\p"
+    "I'm not giving you a thing!\p"
+    "The boss will make my life real hard if\n"
+    "I show up empty handed.\p"
+    "...\p"
+    "Look at that, I just let it slip.\p"
+    "Time for plan B.\n"
+    "I'll knock you out and run!", MSGBOX_AUTOCLOSE)
+    trainerbattle_no_intro(TRAINER_FIRST_HELIX_GRUNT, FirstHelixEncounterBattleDefeat,)
+    goto(HelixFirstEncounterDefeated)
+}
+
+script HelixFirstEncounterDefeated {
+    setvar(VAR_TEAM_HELIX_ENCOUNTER_SEQUENCE, 1)
+    getplayerxy(VAR_TEMP_0, VAR_TEMP_1)
+    msgbox("Fine.\p"
+    "Take these, I'm still keeping the parts.")
+    giveitem(ITEM_DEVON_PARTS, 1)
+    msgbox("Now, I'm gonna scram.\p"
+    "Don't follow me!", MSGBOX_AUTOCLOSE)
+    if(var(VAR_TEMP_0) >=31) {
+        applymovement(9, FirstHelixEncounterLeaveRight)
+    }
+    else {
+        applymovement(9, FirstHelixEncounterLeaveLeft)
+    }
+    waitmovement(0)
+    removeobject(9)
+    fadedefaultbgm
+}
+
+text LassMadisonIntro {
+    "You know, the exit is the otherway."
+}
+
+text LassMadisonLose {
+    "Aww, I thought for sure I'd win."
+}
+
+text FishermanAndrewIntro {
+    "Hey, don't bother a man while he's\n"
+    "got his rod in his hands!"
+}
+
+text FishermanAndrewLose {
+    "Great, now I'm not in the mood."
+}
+
+text YoungsterEthanIntro {
+    "If I can't go swimming, you're\n"
+    "gonna have to battle me!"
+}
+
+text YoungsterEthanLose {
+    "Maybe I should have gone swimming\n"
+    "instead."
+}
+
+text BugCatcherJosephIntro {
+    "My wurmples evolved! Take a look!"
+}
+
+text BugCatcherJosephLose {
+    "I think they were stronger before."
+}
+
+text FishermanWilliamIntro {
+    "Nothing much seems to be biting,\n"
+    "so I have time for a battle."
+}
+
+text FishermanWilliamLose {
+    "I think I missed a bite..."
+}
+
+text FirstHelixEncounterBattleDefeat {
+    "Grrr, things were going so well."
+}
+
+movement LostManSideStep {
+    walk_right
+}
+
+movement LostManLeave {
+    walk_down*7
+}
+
+movement WalkRightWalkDownTwo {
+    walk_right
+    walk_down*2
+}
+
+movement WalkDownTwo {
+    walk_down*2
+}
+
+movement FirstHelixEncounterLeaveLeft {
+    walk_right
+    walk_down*3
+    walk_right*2
+    walk_down*5
+}
+
+movement FirstHelixEncounterLeaveRight {
+    walk_left
+    walk_down*3
+    walk_right*3
+    walk_down*5
+}

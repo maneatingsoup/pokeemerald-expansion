@@ -4,15 +4,15 @@
 #include "constants/tms_hms.h"
 
 /* Expands to:
-* enum_start ITEM_TM01
-* enum ITEM_TM_FOCUS_PUNCH
+* enum_start ITEM_TM01_DOUBLE_TEAM
+* enum ITEM_TM01_DOUBLE_TEAM
 * ...
 * enum_start ITEM_HM01
 * enum ITEM_HM_CUT
 * ... */
 #define EQUIV_TM(id) enum ITEM_TM_ ## id;
 #define EQUIV_HM(id) enum ITEM_HM_ ## id;
-	enum_start ITEM_TM01
+	enum_start ITEM_TM01_DOUBLE_TEAM
 FOREACH_TM(EQUIV_TM)
 	enum_start ITEM_HM01
 FOREACH_HM(EQUIV_HM)

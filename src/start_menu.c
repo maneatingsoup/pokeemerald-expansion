@@ -42,6 +42,7 @@
 #include "text.h"
 #include "text_window.h"
 #include "trainer_card.h"
+#include "wild_encounter.h"
 #include "window.h"
 #include "union_room.h"
 #include "constants/battle_frontier.h"
@@ -86,6 +87,7 @@ EWRAM_DATA static u8 sStartMenuCursorPos = 0;
 EWRAM_DATA static u8 sNumStartMenuActions = 0;
 EWRAM_DATA static u8 sCurrentStartMenuActions[9] = {0};
 EWRAM_DATA static s8 sInitStartMenuData[2] = {0};
+EWRAM_DATA static u8 sWeatherWindowId = 0;
 
 EWRAM_DATA static u8 (*sSaveDialogCallback)(void) = NULL;
 EWRAM_DATA static u8 sSaveDialogTimer = 0;
@@ -145,6 +147,16 @@ static const struct WindowTemplate sWindowTemplate_SafariBalls = {
     .tilemapLeft = 1,
     .tilemapTop = 1,
     .width = 9,
+    .height = 4,
+    .paletteNum = 15,
+    .baseBlock = 0x8
+};
+
+static const struct WindowTemplate sWeatherWindowTemplate = {
+    .bg = 0,
+    .tilemapLeft = 1,
+    .tilemapTop = 1,
+    .width = 10,
     .height = 4,
     .paletteNum = 15,
     .baseBlock = 0x8
@@ -251,6 +263,7 @@ static void BuildBattlePikeStartMenu(void);
 static void BuildBattlePyramidStartMenu(void);
 static void BuildMultiPartnerRoomStartMenu(void);
 static void ShowSafariBallsWindow(void);
+static void ShowWeatherWindow(void);
 static void ShowPyramidFloorWindow(void);
 static void RemoveExtraStartMenuWindows(void);
 static bool32 PrintStartMenuActions(s8 *pIndex, u32 count);
@@ -442,6 +455,45 @@ static void ShowSafariBallsWindow(void)
     CopyWindowToVram(sSafariBallsWindowId, COPYWIN_GFX);
 }
 
+static void ShowWeatherWindow(void)
+{
+    sWeatherWindowId = AddWindow(&sWeatherWindowTemplate);
+    PutWindowTilemap(sWeatherWindowId);
+    DrawStdWindowFrame(sWeatherWindowId, FALSE);
+    StringExpandPlaceholders(gStringVar1, GetTimeOfDayString());
+    switch (GetRegionWeather())
+    {
+        case 2:
+        default:
+            StringExpandPlaceholders(gStringVar3, gText_WeatherMenuSunny);
+            break;
+        case 3:
+            StringExpandPlaceholders(gStringVar3, gText_WeatherMenuRain);
+            break;
+        case 4:
+            StringExpandPlaceholders(gStringVar3, gText_WeatherMenuHail);
+            break;
+        case 5:
+            StringExpandPlaceholders(gStringVar3, gText_WeatherMenuThunderstorm);
+            break;
+        case 8:
+            StringExpandPlaceholders(gStringVar3, gText_WeatherMenuSandstorm);
+            break;
+        case 11:
+            StringExpandPlaceholders(gStringVar3, gText_WeatherMenuOvercast);
+            break;
+        case 12:
+            StringExpandPlaceholders(gStringVar3, gText_WeatherMenuHarshSunlight);
+            break;
+        case 22:
+            StringExpandPlaceholders(gStringVar3, gText_WeatherMenuNight);
+            break;
+    }
+    StringExpandPlaceholders(gStringVar4, gText_WeatherMenu);
+    AddTextPrinterParameterized(sWeatherWindowId, FONT_NORMAL, gStringVar4, 0, 1, TEXT_SKIP_DRAW, NULL);
+    CopyWindowToVram(sWeatherWindowId, COPYWIN_GFX);
+}
+
 static void ShowPyramidFloorWindow(void)
 {
     if (gSaveBlock2Ptr->frontier.curChallengeBattleNum == FRONTIER_STAGES_PER_CHALLENGE)
@@ -470,6 +522,9 @@ static void RemoveExtraStartMenuWindows(void)
         ClearStdWindowAndFrameToTransparent(sBattlePyramidFloorWindowId, FALSE);
         RemoveWindow(sBattlePyramidFloorWindowId);
     }
+    ClearStdWindowAndFrameToTransparent(sWeatherWindowId, FALSE);
+    CopyWindowToVram(sWeatherWindowId, COPYWIN_GFX);
+    RemoveWindow(sWeatherWindowId);
 }
 
 static bool32 PrintStartMenuActions(s8 *pIndex, u32 count)
@@ -527,6 +582,7 @@ static bool32 InitStartMenuStep(void)
             ShowSafariBallsWindow();
         if (InBattlePyramid())
             ShowPyramidFloorWindow();
+        ShowWeatherWindow();
         sInitStartMenuData[0]++;
         break;
     case 4:

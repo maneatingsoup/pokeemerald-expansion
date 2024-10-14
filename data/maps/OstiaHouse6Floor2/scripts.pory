@@ -1,0 +1,10 @@
+mapscripts OstiaHouse6Floor2_MapScripts {}
+
+script OstiaDollGirl {
+    lock
+    faceplayer
+    msgbox("I like to hide in all my plush pokémon.\n"
+    "My brother has a hard time finding me\l"
+    "when I do though.")
+    release
+}

@@ -1,0 +1,52 @@
+mapscripts ValniHouse3_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION: SetUpValniHouses
+}
+
+script SetUpValniHouses {
+    setflag(FLAG_TEMP_1)
+    if(var(VAR_CURRENT_RANDOM_WEATHER_VALUE) >= 35) {
+        setflag(FLAG_TEMP_2)
+    }
+}
+
+script ValniEggWoman {
+    lock
+    faceplayer
+    if(flag(FLAG_TOGEPI_EGG) == FALSE) {
+        msgbox("I received an egg a week ago, but I\n"
+        "don't really have what it takes to\l"
+        "care for a baby pokémon.\p"
+        "You're a pokémon trainer right?\n"
+        "Would you raise it?", MSGBOX_YESNO)
+        if(var(VAR_RESULT) == YES) {
+            msgbox("Thank you, you're a life saver!")
+            giveegg(SPECIES_TOGEPI)
+            if(var(VAR_RESULT) == MON_CANT_GIVE) {
+                msgbox("Oh...\p"
+                "It looks like you don't have room.\p"
+                "You'll have to come back after clearing\n"
+                "Some room in your PC.")
+            }
+            else {
+                setflag(FLAG_TOGEPI_EGG)
+                playfanfare(MUS_OBTAIN_ITEM)
+                msgbox("{PLAYER} received the mysterious\n"
+                "pokémon egg!")
+                waitfanfare
+                msgbox("Make sure to take good care of it.")
+            }
+        }
+        else {
+            msgbox("Oh, I see.\p"
+            "Let me know if you change your mind.")
+        }
+    }
+    else {
+        msgbox("Pokémon eggs aren't very common and\n"
+        "so a lot of trainers aren't prepared\l"
+        "to raise the pokémon that hatch.\p"
+        "Thanks for looking after that egg.\n"
+        "I'm sure it'll appreciate it, too.")
+    }
+    release
+}

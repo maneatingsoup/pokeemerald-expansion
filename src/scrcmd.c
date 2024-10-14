@@ -2409,3 +2409,59 @@ bool8 ScrCmd_warpwhitefade(struct ScriptContext *ctx)
     ResetInitialPlayerAvatarState();
     return TRUE;
 }
+
+bool8 ScrCmd_canpartymonlearnmove(struct ScriptContext *ctx)
+{
+    u8 i;
+    u16 moveId = ScriptReadHalfword(ctx);
+
+    gSpecialVar_Result = PARTY_SIZE;
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        u16 species = GetMonData3(&gPlayerParty[i], MON_DATA_SPECIES, NULL);
+        if (!species)
+            break;
+        if (!GetMonData3(&gPlayerParty[i], MON_DATA_IS_EGG, NULL) && MonKnowsMove(&gPlayerParty[i], moveId) == TRUE)
+        {
+            gSpecialVar_Result = i;
+            gSpecialVar_0x8004 = species;
+            break;
+        }
+        if (!GetMonData3(&gPlayerParty[i], MON_DATA_IS_EGG, NULL) && CanLearnTeachableMove(species, moveId))
+        {
+            if (moveId == MOVE_CUT && FlagGet(FLAG_RECEIVED_HM01) == FALSE) {
+                break;
+            }
+            if (moveId == MOVE_FLY && FlagGet(FLAG_RECEIVED_HM02) == FALSE) {
+                break;
+            }
+            if (moveId == MOVE_SURF && FlagGet(FLAG_RECEIVED_HM03) == FALSE) {
+                break;
+            }
+            if (moveId == MOVE_STRENGTH && FlagGet(FLAG_RECEIVED_HM04) == FALSE) {
+                break;
+            }
+            if (moveId == MOVE_FLASH && FlagGet(FLAG_RECEIVED_HM05) == FALSE) {
+                break;
+            }
+            if (moveId == MOVE_ROCK_SMASH && FlagGet(FLAG_RECEIVED_HM06) == FALSE) {
+                break;
+            }
+            if (moveId == MOVE_WATERFALL && FlagGet(FLAG_RECEIVED_HM07) == FALSE) {
+                break;
+            }
+            if (moveId == MOVE_DIVE && FlagGet(FLAG_RECEIVED_HM08) == FALSE) {
+                break;
+            }
+            gSpecialVar_Result = i;
+            gSpecialVar_0x8004 = species;
+            break;
+        }
+    }
+    return FALSE;
+}
+
+void ScriptSetDoubleBattleFlag(struct ScriptContext *ctx)
+{
+    sIsScriptedWildDouble = TRUE;
+}

@@ -266,7 +266,8 @@ static const u8 sFRLGAvatarGfxIds[GENDER_COUNT] =
 
 static const u8 sRSAvatarGfxIds[GENDER_COUNT] =
 {
-    [MALE]   = OBJ_EVENT_GFX_LINK_RS_BRENDAN,
+    // [MALE]   = OBJ_EVENT_GFX_LINK_RS_BRENDAN,
+    [MALE]   = OBJ_EVENT_GFX_LINK_RS_MAY,
     [FEMALE] = OBJ_EVENT_GFX_LINK_RS_MAY
 };
 

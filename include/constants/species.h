@@ -388,8 +388,7 @@
 #define SPECIES_GROUDON                                 383
 #define SPECIES_RAYQUAZA                                384
 #define SPECIES_JIRACHI                                 385
-#define SPECIES_DEOXYS                                  SPECIES_DEOXYS_NORMAL
-#define SPECIES_DEOXYS_NORMAL                           386
+#define SPECIES_DEOXYS                                  386
 #define SPECIES_TURTWIG                                 387
 #define SPECIES_GROTLE                                  388
 #define SPECIES_TORTERRA                                389
@@ -1539,97 +1538,179 @@
 #define SPECIES_TERAPAGOS_STELLAR                       1433
 #define SPECIES_PECHARUNT                               1434
 #define SPECIES_LUGIA_SHADOW                            1435
-#define SPECIES_MOTHIM_SANDY_CLOAK                      1436
-#define SPECIES_MOTHIM_TRASH_CLOAK                      1437
-#define SPECIES_SCATTERBUG_POLAR                        1438
-#define SPECIES_SCATTERBUG_TUNDRA                       1439
-#define SPECIES_SCATTERBUG_CONTINENTAL                  1440
-#define SPECIES_SCATTERBUG_GARDEN                       1441
-#define SPECIES_SCATTERBUG_ELEGANT                      1442
-#define SPECIES_SCATTERBUG_MEADOW                       1443
-#define SPECIES_SCATTERBUG_MODERN                       1444
-#define SPECIES_SCATTERBUG_MARINE                       1445
-#define SPECIES_SCATTERBUG_ARCHIPELAGO                  1446
-#define SPECIES_SCATTERBUG_HIGH_PLAINS                  1447
-#define SPECIES_SCATTERBUG_SANDSTORM                    1448
-#define SPECIES_SCATTERBUG_RIVER                        1449
-#define SPECIES_SCATTERBUG_MONSOON                      1450
-#define SPECIES_SCATTERBUG_SAVANNA                      1451
-#define SPECIES_SCATTERBUG_SUN                          1452
-#define SPECIES_SCATTERBUG_OCEAN                        1453
-#define SPECIES_SCATTERBUG_JUNGLE                       1454
-#define SPECIES_SCATTERBUG_FANCY                        1455
-#define SPECIES_SCATTERBUG_POKE_BALL                    1456
-#define SPECIES_SPEWPA_POLAR                            1457
-#define SPECIES_SPEWPA_TUNDRA                           1458
-#define SPECIES_SPEWPA_CONTINENTAL                      1459
-#define SPECIES_SPEWPA_GARDEN                           1460
-#define SPECIES_SPEWPA_ELEGANT                          1461
-#define SPECIES_SPEWPA_MEADOW                           1462
-#define SPECIES_SPEWPA_MODERN                           1463
-#define SPECIES_SPEWPA_MARINE                           1464
-#define SPECIES_SPEWPA_ARCHIPELAGO                      1465
-#define SPECIES_SPEWPA_HIGH_PLAINS                      1466
-#define SPECIES_SPEWPA_SANDSTORM                        1467
-#define SPECIES_SPEWPA_RIVER                            1468
-#define SPECIES_SPEWPA_MONSOON                          1469
-#define SPECIES_SPEWPA_SAVANNA                          1470
-#define SPECIES_SPEWPA_SUN                              1471
-#define SPECIES_SPEWPA_OCEAN                            1472
-#define SPECIES_SPEWPA_JUNGLE                           1473
-#define SPECIES_SPEWPA_FANCY                            1474
-#define SPECIES_SPEWPA_POKE_BALL                        1475
-#define SPECIES_RATICATE_ALOLAN_TOTEM                   1476
-#define SPECIES_GUMSHOOS_TOTEM                          1477
-#define SPECIES_VIKAVOLT_TOTEM                          1478
-#define SPECIES_LURANTIS_TOTEM                          1479
-#define SPECIES_SALAZZLE_TOTEM                          1480
-#define SPECIES_MIMIKYU_TOTEM                           SPECIES_MIMIKYU_TOTEM_DISGUISED
-#define SPECIES_MIMIKYU_TOTEM_DISGUISED                 1481
-#define SPECIES_KOMMO_O_TOTEM                           1482
-#define SPECIES_MAROWAK_ALOLAN_TOTEM                    1483
-#define SPECIES_RIBOMBEE_TOTEM                          1484
-#define SPECIES_ARAQUANID_TOTEM                         1485
-#define SPECIES_TOGEDEMARU_TOTEM                        1486
-#define SPECIES_PIKACHU_PARTNER                         1487
-#define SPECIES_EEVEE_PARTNER                           1488
-#define SPECIES_VENUSAUR_GIGANTAMAX                     1489
-#define SPECIES_BLASTOISE_GIGANTAMAX                    1490
-#define SPECIES_CHARIZARD_GIGANTAMAX                    1491
-#define SPECIES_BUTTERFREE_GIGANTAMAX                   1492
-#define SPECIES_PIKACHU_GIGANTAMAX                      1493
-#define SPECIES_MEOWTH_GIGANTAMAX                       1494
-#define SPECIES_MACHAMP_GIGANTAMAX                      1495
-#define SPECIES_GENGAR_GIGANTAMAX                       1496
-#define SPECIES_KINGLER_GIGANTAMAX                      1497
-#define SPECIES_LAPRAS_GIGANTAMAX                       1498
-#define SPECIES_EEVEE_GIGANTAMAX                        1499
-#define SPECIES_SNORLAX_GIGANTAMAX                      1500
-#define SPECIES_GARBODOR_GIGANTAMAX                     1501
-#define SPECIES_MELMETAL_GIGANTAMAX                     1502
-#define SPECIES_RILLABOOM_GIGANTAMAX                    1503
-#define SPECIES_CINDERACE_GIGANTAMAX                    1504
-#define SPECIES_INTELEON_GIGANTAMAX                     1505
-#define SPECIES_CORVIKNIGHT_GIGANTAMAX                  1506
-#define SPECIES_ORBEETLE_GIGANTAMAX                     1507
-#define SPECIES_DREDNAW_GIGANTAMAX                      1508
-#define SPECIES_COALOSSAL_GIGANTAMAX                    1509
-#define SPECIES_FLAPPLE_GIGANTAMAX                      1510
-#define SPECIES_APPLETUN_GIGANTAMAX                     1511
-#define SPECIES_SANDACONDA_GIGANTAMAX                   1512
-#define SPECIES_TOXTRICITY_AMPED_GIGANTAMAX             1513
-#define SPECIES_TOXTRICITY_LOW_KEY_GIGANTAMAX           1514
-#define SPECIES_CENTISKORCH_GIGANTAMAX                  1515
-#define SPECIES_HATTERENE_GIGANTAMAX                    1516
-#define SPECIES_GRIMMSNARL_GIGANTAMAX                   1517
-#define SPECIES_ALCREMIE_GIGANTAMAX                     1518
-#define SPECIES_COPPERAJAH_GIGANTAMAX                   1519
-#define SPECIES_DURALUDON_GIGANTAMAX                    1520
-#define SPECIES_URSHIFU_SINGLE_STRIKE_STYLE_GIGANTAMAX  1521
-#define SPECIES_URSHIFU_RAPID_STRIKE_STYLE_GIGANTAMAX   1522
-#define SPECIES_MIMIKYU_TOTEM_BUSTED                    1523
+// #define SPECIES_MOTHIM_SANDY_CLOAK                      1436
+// #define SPECIES_MOTHIM_TRASH_CLOAK                      1437
+// #define SPECIES_SCATTERBUG_POLAR                        1438
+// #define SPECIES_SCATTERBUG_TUNDRA                       1439
+// #define SPECIES_SCATTERBUG_CONTINENTAL                  1440
+// #define SPECIES_SCATTERBUG_GARDEN                       1441
+// #define SPECIES_SCATTERBUG_ELEGANT                      1442
+// #define SPECIES_SCATTERBUG_MEADOW                       1443
+// #define SPECIES_SCATTERBUG_MODERN                       1444
+// #define SPECIES_SCATTERBUG_MARINE                       1445
+// #define SPECIES_SCATTERBUG_ARCHIPELAGO                  1446
+// #define SPECIES_SCATTERBUG_HIGH_PLAINS                  1447
+// #define SPECIES_SCATTERBUG_SANDSTORM                    1448
+// #define SPECIES_SCATTERBUG_RIVER                        1449
+// #define SPECIES_SCATTERBUG_MONSOON                      1450
+// #define SPECIES_SCATTERBUG_SAVANNA                      1451
+// #define SPECIES_SCATTERBUG_SUN                          1452
+// #define SPECIES_SCATTERBUG_OCEAN                        1453
+// #define SPECIES_SCATTERBUG_JUNGLE                       1454
+// #define SPECIES_SCATTERBUG_FANCY                        1455
+// #define SPECIES_SCATTERBUG_POKE_BALL                    1456
+// #define SPECIES_SPEWPA_POLAR                            1457
+// #define SPECIES_SPEWPA_TUNDRA                           1458
+// #define SPECIES_SPEWPA_CONTINENTAL                      1459
+// #define SPECIES_SPEWPA_GARDEN                           1460
+// #define SPECIES_SPEWPA_ELEGANT                          1461
+// #define SPECIES_SPEWPA_MEADOW                           1462
+// #define SPECIES_SPEWPA_MODERN                           1463
+// #define SPECIES_SPEWPA_MARINE                           1464
+// #define SPECIES_SPEWPA_ARCHIPELAGO                      1465
+// #define SPECIES_SPEWPA_HIGH_PLAINS                      1466
+// #define SPECIES_SPEWPA_SANDSTORM                        1467
+// #define SPECIES_SPEWPA_RIVER                            1468
+// #define SPECIES_SPEWPA_MONSOON                          1469
+// #define SPECIES_SPEWPA_SAVANNA                          1470
+// #define SPECIES_SPEWPA_SUN                              1471
+// #define SPECIES_SPEWPA_OCEAN                            1472
+// #define SPECIES_SPEWPA_JUNGLE                           1473
+// #define SPECIES_SPEWPA_FANCY                            1474
+// #define SPECIES_SPEWPA_POKE_BALL                        1475
+// #define SPECIES_RATICATE_ALOLAN_TOTEM                   1476
+// #define SPECIES_GUMSHOOS_TOTEM                          1477
+// #define SPECIES_VIKAVOLT_TOTEM                          1478
+// #define SPECIES_LURANTIS_TOTEM                          1479
+// #define SPECIES_SALAZZLE_TOTEM                          1480
+// #define SPECIES_MIMIKYU_TOTEM                           SPECIES_MIMIKYU_TOTEM_DISGUISED
+// #define SPECIES_MIMIKYU_TOTEM_DISGUISED                 1481
+// #define SPECIES_KOMMO_O_TOTEM                           1482
+// #define SPECIES_MAROWAK_ALOLAN_TOTEM                    1483
+// #define SPECIES_RIBOMBEE_TOTEM                          1484
+// #define SPECIES_ARAQUANID_TOTEM                         1485
+// #define SPECIES_TOGEDEMARU_TOTEM                        1486
+// #define SPECIES_PIKACHU_PARTNER                         1487
+// #define SPECIES_EEVEE_PARTNER                           1488
+// #define SPECIES_VENUSAUR_GIGANTAMAX                     1489
+// #define SPECIES_BLASTOISE_GIGANTAMAX                    1490
+// #define SPECIES_CHARIZARD_GIGANTAMAX                    1491
+// #define SPECIES_BUTTERFREE_GIGANTAMAX                   1492
+// #define SPECIES_PIKACHU_GIGANTAMAX                      1493
+// #define SPECIES_MEOWTH_GIGANTAMAX                       1494
+// #define SPECIES_MACHAMP_GIGANTAMAX                      1495
+// #define SPECIES_GENGAR_GIGANTAMAX                       1496
+// #define SPECIES_KINGLER_GIGANTAMAX                      1497
+// #define SPECIES_LAPRAS_GIGANTAMAX                       1498
+// #define SPECIES_EEVEE_GIGANTAMAX                        1499
+// #define SPECIES_SNORLAX_GIGANTAMAX                      1500
+// #define SPECIES_GARBODOR_GIGANTAMAX                     1501
+// #define SPECIES_MELMETAL_GIGANTAMAX                     1502
+// #define SPECIES_RILLABOOM_GIGANTAMAX                    1503
+// #define SPECIES_CINDERACE_GIGANTAMAX                    1504
+// #define SPECIES_INTELEON_GIGANTAMAX                     1505
+// #define SPECIES_CORVIKNIGHT_GIGANTAMAX                  1506
+// #define SPECIES_ORBEETLE_GIGANTAMAX                     1507
+// #define SPECIES_DREDNAW_GIGANTAMAX                      1508
+// #define SPECIES_COALOSSAL_GIGANTAMAX                    1509
+// #define SPECIES_FLAPPLE_GIGANTAMAX                      1510
+// #define SPECIES_APPLETUN_GIGANTAMAX                     1511
+// #define SPECIES_SANDACONDA_GIGANTAMAX                   1512
+// #define SPECIES_TOXTRICITY_AMPED_GIGANTAMAX             1513
+// #define SPECIES_TOXTRICITY_LOW_KEY_GIGANTAMAX           1514
+// #define SPECIES_CENTISKORCH_GIGANTAMAX                  1515
+// #define SPECIES_HATTERENE_GIGANTAMAX                    1516
+// #define SPECIES_GRIMMSNARL_GIGANTAMAX                   1517
+// #define SPECIES_ALCREMIE_GIGANTAMAX                     1518
+// #define SPECIES_COPPERAJAH_GIGANTAMAX                   1519
+// #define SPECIES_DURALUDON_GIGANTAMAX                    1520
+// #define SPECIES_URSHIFU_SINGLE_STRIKE_STYLE_GIGANTAMAX  1521
+// #define SPECIES_URSHIFU_RAPID_STRIKE_STYLE_GIGANTAMAX   1522
+// #define SPECIES_MIMIKYU_TOTEM_BUSTED                    1523
 
-#define SPECIES_EGG (SPECIES_MIMIKYU_TOTEM_BUSTED + 1)
+//Deoxys Types
+#define SPECIES_DEOXYS_FIGHTING                         1436
+#define SPECIES_DEOXYS_FLYING                           1437
+#define SPECIES_DEOXYS_POISON                           1438
+#define SPECIES_DEOXYS_GROUND                           1439
+#define SPECIES_DEOXYS_ROCK                             1440
+#define SPECIES_DEOXYS_BUG                              1441
+#define SPECIES_DEOXYS_GHOST                            1442
+#define SPECIES_DEOXYS_STEEL                            1443
+#define SPECIES_DEOXYS_FIRE                             1444
+#define SPECIES_DEOXYS_WATER                            1445
+#define SPECIES_DEOXYS_GRASS                            1446
+#define SPECIES_DEOXYS_ELECTRIC                         1447
+#define SPECIES_DEOXYS_PSYCHIC                          SPECIES_DEOXYS
+#define SPECIES_DEOXYS_NORMAL                           1448
+#define SPECIES_DEOXYS_ICE                              1449
+#define SPECIES_DEOXYS_DRAGON                           1450
+#define SPECIES_DEOXYS_DARK                             1451
+#define SPECIES_DEOXYS_FAIRY                            1452
+
+//Deoxys Attack Types
+#define SPECIES_DEOXYS_ATTACK_FIGHTING                  1453
+#define SPECIES_DEOXYS_ATTACK_FLYING                    1454
+#define SPECIES_DEOXYS_ATTACK_POISON                    1455
+#define SPECIES_DEOXYS_ATTACK_GROUND                    1456
+#define SPECIES_DEOXYS_ATTACK_ROCK                      1457
+#define SPECIES_DEOXYS_ATTACK_BUG                       1458
+#define SPECIES_DEOXYS_ATTACK_GHOST                     1459
+#define SPECIES_DEOXYS_ATTACK_STEEL                     1460
+#define SPECIES_DEOXYS_ATTACK_FIRE                      1461
+#define SPECIES_DEOXYS_ATTACK_WATER                     1462
+#define SPECIES_DEOXYS_ATTACK_GRASS                     1463
+#define SPECIES_DEOXYS_ATTACK_ELECTRIC                  1464
+#define SPECIES_DEOXYS_ATTACK_PSYCHIC                   SPECIES_DEOXYS_ATTACK
+#define SPECIES_DEOXYS_ATTACK_NORMAL                    1465
+#define SPECIES_DEOXYS_ATTACK_ICE                       1466
+#define SPECIES_DEOXYS_ATTACK_DRAGON                    1467
+#define SPECIES_DEOXYS_ATTACK_DARK                      1468
+#define SPECIES_DEOXYS_ATTACK_FAIRY                     1469
+
+//Deoxys Defense Types
+#define SPECIES_DEOXYS_DEFENSE_FIGHTING                 1470
+#define SPECIES_DEOXYS_DEFENSE_FLYING                   1471
+#define SPECIES_DEOXYS_DEFENSE_POISON                   1472
+#define SPECIES_DEOXYS_DEFENSE_GROUND                   1473
+#define SPECIES_DEOXYS_DEFENSE_ROCK                     1474
+#define SPECIES_DEOXYS_DEFENSE_BUG                      1475
+#define SPECIES_DEOXYS_DEFENSE_GHOST                    1476
+#define SPECIES_DEOXYS_DEFENSE_STEEL                    1477
+#define SPECIES_DEOXYS_DEFENSE_FIRE                     1478
+#define SPECIES_DEOXYS_DEFENSE_WATER                    1479
+#define SPECIES_DEOXYS_DEFENSE_GRASS                    1480
+#define SPECIES_DEOXYS_DEFENSE_ELECTRIC                 1481
+#define SPECIES_DEOXYS_DEFENSE_PSYCHIC                  SPECIES_DEOXYS_DEFENSE
+#define SPECIES_DEOXYS_DEFENSE_NORMAL                   1482
+#define SPECIES_DEOXYS_DEFENSE_ICE                      1483
+#define SPECIES_DEOXYS_DEFENSE_DRAGON                   1484
+#define SPECIES_DEOXYS_DEFENSE_DARK                     1485
+#define SPECIES_DEOXYS_DEFENSE_FAIRY                    1486
+
+//Deoxys Speed Types
+#define SPECIES_DEOXYS_SPEED_FIGHTING                   1487
+#define SPECIES_DEOXYS_SPEED_FLYING                     1488
+#define SPECIES_DEOXYS_SPEED_POISON                     1489
+#define SPECIES_DEOXYS_SPEED_GROUND                     1490
+#define SPECIES_DEOXYS_SPEED_ROCK                       1491
+#define SPECIES_DEOXYS_SPEED_BUG                        1492
+#define SPECIES_DEOXYS_SPEED_GHOST                      1493
+#define SPECIES_DEOXYS_SPEED_STEEL                      1494
+#define SPECIES_DEOXYS_SPEED_FIRE                       1495
+#define SPECIES_DEOXYS_SPEED_WATER                      1496
+#define SPECIES_DEOXYS_SPEED_GRASS                      1497
+#define SPECIES_DEOXYS_SPEED_ELECTRIC                   1498
+#define SPECIES_DEOXYS_SPEED_PSYCHIC                    SPECIES_DEOXYS_SPEED
+#define SPECIES_DEOXYS_SPEED_NORMAL                     1499
+#define SPECIES_DEOXYS_SPEED_ICE                        1500
+#define SPECIES_DEOXYS_SPEED_DRAGON                     1501
+#define SPECIES_DEOXYS_SPEED_DARK                       1502
+#define SPECIES_DEOXYS_SPEED_FAIRY                      1503
+
+#define SPECIES_CLAYDOL_ATTACK                          1504
+
+#define SPECIES_EGG (SPECIES_CLAYDOL_ATTACK + 1)
 
 #define NUM_SPECIES SPECIES_EGG
 

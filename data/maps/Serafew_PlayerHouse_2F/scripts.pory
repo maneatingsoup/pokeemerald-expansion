@@ -1,0 +1,7 @@
+mapscripts Serafew_PlayerHouse_2F_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION: SetUpPlayerHouse_2F
+}
+
+script SetUpPlayerHouse_2F {
+    special(SetGroupWeather)
+}

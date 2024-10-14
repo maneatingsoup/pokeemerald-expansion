@@ -1,0 +1,494 @@
+mapscripts Ostia_MapScripts {
+    MAP_SCRIPT_ON_LOAD: OstiaOnLoad
+    MAP_SCRIPT_ON_TRANSITION: SetUpOstia
+}
+
+script OstiaOnLoad {
+    call_if_set(FLAG_IS_NIGHT, OstiaTurnLampsOn)
+    if(!flag(FLAG_IS_NIGHT)) {
+        if(var(VAR_CURRENT_RANDOM_WEATHER_VALUE) < 35) {
+            call(OstiaTurnLampsOn)
+        }
+    }
+}
+
+script OstiaTurnLampsOn {
+    setmetatile(24, 10, 0x200, FALSE)
+    setmetatile(37, 10, 0x200, FALSE)
+    setmetatile(29, 17, 0x200, FALSE)
+    setmetatile(32, 17, 0x200, FALSE)
+    setmetatile(14, 14, 0x200, FALSE)
+    setmetatile(14, 27, 0x200, FALSE)
+    setmetatile(19, 29, 0x200, FALSE)
+    setmetatile(22, 29, 0x200, FALSE)
+    setmetatile(27, 35, 0x200, FALSE)
+    setmetatile(33, 35, 0x200, FALSE)
+    setmetatile(30, 40, 0x200, FALSE)
+    setmetatile(38, 40, 0x200, FALSE)
+}
+
+script SetUpOstia {
+    special(SetGroupWeather)
+    if(flag(FLAG_RUDE_DUDE) == TRUE) {
+        setflag(FLAG_TEMP_2)
+    }
+    if(var(VAR_TEAM_HELIX_ENCOUNTER_SEQUENCE) <= 1) {
+        setflag(FLAG_TEMP_4)
+    }
+    else {
+        setflag(FLAG_TEMP_5)
+    }
+    setflag(FLAG_TEMP_3)
+    if(var(VAR_CURRENT_RANDOM_WEATHER_VALUE) < 35) {
+        setflag(FLAG_TEMP_1)
+        setflag(FLAG_TEMP_2)
+        setflag(FLAG_TEMP_4)
+    }
+}
+
+script OstiaCityGymSign {
+    lock
+    msgbox("Ostia City Gym\n"
+    "Leader: Joe\p"
+    "Totally Average and Nothing but Normal")
+    release
+}
+
+script OstiaCityInnSign {
+    lock
+    msgbox("Ostia City Inn\n"
+    "Make Yourself at Home")
+    release
+}
+
+script OstiaCityStoreSign {
+    lock
+    msgbox("Ostia General Store\p"
+    "Stop by for the Solution to Any and All\n"
+    "of Your Adventuring Needs")
+    release
+}
+
+script OstiaCitySignPost {
+    lock
+    msgbox("Welcome to the City of Ostia.\n")
+    release
+}
+
+script OstiaResearchSign {
+    lock
+    msgbox("Ostia Research Institute\n"
+    "The Future is Built Upon the Past")
+    release
+}
+
+script OstiaYoungFountainGirl {
+    lock
+    faceplayer
+    if(flag(FLAG_TEMP_1)) {
+        msgbox("Watching the rain fall outside makes\n"
+        "me wanna go run around out there.\p"
+        "Grandma won't let me though.\p"
+        "She says I'll catch a cold.")
+        applymovement(3, FaceUp)
+        waitmovement(0)
+    }
+    else{
+        msgbox("I like watching the water!")
+        applymovement(8, FaceRight)
+        waitmovement(0)
+    }
+    release
+}
+
+script OstiaGentleman {
+    lock
+    faceplayer
+    msgbox("I've been thinking about taking on\n"
+    "the gym here, but I'm not sure if I\l"
+    "can beat someone as average as Joe.")
+    release
+}
+
+script OstiaScientistGreeter {
+    lock
+    faceplayer
+    msgbox("Welcome to the Ostia Research\n"
+    "Institute.\p"
+    "We do research into the history of this\n"
+    "world and the relics that the past has\l"
+    "left for us to discover.\p"
+    "Please take a look around the gallery.")
+    release
+}
+
+script OstiaScientistBuffoon {
+    lock
+    faceplayer
+    if(!(flag(FLAG_WISE_GLASSES))){
+        msgbox("I don't need to wear this lab coat to do\n"
+        "my research.\p"
+        "I only wear it because people think I'm\n"
+        "smart when I do.\p"
+        "You think it makes me look smart, don't\n"
+        "you?", MSGBOX_YESNO)
+        if(var(VAR_RESULT) == YES){
+            setflag(FLAG_WISE_GLASSES)
+            setvar(VAR_TEMP_3, 6)
+            msgbox("I knew it works! Here, take this so you\n"
+            "can look smart, too.")
+            giveitem(ITEM_WISE_GLASSES)
+            msgbox("They won't work as well as my lab coat,\n"
+            "but you'll definitely look smart with\l"
+            "those on.")
+        }
+        else{
+            msgbox("Oh, well at least my wife says it does.")
+        }
+    }
+    elif(var(VAR_TEMP_3) == 6){
+        msgbox("Put those on and you'll be looking smart\n"
+        "in no time.")
+    }
+    else{
+        msgbox("I hope those glasses have been\n"
+        "working well for you.")
+    }
+    release
+}
+
+script OstiaCountryMan {
+    lock
+    faceplayer
+    if(flag(FLAG_TEMP_1)) {
+        msgbox("I moved to Ostia from Valni to look\n"
+        "after my grandfather.\p"
+        "I don't know if the city is good for him\n"
+        "in his old age, but he wouldn't be able\l"
+        "to make it to Valni to live with me.")
+    }
+    else {
+        msgbox("Living in the city is convenient, but I\n"
+        "can't shake the feeling that the world\l"
+        "would be a lot prettier without all\l"
+        "these buildings.")
+        applymovement(11, FaceLeft)
+        waitmovement(0)
+    }
+    release
+}
+
+script OstiaYoungGirl {
+    lock
+    faceplayer
+    if(flag(FLAG_TEMP_1)) {
+        msgbox("I wanna play outside, but mom won't let\n"
+        "me since it's raining.\p"
+        "There's nothing to do inside though.")
+    }
+    else {
+        msgbox("We're gonna play hide and seek.\p"
+        "Are you good at hiding?", MSGBOX_YESNO)
+        if(var(VAR_RESULT) == YES){
+            msgbox("Are you sure? You look pretty big to be\n"
+            "good at hiding.")
+        }
+        else{
+            msgbox("I didn't think so.")
+        }
+        applymovement(6, FaceRight)
+        waitmovement(0)
+    }
+    release
+}
+
+script OstiaYoungBoy {
+    lock
+    faceplayer
+    if(flag(FLAG_TEMP_1)) {
+        msgbox("If I keep running up and down on the\n"
+        "rug, I can build up a lot of static!")
+        setobjectmovementtype(3, MOVEMENT_TYPE_WALK_DOWN_AND_UP)
+    }
+    else{
+        msgbox("My sister is really good at hiding!\p"
+        "I spent all of yesterday looking for her,\n"
+        "but I couldn't find her.")
+        applymovement(7, FaceLeft)
+        waitmovement(0)
+    }
+    release
+}
+
+script OstiaFountainBoy {
+    lock
+    faceplayer
+    if(flag(FLAG_TEMP_1)) {
+        msgbox("I hate the rain.\p"
+        "When I grow up, I'm gonna live on the\n"
+        "other side of the Rugged Pass.\p"
+        "It doesn't rain very often over there.")
+    }
+    else {
+        msgbox("I'm supposed to make a wish before\n"
+        "throwing this coin in.\p"
+        "But I don't know what to wish for.")
+        applymovement(1, FaceDown)
+        waitmovement(0)
+    }
+    release
+}
+
+script OstiaBerryLady {
+    lock
+    faceplayer
+    if(!flag(FLAG_OSTIA_BERRY)) {
+        setflag(FLAG_OSTIA_BERRY)
+        msgbox("I grow berries out on my balcony.\p"
+        "Here, you can have these.")
+        giveitem(ITEM_LUM_BERRY, 10)
+        }
+    msgbox("I think berries are just wonderful,\n"
+    "don't you?")
+    release
+}
+
+script OstiaWherePokeballs {
+    lock
+    faceplayer
+    msgbox("You look like an up and coming pokémon \n"
+    "trainer.\p"
+    "If you're looking for pokéballs, you can\n"
+    "buy them at the store here in Ostia.")
+    release
+}
+
+script OstiaRudeDude {
+    lock
+    faceplayer
+    if(var(VAR_TEMP_5) == 0){
+        msgbox("Wanna hear a secret?", MSGBOX_YESNO)
+        if(var(VAR_RESULT) == YES){
+            setvar(VAR_TEMP_5, 1)
+            msgbox("I bet you would, loser.\p"
+            "Heh, gottem.")
+        }
+        else{
+            msgbox("Bet you couldn't handle it anyway.")
+        }
+    }
+    elif(var(VAR_TEMP_5) == 1){
+        setvar(VAR_TEMP_5, 2)
+        msgbox("Okay, that was pretty mean.\p"
+        "I should probably apologize, huh?\p"
+        "Well, I'm not gonna!\p"
+        "Take that, nerd!")
+    }
+    elif(var(VAR_TEMP_5) == 2){
+        setflag(FLAG_RUDE_DUDE)
+        setvar(VAR_TEMP_5, 3)
+        msgbox("Alright, I'm kinda rude.\p"
+        "Why don't you take this for putting up\n"
+        "with me.")
+        giveitem(ITEM_TM12_TAUNT)
+        msgbox("I probably shouldn't stick around after\n"
+        "behaving like that.\p"
+        "Be more responsible than me with that\n"
+        "thing.")
+    }
+    elif(var(VAR_TEMP_5) == 3){
+        setvar(VAR_TEMP_5, 4)
+        msgbox("I'm still not gonna give you that\n"
+        "apology.")
+    }
+    elif(var(VAR_TEMP_5) == 4){
+        setvar(VAR_TEMP_5, 5)
+        msgbox("Alright, now I think you're being the\n"
+        "annoying one here.")
+    }
+    elif(var(VAR_TEMP_5) == 5){
+        setvar(VAR_TEMP_5, 6)
+        msgbox("Can't you go be stupid somewhere else?")
+    }
+    elif(var(VAR_TEMP_5) == 6){
+        msgbox("Look, I'm sorry you think you deserve\n"
+        "an apology.\p"
+        "Just leave me alone.")
+    }
+    release
+}
+
+script ResetOstiaGymTrainers {
+    if(!flag(FLAG_BADGE01_GET)) {
+    cleartrainerflag(TRAINER_YOUNGSTER_ALEXANDER)
+    cleartrainerflag(TRAINER_LASS_ISABELLA)
+    cleartrainerflag(TRAINER_LASS_ABIGAIL)
+    cleartrainerflag(TRAINER_YOUNGSTER_NICHOLAS)
+    }
+    setvar(VAR_TEMP_F, 1)
+}
+
+script OstiaScientistHelp {
+    lock
+    setvar(VAR_TEAM_HELIX_ENCOUNTER_SEQUENCE, 2)
+    getplayerxy(VAR_TEMP_0, VAR_TEMP_1)
+    opendoor(26, 43)
+    playse(SE_SLIDING_DOOR)
+    waitdooranim
+    addobject(12)
+    applymovement(12, WalkDown)
+    waitmovement(0)
+    if(var(VAR_TEMP_0) <= 25) {
+        applymovement(OBJ_EVENT_ID_PLAYER, FaceRight)
+    }
+    elif(var(VAR_TEMP_0) >= 27) {
+        applymovement(OBJ_EVENT_ID_PLAYER, FaceLeft)
+    }
+    else {
+        applymovement(OBJ_EVENT_ID_PLAYER, FaceUp)
+    }
+    delay(30)
+    closedoor(26, 43)
+    waitmovement(0)
+    playse(SE_PIN)
+    applymovement(12, Exclamation)
+    if(var(VAR_TEMP_0) <= 25) {
+        turnobject(12, DIR_WEST)
+    }
+    elif(var(VAR_TEMP_0) >= 27) {
+        turnobject(12, DIR_EAST)
+    }
+    delay(60)
+    msgbox("Oh, you look like a strong pokémon\n"
+    "trainer.\p"
+    "Would you be able to help me out?\p"
+    "Some thug broke into the Ostia Research\n"
+    "Institute and stole an important part\l"
+    "of a machine we were working on.\p"
+    "Without the temporal translocator, we\n"
+    "can't make progress on our research.\p"
+    "The culprit is a suspicious looking guy \n"
+    "wearing a black outfit.\p"
+    "...\p"
+    "You've already seen him?\p"
+    "Hm, so you recovered the blueprints but\n"
+    "he ran off with the translocator.\p"
+    "Well, I suppose with those, we can make\n"
+    "a new one.\p"
+    "I'll take them, thank you.")
+    removeitem(ITEM_DEVON_PARTS, 1)
+    playfanfare(MUS_OBTAIN_TMHM)
+    msgbox("{PLAYER} handed over the Blueprints.")
+    waitfanfare
+    msgbox("You've done me and the other scientists\n"
+    "a huge favor.\p"
+    "Please, stop by the Ostia Research\n"
+    "Institute when you have a chance.\p"
+    "I'll have a reward for your effort.\p"
+    "...\p"
+    "Now, if you'll excuse me, I need to\n"
+    "return these documents.", MSGBOX_AUTOCLOSE)
+    if(var(VAR_TEMP_0) <= 25) {
+        applymovement(OBJ_EVENT_ID_PLAYER, WalkDownFaceUp)
+    }
+    waitmovement(0)
+    setflag(FLAG_TEMP_5)
+    removeobject(13)
+    removeobject(14)
+    removeobject(15)
+    removeobject(16)
+    removeobject(17)
+    clearflag(FLAG_TEMP_4)
+    addobject(4)
+    addobject(8)
+    applymovement(12, OstiaScientistHelpLeave)
+    waitmovement(0)
+    removeobject(12)
+}
+
+script OstiaResearchInstituteClosed {
+    lock
+    faceplayer
+    msgbox("I'm very sorry, but the Ostia Research\n"
+    "Institute is closed right now.\p"
+    "Please come back another time.", MSGBOX_AUTOCLOSE)
+    release
+}
+
+script OstiaResearchInstituteClosed2 {
+    lock
+    faceplayer
+    msgbox("The Ostia Research Institute is closed\n"
+    "for the time being.\p"
+    "We apologize for any inconvenience.", MSGBOX_AUTOCLOSE)
+    release
+}
+
+script GetOutOfTheShot {
+    lock
+    msgbox("Cameraman: Hey, we're filming.\n"
+    "Get out of the shot!", MSGBOX_AUTOCLOSE)
+    getplayerxy(VAR_TEMP_0, VAR_TEMP_1)
+    if(var(VAR_TEMP_1) >= 21) {
+        specialvar(VAR_RESULT, GetPlayerFacingDirection)
+        if(var(VAR_RESULT) == DIR_SOUTH) {
+            applymovement(OBJ_EVENT_ID_PLAYER, WalkUp)
+        }
+        else {
+            applymovement(OBJ_EVENT_ID_PLAYER, WalkDown)
+        }
+        
+    }
+    else {
+        applymovement(OBJ_EVENT_ID_PLAYER, WalkUp)
+    }
+    waitmovement(0)
+    release
+}
+
+script WeAreFilming {
+    lock
+    msgbox("Can't you see we're busy?\n"
+    "Get outta here, kid.", MSGBOX_AUTOCLOSE)
+    release
+}
+
+script ReporterOstia {
+    lock
+    msgbox("The culprit has yet to be identified\n"
+    "at this time.\p"
+    "The visual description is an adult\n"
+    "male wearing a dark outfit.\p"
+    "Our network has confirmed that no\n"
+    "injuries resulted from the break-in\l"
+    "and that the loss was limited to a\l"
+    "single artifact and documents.", MSGBOX_AUTOCLOSE)
+    release
+}
+
+script NervousScientist {
+    lock
+    faceplayer
+    msgbox("I've never been on the news before.\n"
+    "I'm really nervous.", MSGBOX_AUTOCLOSE)
+    turnobject(17, DIR_WEST)
+    release
+}
+
+movement TurnAway {
+    face_away_player
+}
+
+movement Exclamation {
+    emote_exclamation_mark
+}
+
+movement WalkDownFaceUp {
+    walk_down
+    face_up
+}
+
+movement OstiaScientistHelpLeave {
+    walk_left*5
+    walk_up*7
+}

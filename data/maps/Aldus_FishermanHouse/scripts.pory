@@ -1,0 +1,30 @@
+mapscripts Aldus_FishermanHouse_MapScripts {}
+
+script AldusFisherman {
+    lock
+    faceplayer
+    if(!(flag(FLAG_RECEIVED_OLD_ROD))){
+        setflag(FLAG_RECEIVED_OLD_ROD)
+        msgbox("You look like someone who could use a\n"
+        "fishing rod.\p"
+        "Here, take my old one.")
+        giveitem(ITEM_OLD_ROD)
+        msgbox("Take good care of that for me.\p"
+        "That rod has seen a lot, and it got me\n"
+        "through some rough times.")
+    }
+    else{
+        msgbox(HaveOldRodAlready)
+    }
+    release
+}
+
+text HaveOldRodAlready {
+    "It's not the best rod out there, but\n"
+    "that Old Rod does work.\p"
+    "You can use it by a lake, a pond, or even\n"
+    "the ocean.\p"
+    "Just cast the line out and wait.\p"
+    "Eventually, a pokémon will bite, then\n"
+    "you can reel them in for a battle!."
+}

@@ -1,0 +1,36 @@
+mapscripts PortNelerasInn_MapScripts {}
+
+script PortNelerasInnKeeper {
+    lock
+    faceplayer
+    if(var(VAR_TEMP_5) == 0){
+    msgbox("Ahoy, welcome to Neleras Inn.\n"
+    "I run things around here.\p"
+    "Need to take a rest?", MSGBOX_YESNO)
+    }
+    elif(var(VAR_TEMP_5) == 1){
+        msgbox("Do you want to spend another night?", MSGBOX_YESNO)
+    }
+    elif(var(VAR_TEMP_5) ==2) {
+        msgbox("Oh, changed your mind already?", MSGBOX_YESNO)
+    }
+    if(var(VAR_RESULT) == YES){
+        setvar(VAR_TEMP_5, 1)
+        setrespawn(HEAL_LOCATION_PORT_NELERAS)
+        msgbox("I'll get your room set up.")
+        call(Common_EventScript_OutOfCenterPartyHeal)
+        msgbox("I hope your stay was comfortable.")
+    }
+    else{
+        setvar(VAR_TEMP_5, 2)
+        msgbox("Let me know if you change your mind.")
+    }
+    if(!flag(FLAG_INN_PC_INFO)){
+        setflag(FLAG_INN_PC_INFO)
+        msgbox("Oh, by the way, there's a PC over by\n"
+        "the bed.\p" 
+        "You can use it to switch which pokémon\n"
+        "you have with you.")
+    }
+    release
+}

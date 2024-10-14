@@ -1,0 +1,532 @@
+mapscripts Aldus_MapScripts {
+    MAP_SCRIPT_ON_LOAD: AldusOnLoad
+    MAP_SCRIPT_ON_TRANSITION: SetUpAldus
+}
+
+script AldusOnLoad {
+    compare_var_to_value(VAR_CURRENT_RANDOM_WEATHER_VALUE, 35)
+    call_if_ge(AldusRemovePuddles)
+}
+
+script AldusRemovePuddles {
+    setmetatile(15, 8, METATILE_General_Grass, FALSE)
+    setmetatile(16, 8, METATILE_General_Grass, FALSE)
+    setmetatile(15, 9, METATILE_General_Grass, FALSE)
+    setmetatile(16, 9, METATILE_General_Grass, FALSE)
+}
+
+script AldusInnSign {
+    lock
+    msgbox("Aldus Inn\n"
+    "Travelers Welcome")
+    release
+}
+script AldusGeezer {
+    lock
+    faceplayer
+    if(flag(FLAG_TEMP_1)) {
+        msgbox("The weather is pretty bad outside.\p"
+        "Feel free to stay until it clears up.")
+    }
+    else {
+        msgbox("You came all the way from Serafew?\p"
+        "My goodness, you should rest at the inn\n"
+        "here in Aldus.\p"
+        "It's the building just to the South.\p"
+        "If you go inside and speak with my\n"
+        "wife, she'll set you up with a room.")
+    }
+    release
+}
+
+script SetUpAldus {
+    special(SetGroupWeather)
+    if(var(VAR_CURRENT_RANDOM_WEATHER_VALUE) < 35) {
+        setflag(FLAG_TEMP_1)
+    }
+    call(Common_EventScript_SetupRivalGfxId)
+    switch (var(VAR_SERAFEW_STATE)) {
+        case 5: 
+            setobjectxyperm(1, 21, 14)
+        case 6: 
+            setobjectxyperm(1, 21, 14)
+        default: end
+    }
+}
+
+script MeetRivalA {
+    lock
+    getplayerxy(VAR_TEMP_0, VAR_TEMP_1)
+    opendoor(16, 14)
+    playse(SE_DOOR)
+    waitdooranim
+    addobject(1)
+    applymovement(1, WalkDown)
+    delay(30)
+    closedoor(16, 14)
+    waitmovement(0)
+    playse(SE_PIN)
+    applymovement(1, RivalNoticeAldus)
+    applymovement(OBJ_EVENT_ID_PLAYER, FaceLeft)
+    delay(40)
+    checkplayergender
+    if(var(VAR_RESULT) == MALE) {
+        playbgm(MUS_ENCOUNTER_MAY, TRUE)
+    }
+    else{
+        playbgm(MUS_ENCOUNTER_BRENDAN, TRUE)
+    }
+    delay(10)
+    switch (var(VAR_TEMP_0)) {
+        case 20: applymovement(1, MeetRivalX20)
+        case 21: applymovement(1, MeetRivalX21)
+        case 22: applymovement(1, MeetRivalX22)
+    }
+    waitmovement(0)
+    call(MeetRival)
+    switch (var(VAR_SERAFEW_STATE)) {
+        case 5:
+            switch (var(VAR_TEMP_0)) {
+                case 20: applymovement(1, RivalWaitAldusAX20)
+                case 21: applymovement(1, RivalWaitAldusAX21)
+                case 22: applymovement(1, RivalWaitAldusAX22)
+            }
+        case 6:
+            switch (var(VAR_TEMP_0)) {
+                case 20: applymovement(1, RivalWaitAldusAX20)
+                case 21: applymovement(1, RivalWaitAldusAX21)
+                case 22: applymovement(1, RivalWaitAldusAX22)
+            }
+        case 7:
+            applymovement(1, RivalLeaveAldus)
+    }
+    waitmovement(0)
+    fadedefaultbgm
+    release
+}
+
+script MeetRivalB {
+    lock
+    applymovement(OBJ_EVENT_ID_PLAYER, FaceUp)
+    opendoor(16, 14)
+    playse(SE_DOOR)
+    waitdooranim
+    addobject(1)
+    playse(SE_WALL_HIT)
+    delay(20)
+    checkplayergender
+    if(var(VAR_RESULT) == MALE) {
+        playbgm(MUS_ENCOUNTER_MAY, TRUE)
+    }
+    else{
+        playbgm(MUS_ENCOUNTER_BRENDAN, TRUE)
+    }
+    applymovement(1, WalkDown)
+    applymovement(OBJ_EVENT_ID_PLAYER, PushDown)
+    waitmovement(0)
+    msgbox("THUD!!!")
+    closedoor(16, 14) 
+    msgbox("Woah! Sorry, I didn't see you there.\n"
+    "Are you alright?")
+    turnobject(OBJ_EVENT_ID_PLAYER, DIR_NORTH)
+    call(MeetRival)
+    switch (var(VAR_SERAFEW_STATE)) {
+        case 5:
+            applymovement(1, RivalWaitAldusB)
+        case 6:
+            applymovement(1, RivalWaitAldusB)
+        case 7:
+            applymovement(1, RivalLeaveAldus)
+    }
+    waitmovement(0)
+    fadedefaultbgm
+    release
+}
+
+script MeetRival {
+    setflag(FLAG_DISOBEY_NOTIF)
+    setvar(VAR_TEMP_2, 40)
+    clearflag(FLAG_RIVAL_BATTLE_1)
+    msgbox("Wait a minute, you're {PLAYER}, right?\p"
+    "My dad told me you're starting your\n"
+    "journey today.\p"
+    "I bet you're really excited!\p"
+    "Oh! If you're going to be training\n"
+    "pokémon, you should have more than\l"
+    "one with you as you travel.\p"
+    "The Pokémon League requires trainers\n"
+    "to carry at least two pokémon at once,\l"
+    "so they can have double battles.")
+    getpartysize
+    if(var(VAR_RESULT) != 1) {
+        setvar(VAR_SERAFEW_STATE, 6)
+        msgbox("...\p"
+        "Oh, I see. It looks like you've already\n"
+        "had some luck catching wild pokémon.\p"
+        "That's great!\p"
+        "Here, take a few of my Pokéballs.\p"
+        "I bet you're almost out of the ones\n"
+        "my dad gave you.")
+        giveitem(ITEM_POKE_BALL, 15)
+        msgbox("There, those should last until you\n"
+        "reach Ostia.\p" 
+        "You can buy more at the shop there.\p"
+        "...")
+        getpartysize
+        buffernumberstring(STR_VAR_1, VAR_RESULT)
+        if(var(VAR_RESULT) == 2) {
+            msgbox("Since you already have a couple\n"
+            "pokémon, why don't we have a battle?", MSGBOX_YESNO)
+        }
+        else{
+            msgbox("Since you already have {STR_VAR_1} pokémon,\n"
+            "why don't we have a battle?", MSGBOX_YESNO)
+        }
+        if(var(VAR_RESULT) == YES) {
+            goto(TimeToBattleAldus)
+        }
+        else {
+            msgbox("Oh, you wanna heal up first.\n"
+            "That's fair.\p"
+            "It's good manners for a trainer to heal\n"
+            "your pokémon if they're defeated.\p"
+            "But that won't help you with the wild\n"
+            "pokémon you run into.\p"
+            "Why don't you take a rest at the inn.\n"
+            "I'll wait over there for you.", MSGBOX_AUTOCLOSE)
+        }
+    }
+    else{
+        setvar(VAR_SERAFEW_STATE, 5)
+        msgbox("By the way, did my dad give you any\n"
+        "Pokéballs?\p"
+        "...\p"
+        "Really, just five?\p"
+        "Huh. Why don't I give you some of mine?\n"
+        "Here you go.")
+        giveitem(ITEM_POKE_BALL, 15)
+        msgbox("That should be enough for you to catch\n"
+        "a full team.\p"
+        "Speaking of catching, you should go\n"
+        "capture another pokémon before you\l"
+        "leave Aldus.\p"
+        "You can find pokémon in tall grass, in\n"
+        "caves, and even in the ocean!\p"
+        "When you see one, you'll want to throw\n"
+        "a pokéball at it to capture it.\p"
+        "Be sure to weaken it first though. If\n"
+        "you don't, it'll probably break out of\l"
+        "the ball.\p"
+        "That's all you really need to know.\p"
+        "Go catch a pokémon on Route 101 and\n"
+        "show it to me before you leave town.\l"
+        "I wanna see what you catch!", MSGBOX_AUTOCLOSE)
+        return
+    }
+}
+
+script RivalAldus {
+    lock
+    faceplayer
+    switch (var(VAR_SERAFEW_STATE)) {
+    case 5: 
+    if (var(VAR_TEMP_2) == 40) {
+        msgbox("What are you waiting for?\n"
+        "Get out there and catch a pokémon!")
+        release
+        end
+    }
+    if (var(VAR_TEMP_2) == 50){
+        msgbox("Well, get back out there!")
+        release
+        end
+    }
+    if (var(VAR_TEMP_2) == 60){
+        msgbox("Well, get back out there!\p"
+        "And next time, don't lie to me.")
+        release
+        end
+    }
+    checkitem(ITEM_POKE_BALL, 5)
+    if (var(VAR_RESULT) == TRUE) {
+        msgbox("Have you caught a new pokémon yet?\n", MSGBOX_YESNO)
+        if (var(VAR_RESULT) == YES) {
+            getpartysize
+            if (var(VAR_RESULT) == 1) {
+                setvar(VAR_TEMP_2, 60)
+                bufferleadmonspeciesname(STR_VAR_1)
+                msgbox("Cool, I wanna see it!\p"
+                "...\p"
+                "...\p"
+                "...\p"
+                "Umm, that's the {STR_VAR_1} my dad gave\n"
+                "you.\p"
+                "...\p"
+                "You might be hopeless.")
+            }
+                if (var(VAR_RESULT) == 2) {
+                    setvar(VAR_SERAFEW_STATE, 6)
+                    msgbox("Cool, I think you should show it to me\n"
+                    "in a pokémon battle!\p"
+                    "What do you say?", MSGBOX_YESNO)
+                    if (var(VAR_RESULT) == YES) {
+                        goto(TimeToBattleAldus)
+                    }
+                    else {
+                        msgbox("Well, I'm not letting you leave until\n"
+                        "you battle me.\p"
+                        "If you wanna rest first, you should\n"
+                        "talk to the old lady in the inn.")
+                    }
+                }
+                if (var(VAR_RESULT) >= 2) {
+                    setvar(VAR_SERAFEW_STATE, 6)
+                    getpartysize
+                    buffernumberstring(STR_VAR_1, VAR_RESULT)
+                    msgbox("Wow, you already caught {STR_VAR_1} pokémon?\n"
+                    "Sounds like you're ready for a battle!", MSGBOX_YESNO)
+                    if (var(VAR_RESULT) == YES) {
+                        goto(TimeToBattleAldus)
+                    }
+                    else {
+                        msgbox("Well, I'm not letting you leave until\n"
+                        "you battle me.\p"
+                        "If you wanna rest first, you should\n"
+                        "talk to the old lady in the inn.")
+                        release
+                        end
+                    }  
+                }
+        }
+        else {
+            setvar(VAR_TEMP_2, 50)
+            msgbox("Oh, have you been having trouble?\p"
+            "Remember, you're more likely to catch a\n"
+            "pokémon if you weaken it first.")
+        }
+    }
+    else {
+        msgbox("Oh, do you need more Pokéballs?", MSGBOX_YESNO)
+        setvar(VAR_TEMP_2, 50)
+        if (var(VAR_RESULT) == YES) {
+            msgbox("Wow, you must have been having a really\n"
+            "rough time out there.\p"
+            "Try to weaken the next one before\n"
+            "throwing a Pokéball. Okay?\p"
+            "The weaker the pokémon is when you\n"
+            "throw the ball, the more likely you\l"
+            "are to capture it.\p"
+            "Here, take these.")
+            giveitem(ITEM_POKE_BALL, 15)
+            msgbox("Why don't you head back out and give\n"
+            "it another shot?")
+        }
+        else {
+            msgbox("Don't be afraid to ask for more if you\n"
+            "need them. I have more than enough.")
+        }
+    }
+    release
+    case 6: 
+        msgbox("Are you ready to battle now?", MSGBOX_YESNO)
+        if (var(VAR_RESULT) == YES) {
+            goto(TimeToBattleAldus)
+        }
+        else {
+            msgbox("Well, I'm not letting you leave until\n"
+            "you battle me.\p"
+            "If you wanna rest first, you should\n"
+            "talk to the old lady in the inn.")
+            release
+            end
+        }
+    }
+}
+
+script TimeToBattleAldus {
+    msgbox("Alright! But I'm not gonna go easy on\n"
+    "you just because it's your first time!", MSGBOX_AUTOCLOSE)
+    checkplayergender
+    if (var(VAR_RESULT) == MALE) {
+        switch (var(VAR_STARTER_MON)) {
+            case SPECIES_CHESPIN: trainerbattle_no_intro(TRAINER_MAY_ALDUS_CHESPIN, RivalAldusOutro,)
+            case SPECIES_MAGBY: trainerbattle_no_intro(TRAINER_MAY_ALDUS_MAGBY, RivalAldusOutro,)
+            case SPECIES_SPHEAL: trainerbattle_no_intro(TRAINER_MAY_ALDUS_SPHEAL, RivalAldusOutro,)
+        }
+    }
+    else {
+        switch (var(VAR_STARTER_MON)) {
+            case SPECIES_CHESPIN: trainerbattle_no_intro(TRAINER_BRENDAN_ALDUS_CHESPIN, RivalAldusOutro,)
+            case SPECIES_MAGBY: trainerbattle_no_intro(TRAINER_BRENDAN_ALDUS_MAGBY, RivalAldusOutro,)
+            case SPECIES_SPHEAL: trainerbattle_no_intro(TRAINER_BRENDAN_ALDUS_SPHEAL, RivalAldusOutro,)
+        }
+    }
+    goto(AldusBattleOver)
+}
+
+script AldusBattleOver {
+    lock
+    setvar(VAR_SERAFEW_STATE, 7)
+    setflag(FLAG_RIVAL_BATTLE_1)
+    msgbox("That was a great battle!\p"
+    "You were way better than I expected.\p"
+    "...\p"
+    "Hey! You should challenge the gym in\n"
+    "Ostia.\p"
+    "I bet you could take it on no problem\n"
+    "at all.\p"
+    "Well, it was cool to meet you {PLAYER}.\p"
+    "I'll be doing a lot of traveling soon\n"
+    "too, so I'm sure I'll see you around!", MSGBOX_AUTOCLOSE)
+    getplayerxy(VAR_TEMP_0, VAR_TEMP_1)
+    if(var(VAR_TEMP_0) == 16) {
+        applymovement(1, WalkRight)
+        waitmovement(0)
+        applymovement(1, RivalLeaveAldus)
+    }
+    elif(var(VAR_TEMP_0) == 21) {
+        specialvar(VAR_RESULT, GetPlayerFacingDirection)
+        if(var(VAR_RESULT) == DIR_NORTH) {
+            applymovement(1, WalkLeft)
+            waitmovement(0)
+            applymovement(1, RivalLeaveAldus)
+        }
+        else {
+            applymovement(1, RivalLeaveAldus)
+        }
+    }
+    else {
+        applymovement(1, RivalLeaveAldus)
+    }
+    waitmovement(0)
+    removeobject(1)
+    fadedefaultbgm
+    release
+    end
+}
+
+script YouNeedTwoPokemon {
+    lock
+    getpartysize
+    if(var(VAR_RESULT) != 1) {
+        setvar(VAR_SERAFEW_STATE, 6)
+        goto(YouNeedToBattleMe)
+        end
+    }
+    getplayerxy(VAR_TEMP_0, VAR_TEMP_1)
+    if (var(VAR_TEMP_0) == 20) {
+        turnobject(OBJ_EVENT_ID_PLAYER, DIR_EAST)
+        turnobject(1, DIR_WEST)
+    }
+    else {
+        turnobject(OBJ_EVENT_ID_PLAYER, DIR_WEST)
+        turnobject(1, DIR_EAST)
+    }
+    msgbox("Route 101 is between Aldus and Serafew.\n"
+    "You've gotta head back to find a\l"
+    "pokémon to catch.", MSGBOX_AUTOCLOSE)
+    turnobject(1, DIR_SOUTH)
+    applymovement(OBJ_EVENT_ID_PLAYER, WalkDown)
+    waitmovement(0)
+    release
+}
+
+script YouNeedToBattleMe {
+    lock
+    getplayerxy(VAR_TEMP_0, VAR_TEMP_1)
+    if (var(VAR_TEMP_0) == 20) {
+        turnobject(OBJ_EVENT_ID_PLAYER, DIR_EAST)
+        turnobject(1, DIR_WEST)
+    }
+    else {
+        turnobject(OBJ_EVENT_ID_PLAYER, DIR_WEST)
+        turnobject(1, DIR_EAST)
+    }
+    msgbox("Where do you think you're going?\p"
+    "I'm not letting you leave without\n"
+    "showing me a pokémon battle!\p"
+    "Are you ready?", MSGBOX_YESNO)
+    if (var(VAR_RESULT) == YES) {
+        goto(TimeToBattleAldus)
+    }
+    else {
+        msgbox("Just come talk to me when you're ready.\n"
+        "I can wait.", MSGBOX_AUTOCLOSE)
+        turnobject(1, DIR_SOUTH)
+        applymovement(OBJ_EVENT_ID_PLAYER, WalkDown)
+        waitmovement(0)
+    }
+    release
+}
+
+text RivalAldusIntro {
+    "Alright! But I'm not gonna go easy on\n"
+    "you just because it's your first time!"
+}
+
+text RivalAldusOutro {
+    "You're pretty good for a beginner."
+}
+
+movement WalkDown {
+    walk_down
+}
+
+movement PushDown {
+    lock_facing_direction
+    walk_down
+    unlock_facing_direction
+}
+
+movement RivalNoticeAldus {
+    emote_exclamation_mark
+    face_right
+}
+
+movement MeetRivalX20 {
+    walk_right*3
+}
+
+movement MeetRivalX21 {
+    walk_right*4
+}
+
+movement MeetRivalX22 {
+    walk_right*5
+}
+
+movement RivalWaitAldusB {
+    walk_right*5
+    walk_up
+    face_down
+}
+
+movement RivalWaitAldusAX20 {
+    walk_down
+    walk_right*2
+    walk_up*2
+    face_down
+}
+
+movement RivalWaitAldusAX21 {
+    walk_up
+    walk_right
+    face_down
+}
+
+movement RivalWaitAldusAX22 {
+    walk_up
+    face_down
+}
+
+movement RivalLeaveAldus {
+    walk_down*8
+}
+
+movement Denied {
+    walk_down
+}
+
+movement FaceLeft {
+    face_left
+}

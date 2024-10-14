@@ -1,0 +1,359 @@
+mapscripts OstiaStore_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION: SetUpOstiaStore
+}
+
+script SetUpOstiaStore {
+    setflag(FLAG_TEMP_1)
+    if(var(VAR_CURRENT_RANDOM_WEATHER_VALUE) >= 35) {
+        setflag(FLAG_TEMP_2)
+        setflag(FLAG_TEMP_3)
+    }
+    else {
+        if(flag(FLAG_RUDE_DUDE)) {
+            setflag(FLAG_TEMP_3)
+        }
+    }
+}
+
+script OstiaStoreAromaLady {
+    lock
+    faceplayer
+    if(!flag(FLAG_OSTIA_BERRY_2)) {
+        msgbox("Are you shopping for berries?", MSGBOX_YESNO)
+        if(var(VAR_RESULT) == YES) {
+            setflag(FLAG_OSTIA_BERRY_2)
+            msgbox("The berries in the store here aren't very\n"
+            "fresh. Here, take some that I grew.")
+            giveitem(ITEM_LEPPA_BERRY, 10)
+            msgbox("Those should taste much better.")
+        }
+        else {
+            msgbox("I see. That's probably for the best. The\n"
+            "berries here look a little old to me.")
+        }
+    }
+    else {
+        msgbox("Growing berries is a lot of work, but it's\n"
+        "rewarding to share them with others.")
+    }
+    release
+}
+
+script OstiaStoreAceTrainer {
+    lock
+    faceplayer
+    msgbox("I'm trying to decide whether I should\n"
+    "buy more Poké Balls, or if I should get\l"
+    "some battle items.\p"
+    "Having a bigger team is an advantage,\n"
+    "but so is raising the Attack stat.")
+    release
+}
+
+script OstiaMartEmployee {
+    lock
+    faceplayer
+    message("Welcome to the Ostia General Store!\n"
+    "Is there something I can get for you?")
+    waitmessage
+    call(CityMart)
+    msgbox("Please come again.")
+    release
+}
+
+script CityMart {
+    switch (var(VAR_GYM_BADGE_COUNT)) {
+        case 0: pokemart(MartBadges0)
+        case 1: pokemart(MartBadges1)
+        case 2: pokemart(MartBadges2)
+        case 3: pokemart(MartBadges3)
+        case 4: pokemart(MartBadges4)
+        case 5: pokemart(MartBadges5)
+        case 6: pokemart(MartBadges6)
+        case 7: pokemart(MartBadges7)
+        case 8: pokemart(MartBadges8)
+        default: pokemart(MartBadges8)
+    }
+    return
+}
+
+mart MartBadges0 {
+    ITEM_POKE_BALL
+    ITEM_BERRY_JUICE
+    ITEM_HEAL_POWDER
+    ITEM_ESCAPE_ROPE
+    ITEM_ORAN_BERRY
+    ITEM_LEPPA_BERRY
+    ITEM_CHERI_BERRY
+    ITEM_PECHA_BERRY
+}
+
+mart MartBadges1 {
+    ITEM_POKE_BALL
+    ITEM_HEAL_BALL
+    ITEM_NEST_BALL
+    ITEM_BERRY_JUICE
+    ITEM_MOOMOO_MILK
+    ITEM_HEAL_POWDER
+    ITEM_DIRE_HIT
+    ITEM_GUARD_SPEC
+    ITEM_ESCAPE_ROPE
+    ITEM_ORAN_BERRY
+    ITEM_LEPPA_BERRY
+    ITEM_CHERI_BERRY
+    ITEM_PECHA_BERRY
+}
+
+mart MartBadges2 {
+    ITEM_POKE_BALL
+    ITEM_GREAT_BALL
+    ITEM_HEAL_BALL
+    ITEM_NEST_BALL
+    ITEM_BERRY_JUICE
+    ITEM_MOOMOO_MILK
+    ITEM_HEAL_POWDER
+    ITEM_DIRE_HIT
+    ITEM_GUARD_SPEC
+    ITEM_ESCAPE_ROPE
+    ITEM_FLUFFY_TAIL
+    ITEM_ORAN_BERRY
+    ITEM_LEPPA_BERRY
+    ITEM_CHERI_BERRY
+    ITEM_PECHA_BERRY
+    ITEM_RAWST_BERRY
+    ITEM_ASPEAR_BERRY
+    ITEM_CHESTO_BERRY
+    ITEM_PERSIM_BERRY
+}
+
+mart MartBadges3 {
+    ITEM_POKE_BALL
+    ITEM_GREAT_BALL
+    ITEM_HEAL_BALL
+    ITEM_NEST_BALL
+    ITEM_NET_BALL
+    ITEM_TIMER_BALL
+    ITEM_BERRY_JUICE
+    ITEM_MOOMOO_MILK
+    ITEM_HEAL_POWDER
+    ITEM_X_ACCURACY
+    ITEM_X_SPEED
+    ITEM_DIRE_HIT
+    ITEM_GUARD_SPEC
+    ITEM_ABILITY_CAPSULE
+    ITEM_ESCAPE_ROPE
+    ITEM_FLUFFY_TAIL
+    ITEM_ORAN_BERRY
+    ITEM_LEPPA_BERRY
+    ITEM_CHERI_BERRY
+    ITEM_PECHA_BERRY
+    ITEM_RAWST_BERRY
+    ITEM_ASPEAR_BERRY
+    ITEM_CHESTO_BERRY
+    ITEM_PERSIM_BERRY
+}
+
+mart MartBadges4 {
+    ITEM_POKE_BALL
+    ITEM_GREAT_BALL
+    ITEM_HEAL_BALL
+    ITEM_NEST_BALL
+    ITEM_NET_BALL
+    ITEM_QUICK_BALL
+    ITEM_REPEAT_BALL
+    ITEM_TIMER_BALL
+    ITEM_BERRY_JUICE
+    ITEM_MOOMOO_MILK
+    ITEM_ENERGY_POWDER
+    ITEM_HEAL_POWDER
+    ITEM_X_ACCURACY
+    ITEM_X_SPEED
+    ITEM_DIRE_HIT
+    ITEM_GUARD_SPEC
+    ITEM_ABILITY_CAPSULE
+    ITEM_ESCAPE_ROPE
+    ITEM_FLUFFY_TAIL
+    ITEM_ORAN_BERRY
+    ITEM_SITRUS_BERRY
+    ITEM_LEPPA_BERRY
+    ITEM_LUM_BERRY
+    ITEM_CHERI_BERRY
+    ITEM_PECHA_BERRY
+    ITEM_RAWST_BERRY
+    ITEM_ASPEAR_BERRY
+    ITEM_CHESTO_BERRY
+    ITEM_PERSIM_BERRY
+}
+
+mart MartBadges5 {
+    ITEM_POKE_BALL
+    ITEM_GREAT_BALL
+    ITEM_ULTRA_BALL
+    ITEM_HEAL_BALL
+    ITEM_NEST_BALL
+    ITEM_NET_BALL
+    ITEM_QUICK_BALL
+    ITEM_REPEAT_BALL
+    ITEM_TIMER_BALL
+    ITEM_BERRY_JUICE
+    ITEM_MOOMOO_MILK
+    ITEM_ENERGY_POWDER
+    ITEM_HEAL_POWDER
+    ITEM_X_ACCURACY
+    ITEM_X_DEFENSE
+    ITEM_X_SP_DEF
+    ITEM_X_SPEED
+    ITEM_DIRE_HIT
+    ITEM_GUARD_SPEC
+    ITEM_ABILITY_CAPSULE
+    ITEM_ABILITY_PATCH
+    ITEM_ESCAPE_ROPE
+    ITEM_FLUFFY_TAIL
+    ITEM_ORAN_BERRY
+    ITEM_SITRUS_BERRY
+    ITEM_LEPPA_BERRY
+    ITEM_LUM_BERRY
+    ITEM_CHERI_BERRY
+    ITEM_PECHA_BERRY
+    ITEM_RAWST_BERRY
+    ITEM_ASPEAR_BERRY
+    ITEM_CHESTO_BERRY
+    ITEM_PERSIM_BERRY
+}
+
+mart MartBadges6 {
+    ITEM_POKE_BALL
+    ITEM_GREAT_BALL
+    ITEM_ULTRA_BALL
+    ITEM_DUSK_BALL
+    ITEM_HEAL_BALL
+    ITEM_LUXURY_BALL
+    ITEM_NEST_BALL
+    ITEM_NET_BALL
+    ITEM_QUICK_BALL
+    ITEM_REPEAT_BALL
+    ITEM_TIMER_BALL
+    ITEM_BERRY_JUICE
+    ITEM_MOOMOO_MILK
+    ITEM_ENERGY_POWDER
+    ITEM_HEAL_POWDER
+    ITEM_REVIVAL_HERB
+    ITEM_X_ACCURACY
+    ITEM_X_DEFENSE
+    ITEM_X_SP_DEF
+    ITEM_X_SPEED
+    ITEM_DIRE_HIT
+    ITEM_GUARD_SPEC
+    ITEM_ABILITY_CAPSULE
+    ITEM_ABILITY_PATCH
+    ITEM_ESCAPE_ROPE
+    ITEM_FLUFFY_TAIL
+    ITEM_ORAN_BERRY
+    ITEM_SITRUS_BERRY
+    ITEM_LEPPA_BERRY
+    ITEM_LUM_BERRY
+    ITEM_CHERI_BERRY
+    ITEM_PECHA_BERRY
+    ITEM_RAWST_BERRY
+    ITEM_ASPEAR_BERRY
+    ITEM_CHESTO_BERRY
+    ITEM_PERSIM_BERRY
+}
+
+mart MartBadges7 {
+    ITEM_POKE_BALL
+    ITEM_GREAT_BALL
+    ITEM_ULTRA_BALL
+    ITEM_BEAST_BALL
+    ITEM_DIVE_BALL
+    ITEM_DUSK_BALL
+    ITEM_HEAL_BALL
+    ITEM_LUXURY_BALL
+    ITEM_NEST_BALL
+    ITEM_NET_BALL
+    ITEM_QUICK_BALL
+    ITEM_REPEAT_BALL
+    ITEM_TIMER_BALL
+    ITEM_BERRY_JUICE
+    ITEM_MOOMOO_MILK
+    ITEM_ENERGY_POWDER
+    ITEM_ENERGY_ROOT
+    ITEM_HEAL_POWDER
+    ITEM_REVIVAL_HERB
+    ITEM_X_ACCURACY
+    ITEM_X_ATTACK
+    ITEM_X_DEFENSE
+    ITEM_X_SP_ATK
+    ITEM_X_SP_DEF
+    ITEM_X_SPEED
+    ITEM_DIRE_HIT
+    ITEM_GUARD_SPEC
+    ITEM_ABILITY_CAPSULE
+    ITEM_ABILITY_PATCH
+    ITEM_ESCAPE_ROPE
+    ITEM_FLUFFY_TAIL
+    ITEM_ORAN_BERRY
+    ITEM_SITRUS_BERRY
+    ITEM_LEPPA_BERRY
+    ITEM_LUM_BERRY
+    ITEM_CHERI_BERRY
+    ITEM_PECHA_BERRY
+    ITEM_RAWST_BERRY
+    ITEM_ASPEAR_BERRY
+    ITEM_CHESTO_BERRY
+    ITEM_PERSIM_BERRY
+}
+
+mart MartBadges8 {
+    ITEM_POKE_BALL
+    ITEM_GREAT_BALL
+    ITEM_ULTRA_BALL
+    ITEM_BEAST_BALL
+    ITEM_DIVE_BALL
+    ITEM_DUSK_BALL
+    ITEM_HEAL_BALL
+    ITEM_LUXURY_BALL
+    ITEM_NEST_BALL
+    ITEM_NET_BALL
+    ITEM_QUICK_BALL
+    ITEM_REPEAT_BALL
+    ITEM_TIMER_BALL
+    ITEM_BERRY_JUICE
+    ITEM_MOOMOO_MILK
+    ITEM_ENERGY_POWDER
+    ITEM_ENERGY_ROOT
+    ITEM_HEAL_POWDER
+    ITEM_REVIVAL_HERB
+    ITEM_X_ACCURACY
+    ITEM_X_ATTACK
+    ITEM_X_DEFENSE
+    ITEM_X_SP_ATK
+    ITEM_X_SP_DEF
+    ITEM_X_SPEED
+    ITEM_DIRE_HIT
+    ITEM_GUARD_SPEC
+    ITEM_ABILITY_CAPSULE
+    ITEM_ABILITY_PATCH
+    ITEM_FIRE_STONE
+    ITEM_ICE_STONE
+    ITEM_LEAF_STONE
+    ITEM_THUNDER_STONE
+    ITEM_WATER_STONE
+    ITEM_SUN_STONE
+    ITEM_MOON_STONE
+    ITEM_DAWN_STONE
+    ITEM_DUSK_STONE
+    ITEM_SHINY_STONE
+    ITEM_ESCAPE_ROPE
+    ITEM_FLUFFY_TAIL
+    ITEM_ORAN_BERRY
+    ITEM_SITRUS_BERRY
+    ITEM_LEPPA_BERRY
+    ITEM_LUM_BERRY
+    ITEM_CHERI_BERRY
+    ITEM_PECHA_BERRY
+    ITEM_RAWST_BERRY
+    ITEM_ASPEAR_BERRY
+    ITEM_CHESTO_BERRY
+    ITEM_PERSIM_BERRY
+}

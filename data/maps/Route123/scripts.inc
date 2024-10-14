@@ -14,7 +14,7 @@ Route123_EventScript_GigaDrainGirl::
 	special IsGrassTypeInParty
 	goto_if_eq VAR_RESULT, FALSE, Route123_EventScript_NoGrassMons
 	msgbox Route123_Text_YouLikeGrassMonsTooHaveThis, MSGBOX_DEFAULT
-	giveitem ITEM_TM_GIGA_DRAIN
+	giveitem ITEM_TM19_TOXIC
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 	setflag FLAG_RECEIVED_TM_GIGA_DRAIN
 	msgbox Route123_Text_CheckTreesWithMyGrassMon, MSGBOX_DEFAULT
@@ -48,12 +48,12 @@ Route123_EventScript_Wendy::
 	end
 
 Route123_EventScript_Braxton::
-	trainerbattle_single TRAINER_BRAXTON, Route123_Text_BraxtonIntro, Route123_Text_BraxtonDefeat
+	trainerbattle_single TRAINER_ACE_TRAINER_ERIC, Route123_Text_BraxtonIntro, Route123_Text_BraxtonDefeat
 	msgbox Route123_Text_BraxtonPostBattle, MSGBOX_AUTOCLOSE
 	end
 
 Route123_EventScript_Violet::
-	trainerbattle_single TRAINER_VIOLET, Route123_Text_VioletIntro, Route123_Text_VioletDefeat
+	trainerbattle_single TRAINER_PKMN_RANGER_ZACHARY, Route123_Text_VioletIntro, Route123_Text_VioletDefeat
 	msgbox Route123_Text_VioletPostBattle, MSGBOX_AUTOCLOSE
 	end
 
@@ -115,17 +115,17 @@ Route123_EventScript_Kindra::
 	end
 
 Route123_EventScript_Frederick::
-	trainerbattle_single TRAINER_FREDRICK, Route123_Text_FrederickIntro, Route123_Text_FrederickDefeat
+	trainerbattle_single TRAINER_LASS_SOPHIA, Route123_Text_FrederickIntro, Route123_Text_FrederickDefeat
 	msgbox Route123_Text_FrederickPostBattle, MSGBOX_AUTOCLOSE
 	end
 
 Route123_EventScript_Alberto::
-	trainerbattle_single TRAINER_ALBERTO, Route123_Text_AlbertoIntro, Route123_Text_AlbertoDefeat
+	trainerbattle_single TRAINER_FISHERMAN_ANDREW, Route123_Text_AlbertoIntro, Route123_Text_AlbertoDefeat
 	msgbox Route123_Text_AlbertoPostBattle, MSGBOX_AUTOCLOSE
 	end
 
 Route123_EventScript_Ed::
-	trainerbattle_single TRAINER_ED, Route123_Text_EdIntro, Route123_Text_EdDefeat
+	trainerbattle_single TRAINER_YOUNGSTER_ETHAN, Route123_Text_EdIntro, Route123_Text_EdDefeat
 	msgbox Route123_Text_EdPostBattle, MSGBOX_AUTOCLOSE
 	end
 

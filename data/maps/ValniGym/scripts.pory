@@ -1,0 +1,135 @@
+mapscripts ValniGym_MapScripts {}
+
+script ValniGymNoCatching {
+    setflag(FLAG_NO_CATCHING)
+    setflag(FLAG_NO_RUNNING)
+    setvar(VAR_TEMP_0, 1)
+}
+
+script ValniGymClearNoCatching {
+    clearflag(FLAG_NO_CATCHING)
+    clearflag(FLAG_NO_RUNNING)
+    setvar(VAR_TEMP_0, 1)
+}
+
+script GymLeaderMycelian {
+    trainerbattle_single(TRAINER_GYM_LEADER_MYCELIAN, GymLeaderMycelianIntro, GymLeaderMycelianLose, GymLeaderMycelianPostBattle, FALSE)
+    lock
+    faceplayer
+    if(flag(FLAG_TEMP_1)) {
+        msgbox("If you have the Hidden Machine\n"
+        "containing the move Flash, you should\l"
+        "be able to traverse the Rugged Pass.\p"
+        "It's quite a treck, be sure to prepare\n"
+        "before you set out.", MSGBOX_AUTOCLOSE)
+    }
+    else {
+        msgbox("It is nice to see you again.\p"
+        "You are always welcome here in Valni.\n"
+        "I'm glad that you've taken a liking to\l"
+        "its forest.", MSGBOX_AUTOCLOSE)
+    }
+    release
+}
+
+script GymLeaderMycelianPostBattle {
+    msgbox("Well battled.\n"
+    "I've been defeated.\p"
+    "As proof of your victory, take this.")
+    playfanfare(MUS_OBTAIN_BADGE)
+    msgbox("{PLAYER} received the Canopy Badge from\n"
+    "Valni's Gym Leader!")
+    waitfanfare
+    msgbox("The Canopy Badge allows its bearer to\n"
+    "use the Hidden Move Flash outside of\l"
+    "pokémon battles.\p"
+    "Moreover, it will also keep your pokémon\n"
+    "obedient up to level PLACEHOLDER.\p"
+    "And as a gift from me to you, please\n"
+    "take this.")
+    giveitem(ITEM_TM76_GIGA_DRAIN)
+    if(var(VAR_GYM_BADGE_COUNT) < 2) {
+        setvar(VAR_GYM_BADGE_COUNT, 2)
+    }
+    setflag(FLAG_BADGE02_GET)
+    setflag(FLAG_TEMP_1)
+    settrainerflag(TRAINER_PKMN_RANGER_ZACHARY)
+    settrainerflag(TRAINER_AROMA_LADY_TAYLOR)
+    settrainerflag(TRAINER_LADY_BRIANNA)
+    msgbox("That TM contains the move Giga Drain.\p"
+    "It's a powerful move that drains the\n"
+    "foe of their energy to restore that\l"
+    "of its user.", MSGBOX_AUTOCLOSE)
+}
+
+script PkmnRangerZachary {
+    trainerbattle_single(TRAINER_PKMN_RANGER_ZACHARY, PkmnRangerZacharyIntro, PkmnRangerZacharyLose)
+    msgbox("The pokémon here are pretty tough.\n"
+    "Too bad we can't catch any of them.", MSGBOX_AUTOCLOSE)
+}
+
+script AromaLadyTaylor {
+    trainerbattle_single(TRAINER_AROMA_LADY_TAYLOR, AromaLadyTaylorIntro, AromaLadyTaylorLose)
+    msgbox("I love the scenery here. It really\n"
+    "captures the essence of Valni.", MSGBOX_AUTOCLOSE)
+}
+
+script LadyBrianna {
+    trainerbattle_single(TRAINER_LADY_BRIANNA, LadyBriannaIntro, LadyBriannaLose)
+    msgbox("Mycelian is just ahead.\p"
+    "His pokémon use a powerful move that\n"
+    "will drain your energy and restore\l"
+    "their own at the same time.\p"
+    "Make sure you're prepared for that!", MSGBOX_AUTOCLOSE)
+}
+
+text GymLeaderMycelianIntro {
+    "Welcome young one. You stand before\n"
+    "the leader of Valni's pokémon gym.\p"
+    "My name is Mycelian.\p"
+    "Much like the leaders of Valni's past,\n"
+    "I favor grass-type pokémon.\p"
+    "It is for the bond we share with the\n"
+    "great trees and the life that grows\l"
+    "in the shade of their protection.\p"
+    "That is why we have carried the\n"
+    "tradition of raising grass-type\l"
+    "pokémon all this time.\p"
+    "Do you have what it takes to overcome\n"
+    "the strength we've cultivated?\p"
+    "We shall soon see.\p"
+    "Ready yourself."
+}
+
+text GymLeaderMycelianLose {
+    "And so the strength of youth defeats\n"
+    "the wisdom of age-long tradition."
+}
+
+text PkmnRangerZacharyIntro {
+    "You're gonna have to battle me if you\n"
+    "want to avoid the wild pokémon!"
+}
+
+text PkmnRangerZacharyLose {
+    "Alright, you win..."
+}
+
+text AromaLadyTaylorIntro {
+    "This is such a lovely gym. It's vibrant\n"
+    "and full of plants and pokémon."
+}
+
+text AromaLadyTaylorLose {
+    "Oh my, you're full of energy arent you."
+}
+
+text LadyBriannaIntro {
+    "Well hello there, looks like you'll be\n"
+    "battling me before you reach Mycelian."
+}
+
+text LadyBriannaLose {
+    "I wasn't much of an obstacle for someone\n"
+    "like you."
+}

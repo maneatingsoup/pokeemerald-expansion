@@ -1,0 +1,159 @@
+mapscripts Rugged_Pass_F2_MapScripts {}
+
+script BlackBeltThomas {
+    trainerbattle_single(TRAINER_BLACK_BELT_THOMAS, BlackBeltThomasIntro, BlackBeltThomasLose)
+    msgbox("Thank you for showing me that I still\n"
+    "have much to learn.", MSGBOX_AUTOCLOSE)
+}
+
+script HikerCody {
+    trainerbattle_single(TRAINER_HIKER_CODY, HikerCodyIntro, HikerCodyLose)
+    msgbox("Losing a battle isn't going to get me\n"
+    "in a bad mood!\p"
+    "I'm having a great day!", MSGBOX_AUTOCLOSE)
+}
+
+script PsychicVicky {
+    trainerbattle_single(TRAINER_PSYCHIC_VICKY, PsychicVickyIntro, PsychicVickyLose)
+    msgbox("My visions are not always correct, it\n"
+    "seems.\p"
+    "This is most vexing.", MSGBOX_AUTOCLOSE)
+}
+
+script PsychicJordan {
+    trainerbattle_single(TRAINER_PSYCHIC_JORDAN, PsychicJordanIntro, PsychicJordanLose)
+    msgbox("I need to work on my psionics.\p"
+    "I shouldn't be defeated by one without\n"
+    "the power.", MSGBOX_AUTOCLOSE)
+}
+
+script AceTrainerKayla {
+    trainerbattle_single(TRAINER_ACE_TRAINER_KAYLA, AceTrainerKaylaIntro, AceTrainerKaylaLose)
+    msgbox("Go on and take it.\p"
+    "You've certainly earned it.", MSGBOX_AUTOCLOSE)
+}
+
+script HikerJustin {
+    trainerbattle_double(TRAINER_HIKER_JUSTIN, HikerJustinIntro, HikerJustinLose, Dummy)
+    msgbox("I'll find my way out of here some day.\p"
+    "Or I won't.\p"
+    "I don't know.\p"
+    "We'll see what happens.", MSGBOX_AUTOCLOSE)
+}
+
+script PsychicRobert {
+    trainerbattle_single(TRAINER_PSYCHIC_ROBERT, PsychicRobertIntro, PsychicRobertLose)
+    msgbox("Eat clock, loser!", MSGBOX_AUTOCLOSE)
+}
+
+script BlackBeltAustin {
+    trainerbattle_single(TRAINER_BLACK_BELT_AUSTIN, BlackBeltAustinIntro, BlackBeltAustinLose)
+    msgbox("Angry.", MSGBOX_AUTOCLOSE)
+}
+
+script HikerKyle {
+    trainerbattle_single(TRAINER_HIKER_KYLE, HikerKyleIntro, HikerKyleLose)
+    msgbox("Is Austin okay?\p"
+    "He doesn't seem okay.", MSGBOX_AUTOCLOSE)
+}
+
+script AceTrainerEric {
+    trainerbattle_double(TRAINER_ACE_TRAINER_ERIC, AceTrainerEricIntro, AceTrainerEricLose, Dummy)
+    msgbox("I'm pretty funny, huh?\p"
+    "That intimidate joke does great at\n"
+    "the pokémon league.", MSGBOX_AUTOCLOSE)
+}
+
+text BlackBeltThomasIntro {
+    "I train in this dark cave to hone my\n"
+    "senses."
+}
+
+text BlackBeltThomasLose {
+    "My senses need more training."
+}
+
+text HikerCodyIntro {
+    "Well, hi there!\p"
+    "Let's battle!"
+}
+
+text HikerCodyLose {
+    "Aw, shucks.\n"
+    "I lost."
+}
+
+text PsychicVickyIntro {
+    "I had a vision of this battle.\n"
+    "You stand no chance to win."
+}
+
+text PsychicVickyLose {
+    "How can this be?"
+}
+
+text PsychicJordanIntro {
+    "My psychic abilities are unmatched!\n"
+    "Allow me to demonstrate them."
+}
+
+text PsychicJordanLose {
+    "It seems you were the one that\n"
+    "demonstrated your abilities."
+}
+
+text AceTrainerKaylaIntro {
+    "Stop right there!\p"
+    "You're gonna have to go through me if\n"
+    "you want that item."
+}
+
+text AceTrainerKaylaLose {
+    "I see."
+}
+
+text HikerJustinIntro {
+    "Oh good, another person.\p"
+    "I'm glad to see you.\n"
+    "I'm lost!"
+}
+
+text HikerJustinLose {
+    "That wasn't the warm response I was\n"
+    "looking for."
+}
+
+text PsychicRobertIntro {
+    "I've seen your defeat.\p"
+    "It was painful!"
+}
+
+text PsychicRobertLose {
+    "I've seen my defeat.\p"
+    "It was painful!"
+}
+
+text BlackBeltAustinIntro {
+    "Fight! Fight! Fight!"
+}
+
+text BlackBeltAustinLose {
+    "AHHHHHH!!!"
+}
+
+text HikerKyleIntro {
+    "Yo, that other guy is kinda unhinged."
+}
+
+text HikerKyleLose {
+    "Uh oh."
+}
+
+text AceTrainerEricIntro {
+    "Do my pokémon intimidate you?"
+}
+
+text AceTrainerEricLose {
+    "Heh, get it?\p"
+    "Intimidate."
+}

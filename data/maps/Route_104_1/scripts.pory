@@ -1,0 +1,192 @@
+mapscripts Route_104_1_MapScripts {
+    MAP_SCRIPT_ON_LOAD: Route_104OnLoad
+    MAP_SCRIPT_ON_TRANSITION: SetUpRoute_104
+}
+
+script Route_104OnLoad {
+    compare_var_to_value(VAR_CURRENT_RANDOM_WEATHER_VALUE, 35)
+    call_if_ge(Route_104RemovePuddles)
+}
+
+script Route_104RemovePuddles {
+    setmetatile(13, 17, METATILE_General_Grass, FALSE)
+    setmetatile(12, 17, METATILE_General_Grass, FALSE)
+    setmetatile(13, 18, METATILE_General_Grass, FALSE)
+    setmetatile(12, 18, METATILE_General_Grass, FALSE)
+    setmetatile(13, 4, METATILE_General_Grass, FALSE)
+    setmetatile(12, 4, METATILE_General_Grass, FALSE)
+    setmetatile(13, 5, METATILE_General_Grass, FALSE)
+    setmetatile(12, 5, METATILE_General_Grass, FALSE)
+    setmetatile(25, 16, METATILE_General_Grass, FALSE)
+    setmetatile(26, 16, METATILE_General_Grass, FALSE)
+    setmetatile(25, 15, METATILE_General_Grass, FALSE)
+    setmetatile(26, 15, METATILE_General_Grass, FALSE)
+}
+
+script SetUpRoute_104 {
+    special(SetGroupWeather)
+    call(Common_EventScript_SetupRivalGfxId)
+}
+
+script RivalRoute_104Encounter{
+    lock
+    getplayerxy(VAR_TEMP_0, VAR_TEMP_1)
+    applymovement(1, RivalNoticeRoute_104)
+    checkplayergender
+    if(var(VAR_RESULT) == MALE) {
+        playbgm(MUS_ENCOUNTER_MAY, TRUE)
+    }
+    else{
+        playbgm(MUS_ENCOUNTER_BRENDAN, TRUE)
+    }
+    delay(40)
+    switch (var(VAR_TEMP_1)) {
+        case 15: applymovement(1, Route_104RivalMove15)
+        case 17: applymovement(1, Route_104RivalMove17)
+        default: applymovement(1, WalkLeftThree)
+    }
+    waitmovement(0)
+    msgbox("Hey, {PLAYER}!\p" 
+    "Have you seen any new pokémon lately?\p"
+    "I heard you can find Ralts out here,\n"
+    "but I haven't seen one yet.\p"
+    "Woah, wait a minute, you have a gym\n"
+    "badge from Ostia?\p"
+    "That means you beat Joe, doesn't it.\p"
+    "You must have gotten pretty tough!\p"
+    "Let's have a battle, I want you to show\n"
+    "me just how strong you've become.")
+    checkplayergender
+    if (var(VAR_RESULT) == MALE) {
+        switch (var(VAR_STARTER_MON)) {
+            case SPECIES_CHESPIN: trainerbattle_no_intro(TRAINER_MAY_ROUTE_104_CHESPIN, RivalRoute_104Outro,)
+            case SPECIES_MAGBY: trainerbattle_no_intro(TRAINER_MAY_ROUTE_104_MAGBY, RivalRoute_104Outro,)
+            case SPECIES_SPHEAL: trainerbattle_no_intro(TRAINER_MAY_ROUTE_104_SPHEAL, RivalRoute_104Outro,)
+        }
+    }
+    else {
+        switch (var(VAR_STARTER_MON)) {
+            case SPECIES_CHESPIN: trainerbattle_no_intro(TRAINER_BRENDAN_ROUTE_104_CHESPIN, RivalRoute_104Outro,)
+            case SPECIES_MAGBY: trainerbattle_no_intro(TRAINER_BRENDAN_ROUTE_104_MAGBY, RivalRoute_104Outro,)
+            case SPECIES_SPHEAL: trainerbattle_no_intro(TRAINER_BRENDAN_ROUTE_104_SPHEAL, RivalRoute_104Outro,)
+        }
+    }
+    goto(RivalBattle2Over)
+}
+
+script RivalBattle2Over {
+    lock
+    setvar(VAR_RIVAL_ENCOUNTER, 3)
+    msgbox("Wow, I'm going to have to work really\n"
+    "hard if I wanna beat you, {PLAYER}.\p"
+    "Since you already have a gym badge,\n"
+    "you should take this.")
+    giveitem(ITEM_HM01)
+    setflag(FLAG_RECEIVED_HM01)
+    msgbox("That Hidden Machine contains Cut!\p"
+    "With it, you should be able to cut down\n"
+    "the tree up ahead.\p"
+    "You don't need to teach the move to\n"
+    "your pokemon if you don't want to.\p"
+    "Just having the HM is enough, so long\n"
+    "as you're traveling with a pokémon\l"
+    "that can learn the move.\p"
+    "I should probably be heading back to\n"
+    "my dad now.\p"
+    "I'll see you later!", MSGBOX_AUTOCLOSE)
+    if(var(VAR_TEMP_1) == 15) {
+        applymovement(1, Route_104RivalLeave15) 
+    }
+    else {
+        applymovement(1, Route_104RivalLeave)
+    }
+    waitmovement(0)
+    setflag(FLAG_RIVAL_BATTLE_2)
+    removeobject(1)
+    delay(10)
+    fadedefaultbgm
+    savebgm(MUS_ROUTE104)
+    release
+}
+
+script LassSophia {
+    trainerbattle_double(TRAINER_LASS_SOPHIA, LassSophiaIntro, LassSophiaLose, Dummy)
+    msgbox("I guess Ralts is kinda weak.\n"
+    "It is really cute though!", MSGBOX_AUTOCLOSE)
+}
+
+script YoungsterJohnny {
+    trainerbattle_double(TRAINER_YOUNGSTER_JOHNNY, YoungsterJohnnyIntro, YoungsterJohnnyLose, Dummy)
+    msgbox("I need to be a better trainer so my\n"
+    "pokémon can win battles.", MSGBOX_AUTOCLOSE)
+}
+
+script BugCatcherNoah {
+    trainerbattle_single(TRAINER_BUG_CATCHER_NOAH, BugCatcherNoahIntro, BugCatcherNoahLose, Dummy)
+    msgbox("The only bug pokémon I've been able\n"
+    "to find out here is Pineco.\p"
+    "It's a cool pokémon, but I've already\n"
+    "caught two of them.", MSGBOX_AUTOCLOSE)
+}
+
+text RivalRoute_104Outro {
+    "I see how you got that badge..."
+}
+
+text LassSophiaIntro {
+    "I just caught a rare pokémon!\n"
+    "Wanna see?"
+}
+
+text LassSophiaLose {
+    "Awww, I thought it would be strong."
+}
+
+text YoungsterJohnnyIntro {
+    "I see you!\n"
+    "Now we have to battle!"
+}
+
+text YoungsterJohnnyLose {
+    "Ugh, I let my pokémon down."
+}
+
+text BugCatcherNoahIntro {
+    "I don't think that I'll see many bug\n"
+    "pokémon out here.\p"
+    "So let's battle!"
+}
+
+text BugCatcherNoahLose {
+    "Maybe I should have just gone to look\n"
+    "somewhere else instead."
+}
+
+movement RivalNoticeRoute_104 {
+    emote_exclamation_mark
+    face_left
+}
+
+movement WalkLeftThree {
+    walk_left * 3
+}
+
+movement Route_104RivalMove15 {
+    walk_up
+    walk_left * 3
+}
+
+movement Route_104RivalMove17 {
+    walk_down
+    walk_left *3
+}
+
+movement Route_104RivalLeave15 {
+    walk_down
+    walk_left * 10
+}
+
+movement Route_104RivalLeave {
+    walk_up
+    walk_left * 10
+}

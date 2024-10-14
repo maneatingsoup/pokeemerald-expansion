@@ -98,8 +98,9 @@ static const struct WeatherCallbacks sWeatherFuncs[] =
     [WEATHER_UNDERWATER]         = {FogHorizontal_InitVars, FogHorizontal_Main, FogHorizontal_InitAll, FogHorizontal_Finish},
     [WEATHER_SHADE]              = {Shade_InitVars,         Shade_Main,         Shade_InitAll,         Shade_Finish},
     [WEATHER_DROUGHT]            = {Drought_InitVars,       Drought_Main,       Drought_InitAll,       Drought_Finish},
-    [WEATHER_DOWNPOUR]           = {Downpour_InitVars,      Thunderstorm_Main,  Downpour_InitAll,      Thunderstorm_Finish},
+    [WEATHER_DOWNPOUR]           = {Downpour_InitVars,      Rain_Main,          Downpour_InitAll,      Rain_Finish},
     [WEATHER_UNDERWATER_BUBBLES] = {Bubbles_InitVars,       Bubbles_Main,       Bubbles_InitAll,       Bubbles_Finish},
+    [WEATHER_NIGHT]              = {Night_InitVars,         Night_Main,         Night_InitAll,         Night_Finish},
 };
 
 void (*const gWeatherPalStateFuncs[])(void) =
@@ -378,6 +379,7 @@ static void FadeInScreenWithWeather(void)
     case WEATHER_RAIN_THUNDERSTORM:
     case WEATHER_DOWNPOUR:
     case WEATHER_SHADE:
+    case WEATHER_NIGHT:
         if (FadeInScreen_RainShowShade() == FALSE)
         {
             gWeatherPtr->colorMapIndex = 3;
@@ -772,6 +774,7 @@ void FadeScreen(u8 mode, s8 delay)
     case WEATHER_FOG_HORIZONTAL:
     case WEATHER_SHADE:
     case WEATHER_DROUGHT:
+    case WEATHER_NIGHT:
         useWeatherPal = TRUE;
         break;
     default:
@@ -1027,6 +1030,9 @@ static void UNUSED SetFieldWeather(u8 weather)
     case COORD_EVENT_WEATHER_SHADE:
         SetWeather(WEATHER_SHADE);
         break;
+    case COORD_EVENT_WEATHER_NIGHT:
+        SetWeather(WEATHER_NIGHT);
+        break;
     }
 }
 
@@ -1103,4 +1109,12 @@ void PreservePaletteInWeather(u8 preservedPalIndex)
 void ResetPreservedPalettesInWeather(void)
 {
     sPaletteColorMapTypes = sBasePaletteColorMapTypes;
+}
+
+bool32 IsWeatherAlphaBlend(void)
+{
+    return (gWeatherPtr->currWeather == WEATHER_FOG_HORIZONTAL
+         || gWeatherPtr->currWeather == WEATHER_FOG_DIAGONAL
+         || gWeatherPtr->currWeather == WEATHER_UNDERWATER_BUBBLES
+         || gWeatherPtr->currWeather == WEATHER_UNDERWATER);
 }

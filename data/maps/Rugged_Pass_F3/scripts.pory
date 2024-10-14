@@ -1,0 +1,47 @@
+mapscripts Rugged_Pass_F3_MapScripts {}
+
+script ExpertSamuel {
+    trainerbattle_double(TRAINER_EXPERT_SAMUEL, ExpertSamuelIntro, ExpertSamuelLose, Dummy)
+    msgbox("Life experience is important,\n"
+    "but it isn't everything.", MSGBOX_AUTOCLOSE)
+}
+
+script PokemaniacSteven {
+    trainerbattle_single(TRAINER_POKEMANIAC_STEVEN, PokemaniacStevenIntro, PokemaniacStevenLose)
+    msgbox("Where did you catch your pokémon?\p"
+    "You've gotta tell me!", MSGBOX_AUTOCLOSE)
+}
+
+script HikerBrian {
+    trainerbattle_single(TRAINER_HIKER_BRIAN, HikerBrianIntro, HikerBrianLose)
+    msgbox("I sure love singing in the cave.", MSGBOX_AUTOCLOSE)
+}
+
+text ExpertSamuelIntro {
+    "A young one.\p"
+    "Let me show you the power of wisdom!"
+}
+
+text ExpertSamuelLose {
+    "Oh, it seems wisdom isn't everything."
+}
+
+text PokemaniacStevenIntro {
+    "I've collected some really rare\n"
+    "pokémon!"
+}
+
+text PokemaniacStevenLose {
+    "My collecting skills are better than\n"
+    "than my battling skills."
+}
+
+text HikerBrianIntro {
+    "In this cave, we shall now battle.\n"
+    "Dum dum dum dum dum."
+}
+
+text HikerBrianLose {
+    "In this cave, I've lost our battle\n"
+    "Dum dum dum dum dum."
+}

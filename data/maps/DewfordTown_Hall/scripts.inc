@@ -9,10 +9,6 @@ DewfordTown_Hall_MapScripts::
 DewfordTown_Hall_EventScript_Girl::
 	lock
 	faceplayer
-	call Common_EventScript_BufferTrendyPhrase
-	special IsTrendyPhraseBoring
-	goto_if_eq VAR_RESULT, TRUE, DewfordTown_Hall_EventScript_GirlBoredOfTrend
-	msgbox DewfordTown_Hall_Text_CantImagineLifeWithoutTrend, MSGBOX_DEFAULT
 	release
 	end
 
@@ -248,7 +244,7 @@ DewfordTown_Hall_EventScript_SludgeBombMan::
 	call Common_EventScript_BufferTrendyPhrase
 	goto_if_set FLAG_RECEIVED_TM_SLUDGE_BOMB, DewfordTown_Hall_EventScript_ReceivedSludgeBomb
 	msgbox DewfordTown_Hall_Text_GiveYouSludgeBomb, MSGBOX_DEFAULT
-	giveitem ITEM_TM_SLUDGE_BOMB
+	giveitem ITEM_TM36_SOLAR_BEAM
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 	setflag FLAG_RECEIVED_TM_SLUDGE_BOMB
 	release

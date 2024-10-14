@@ -17,6 +17,8 @@
 #include "battle_debug.h"
 #include "battle_pike.h"
 #include "battle_pyramid.h"
+#include "field_weather.h"
+#include "strings.h"
 #include "constants/abilities.h"
 #include "constants/game_stat.h"
 #include "constants/item.h"
@@ -70,6 +72,453 @@ EWRAM_DATA bool8 gIsSurfingEncounter = 0;
 #include "data/wild_encounters.h"
 
 static const struct WildPokemon sWildFeebas = {20, 25, SPECIES_FEEBAS};
+
+static const u8 sEncounterGroupNone[] = 
+{
+    WILD_ENCOUNTER_DAY,
+    WILD_ENCOUNTER_NIGHT,
+    WILD_ENCOUNTER_RAIN_DAY,
+    WILD_ENCOUNTER_RAIN_NIGHT,
+    WILD_ENCOUNTER_THUNDERSTORM_DAY,
+    WILD_ENCOUNTER_THUNDERSTORM_NIGHT,
+    WILD_ENCOUNTER_DROUGHT,
+    WILD_ENCOUNTER_SANDSTORM_DAY,
+    WILD_ENCOUNTER_SANDSTORM_NIGHT,
+    WILD_ENCOUNTER_SNOW_DAY,
+    WILD_ENCOUNTER_SNOW_NIGHT,
+};
+
+static const u8 sEncounterGroupRainy[] =
+{
+    WILD_ENCOUNTER_DAY,
+    WILD_ENCOUNTER_NIGHT,
+    WILD_ENCOUNTER_RAIN_DAY,
+    WILD_ENCOUNTER_RAIN_NIGHT,
+    WILD_ENCOUNTER_THUNDERSTORM_DAY,
+    WILD_ENCOUNTER_THUNDERSTORM_NIGHT,
+    WILD_ENCOUNTER_DROUGHT,
+};
+
+static const u8 sEncounterGroupDry[] =
+{
+    WILD_ENCOUNTER_DAY,
+    WILD_ENCOUNTER_NIGHT,
+    WILD_ENCOUNTER_RAIN_DAY,
+    WILD_ENCOUNTER_RAIN_NIGHT,
+    WILD_ENCOUNTER_DROUGHT,
+};
+
+static const u8 sEncounterGroupDesert[] =
+{
+    WILD_ENCOUNTER_DAY,
+    WILD_ENCOUNTER_NIGHT,
+    WILD_ENCOUNTER_RAIN_DAY,
+    WILD_ENCOUNTER_RAIN_NIGHT,
+    WILD_ENCOUNTER_DROUGHT,
+    WILD_ENCOUNTER_SANDSTORM_DAY,
+};
+
+const struct WeatherGroup sEncounterGroup[] =
+{
+    {
+        .mapGroup = MAP_GROUP(SERAFEW),
+        .mapNum = MAP_NUM(SERAFEW),
+        .weatherGroup = WEATHER_GROUP_RAINY,
+        .encounterGroup = sEncounterGroupNone,
+        .weatherRegion = WEATHER_REGION_RAINY,
+    },
+    {
+        .mapGroup = MAP_GROUP(ALDUS),
+        .mapNum = MAP_NUM(ALDUS),
+        .weatherGroup = WEATHER_GROUP_RAINY,
+        .encounterGroup = sEncounterGroupNone,
+        .weatherRegion = WEATHER_REGION_RAINY,
+    },
+    {
+        .mapGroup = MAP_GROUP(OSTIA),
+        .mapNum = MAP_NUM(OSTIA),
+        .weatherGroup = WEATHER_GROUP_RAINY,
+        .encounterGroup = sEncounterGroupNone,
+        .weatherRegion = WEATHER_REGION_RAINY,
+    },
+    {
+        .mapGroup = MAP_GROUP(VALNI),
+        .mapNum = MAP_NUM(VALNI),
+        .weatherGroup = WEATHER_GROUP_RAINY,
+        .encounterGroup = sEncounterGroupNone,
+        .weatherRegion = WEATHER_REGION_RAINY,
+    },
+    {
+        .mapGroup = MAP_GROUP(VALNI_GYM),
+        .mapNum = MAP_NUM(VALNI_GYM),
+        .weatherGroup = WEATHER_GROUP_NONE,
+        .encounterGroup = sEncounterGroupNone,
+        .weatherRegion = WEATHER_REGION_RAINY,
+    },
+    {
+        .mapGroup = MAP_GROUP(ROUTE_101),
+        .mapNum = MAP_NUM(ROUTE_101),
+        .weatherGroup = WEATHER_GROUP_RAINY,
+        .encounterGroup = sEncounterGroupRainy,
+        .weatherRegion = WEATHER_REGION_RAINY,
+    },
+    {
+        .mapGroup = MAP_GROUP(ROUTE_102),
+        .mapNum = MAP_NUM(ROUTE_102),
+        .weatherGroup = WEATHER_GROUP_RAINY,
+        .encounterGroup = sEncounterGroupRainy,
+        .weatherRegion = WEATHER_REGION_RAINY,
+    },
+    {
+        .mapGroup = MAP_GROUP(ROUTE_103),
+        .mapNum = MAP_NUM(ROUTE_103),
+        .weatherGroup = WEATHER_GROUP_RAINY,
+        .encounterGroup = sEncounterGroupRainy,
+        .weatherRegion = WEATHER_REGION_RAINY,
+    },
+    {
+        .mapGroup = MAP_GROUP(ROUTE_104_1),
+        .mapNum = MAP_NUM(ROUTE_104_1),
+        .weatherGroup = WEATHER_GROUP_RAINY,
+        .encounterGroup = sEncounterGroupRainy,
+        .weatherRegion = WEATHER_REGION_RAINY,
+    },
+    {
+        .mapGroup = MAP_GROUP(ROUTE_104_2),
+        .mapNum = MAP_NUM(ROUTE_104_2),
+        .weatherGroup = WEATHER_GROUP_RAINY,
+        .encounterGroup = sEncounterGroupRainy,
+        .weatherRegion = WEATHER_REGION_RAINY,
+    },
+//     {
+//         .mapGroup = MAP_GROUP(ROUTE_108),
+//         .mapNum = MAP_NUM(ROUTE_108),
+//         .weatherGroup = WEATHER_GROUP_RAINY,
+//         .encounterGroup = sEncounterGroupRainy,
+//         .weatherRegion = WEATHER_REGION_RAINY,
+//     },
+    {
+        .mapGroup = MAP_GROUP(ROUTE_105_1),
+        .mapNum = MAP_NUM(ROUTE_105_1),
+        .weatherGroup = WEATHER_GROUP_RAINY,
+        .encounterGroup = sEncounterGroupRainy,
+        .weatherRegion = WEATHER_REGION_RAINY,
+    },
+    {
+        .mapGroup = MAP_GROUP(VALNI_FOREST_WEST1),
+        .mapNum = MAP_NUM(VALNI_FOREST_WEST1),
+        .weatherGroup = WEATHER_GROUP_RAINY_FOREST,
+        .encounterGroup = sEncounterGroupRainy,
+        .weatherRegion = WEATHER_REGION_RAINY,
+    },
+    {
+        .mapGroup = MAP_GROUP(VALNI_FOREST_WEST2),
+        .mapNum = MAP_NUM(VALNI_FOREST_WEST2),
+        .weatherGroup = WEATHER_GROUP_RAINY_FOREST,
+        .encounterGroup = sEncounterGroupRainy,
+        .weatherRegion = WEATHER_REGION_RAINY,
+    },
+    {
+        .mapGroup = MAP_GROUP(VALNI_FOREST_EAST1),
+        .mapNum = MAP_NUM(VALNI_FOREST_EAST1),
+        .weatherGroup = WEATHER_GROUP_RAINY_FOREST,
+        .encounterGroup = sEncounterGroupRainy,
+        .weatherRegion = WEATHER_REGION_RAINY,
+    },
+    {
+        .mapGroup = MAP_GROUP(VALNI_FOREST_EAST2),
+        .mapNum = MAP_NUM(VALNI_FOREST_EAST2),
+        .weatherGroup = WEATHER_GROUP_RAINY_FOREST,
+        .encounterGroup = sEncounterGroupRainy,
+        .weatherRegion = WEATHER_REGION_RAINY,
+    },
+//     {
+//         .mapGroup = MAP_GROUP(BRINE_STONE_CAVE_F1),
+//         .mapNum = MAP_NUM(BRINE_STONE_CAVE_F1),
+//         .weatherGroup = WEATHER_GROUP_NONE,
+//         .encounterGroup = sEncounterGroupNone,
+//         .weatherRegion = WEATHER_REGION_RAINY,
+//     },
+    {
+        .mapGroup = MAP_GROUP(RUGGED_PASS_F1),
+        .mapNum = MAP_NUM(RUGGED_PASS_F1),
+        .weatherGroup = WEATHER_GROUP_NONE,
+        .encounterGroup = sEncounterGroupNone,
+        .weatherRegion = WEATHER_REGION_DRY,
+    },
+    {
+        .mapGroup = MAP_GROUP(RUGGED_PASS_F2),
+        .mapNum = MAP_NUM(RUGGED_PASS_F2),
+        .weatherGroup = WEATHER_GROUP_NONE,
+        .encounterGroup = sEncounterGroupNone,
+        .weatherRegion = WEATHER_REGION_DRY,
+    },
+    {
+        .mapGroup = MAP_GROUP(RUGGED_PASS_F3),
+        .mapNum = MAP_NUM(RUGGED_PASS_F3),
+        .weatherGroup = WEATHER_GROUP_NONE,
+        .encounterGroup = sEncounterGroupNone,
+        .weatherRegion = WEATHER_REGION_DRY,
+    },
+    {
+        .mapGroup = MAP_GROUP(ROUTE_105_2),
+        .mapNum = MAP_NUM(ROUTE_105_2),
+        .weatherGroup = WEATHER_GROUP_DRY,
+        .encounterGroup = sEncounterGroupDry,
+        .weatherRegion = WEATHER_REGION_DRY,
+    },
+    {
+        .mapGroup = MAP_GROUP(PORT_NELERAS),
+        .mapNum = MAP_NUM(PORT_NELERAS),
+        .weatherGroup = WEATHER_GROUP_DRY,
+        .encounterGroup = sEncounterGroupNone,
+        .weatherRegion = WEATHER_REGION_DRY,
+    },
+//     {
+//         .mapGroup = MAP_GROUP(ROUTE_106),
+//         .mapNum = MAP_NUM(ROUTE_106),
+//         .weatherGroup = WEATHER_GROUP_DRY,
+//         .encounterGroup = sEncounterGroupDry,
+//         .weatherRegion = WEATHER_REGION_DRY,
+//     },
+//     {
+//         .mapGroup = MAP_GROUP(SAMARIAN_DESERT_WEST),
+//         .mapNum = MAP_NUM(SAMARIAN_DESERT_WEST),
+//         .weatherGroup = WEATHER_GROUP_DRY,
+//         .encounterGroup = sEncounterGroupDry,
+//         .weatherRegion = WEATHER_REGION_DRY,
+//     },
+//     {
+//         .mapGroup = MAP_GROUP(ROUTE_107),
+//         .mapNum = MAP_NUM(ROUTE_107),
+//         .weatherGroup = WEATHER_GROUP_DRY,
+//         .encounterGroup = sEncounterGroupDry,
+//         .weatherRegion = WEATHER_REGION_DRY,
+//     },
+//     {
+//         .mapGroup = MAP_GROUP(DESERT_PASS),
+//         .mapNum = MAP_NUM(DESERT_PASS),
+//         .weatherGroup = WEATHER_GROUP_NONE,
+//         .encounterGroup = sEncounterGroupNone,
+//         .weatherRegion = WEATHER_REGION_DRY,
+//     },
+//     {
+//         .mapGroup = MAP_GROUP(DESERT_PASS_F2),
+//         .mapNum = MAP_NUM(DESERT_PASS_F2),
+//         .weatherGroup = WEATHER_GROUP_NONE,
+//         .encounterGroup = sEncounterGroupNone,
+//         .weatherRegion = WEATHER_REGION_DRY,
+//     },
+//     {
+//         .mapGroup = MAP_GROUP(DESERT_PASS_F3),
+//         .mapNum = MAP_NUM(DESERT_PASS_F3),
+//         .weatherGroup = WEATHER_GROUP_NONE,
+//         .encounterGroup = sEncounterGroupNone,
+//         .weatherRegion = WEATHER_REGION_DESERT,
+//     },
+//     {
+//         .mapGroup = MAP_GROUP(DESERT_PASS_F4),
+//         .mapNum = MAP_NUM(DESERT_PASS_F4),
+//         .weatherGroup = WEATHER_GROUP_NONE,
+//         .encounterGroup = sEncounterGroupNone,
+//         .weatherRegion = WEATHER_REGION_DESERT,
+//     },
+//     {
+//         .mapGroup = MAP_GROUP(SAMARIAN_DESERT_EAST),
+//         .mapNum = MAP_NUM(SAMARIAN_DESERT_EAST),
+//         .weatherGroup = WEATHER_GROUP_DESERT,
+//         .encounterGroup = sEncounterGroupDesert,
+//         .weatherRegion = WEATHER_REGION_DESERT,
+//     },
+//     {
+//         .mapGroup = MAP_GROUP(ROUTE_117),
+//         .mapNum = MAP_NUM(ROUTE_117),
+//         .weatherGroup = WEATHER_GROUP_DRY,
+//         .encounterGroup = sEncounterGroupDry,
+//         .weatherRegion = WEATHER_REGION_DRY,
+//     },
+//     {
+//         .mapGroup = MAP_GROUP(TERRAZ),
+//         .mapNum = MAP_NUM(TERRAZ),
+//         .weatherGroup = WEATHER_GROUP_DRY,
+//         .encounterGroup = sEncounterGroupNone,
+//         .weatherRegion = WEATHER_REGION_DRY,
+//     },
+    {
+        .mapGroup = MAP_GROUP(SERAFEW_PLAYER_HOUSE_1F),
+        .mapNum = MAP_NUM(SERAFEW_PLAYER_HOUSE_1F),
+        .weatherGroup = WEATHER_GROUP_NONE,
+        .encounterGroup = sEncounterGroupNone,
+        .weatherRegion = WEATHER_REGION_RAINY,
+    },
+    {
+        .mapGroup = MAP_GROUP(SERAFEW_PLAYER_HOUSE_2F),
+        .mapNum = MAP_NUM(SERAFEW_PLAYER_HOUSE_2F),
+        .weatherGroup = WEATHER_GROUP_NONE,
+        .encounterGroup = sEncounterGroupNone,
+        .weatherRegion = WEATHER_REGION_RAINY,
+    },
+    {
+        .mapGroup = MAP_GROUP(SERAFEW_LAB),
+        .mapNum = MAP_NUM(SERAFEW_LAB),
+        .weatherRegion = WEATHER_REGION_RAINY,
+    },
+    {
+        .mapGroup = MAP_GROUP(ALDUS_INN_2F),
+        .mapNum = MAP_NUM(ALDUS_INN_2F),
+        .weatherRegion = WEATHER_REGION_RAINY,
+    },
+    {
+        .mapGroup = MAP_GROUP(ALDUS_INN_1F),
+        .mapNum = MAP_NUM(ALDUS_INN_1F),
+        .weatherRegion = WEATHER_REGION_RAINY,
+    },
+    {
+        .mapGroup = MAP_GROUP(ALDUS_FISHERMAN_HOUSE),
+        .mapNum = MAP_NUM(ALDUS_FISHERMAN_HOUSE),
+        .weatherRegion = WEATHER_REGION_RAINY,
+    },
+    {
+        .mapGroup = MAP_GROUP(OSTIA_HOUSE1),
+        .mapNum = MAP_NUM(OSTIA_HOUSE1),
+        .weatherRegion = WEATHER_REGION_RAINY,
+    },
+    {
+        .mapGroup = MAP_GROUP(OSTIA_HOUSE2),
+        .mapNum = MAP_NUM(OSTIA_HOUSE2),
+        .weatherRegion = WEATHER_REGION_RAINY,
+    },
+    {
+        .mapGroup = MAP_GROUP(OSTIA_HOUSE3),
+        .mapNum = MAP_NUM(OSTIA_HOUSE3),
+        .weatherRegion = WEATHER_REGION_RAINY,
+    },
+    {
+        .mapGroup = MAP_GROUP(OSTIA_HOUSE4),
+        .mapNum = MAP_NUM(OSTIA_HOUSE4),
+        .weatherRegion = WEATHER_REGION_RAINY,
+    },
+    {
+        .mapGroup = MAP_GROUP(OSTIA_HOUSE5FLOOR1),
+        .mapNum = MAP_NUM(OSTIA_HOUSE5FLOOR1),
+        .weatherRegion = WEATHER_REGION_RAINY,
+    },
+    {
+        .mapGroup = MAP_GROUP(OSTIA_HOUSE5FLOOR2),
+        .mapNum = MAP_NUM(OSTIA_HOUSE5FLOOR2),
+        .weatherRegion = WEATHER_REGION_RAINY,
+    },
+    {
+        .mapGroup = MAP_GROUP(OSTIA_HOUSE6FLOOR1),
+        .mapNum = MAP_NUM(OSTIA_HOUSE6FLOOR1),
+        .weatherRegion = WEATHER_REGION_RAINY,
+    },
+    {
+        .mapGroup = MAP_GROUP(OSTIA_HOUSE6FLOOR2),
+        .mapNum = MAP_NUM(OSTIA_HOUSE6FLOOR2),
+        .weatherRegion = WEATHER_REGION_RAINY,
+    },
+    {
+        .mapGroup = MAP_GROUP(OSTIA_STORE),
+        .mapNum = MAP_NUM(OSTIA_STORE),
+        .weatherRegion = WEATHER_REGION_RAINY,
+    },
+    {
+        .mapGroup = MAP_GROUP(OSTIA_GYM),
+        .mapNum = MAP_NUM(OSTIA_GYM),
+        .weatherRegion = WEATHER_REGION_RAINY,
+    },
+    {
+        .mapGroup = MAP_GROUP(OSTIA_INN),
+        .mapNum = MAP_NUM(OSTIA_INN),
+        .weatherRegion = WEATHER_REGION_RAINY,
+    },
+    {
+        .mapGroup = MAP_GROUP(OSTIA_RESEARCH_INSTITUTE_FLOOR1),
+        .mapNum = MAP_NUM(OSTIA_RESEARCH_INSTITUTE_FLOOR1),
+        .weatherRegion = WEATHER_REGION_RAINY,
+    },
+    {
+        .mapGroup = MAP_GROUP(OSTIA_RESEARCH_INSTITUTE_FLOOR2),
+        .mapNum = MAP_NUM(OSTIA_RESEARCH_INSTITUTE_FLOOR2),
+        .weatherRegion = WEATHER_REGION_RAINY,
+    },
+    {
+        .mapGroup = MAP_GROUP(OSTIA_RESEARCH_INSTITUTE_FLOOR_B1),
+        .mapNum = MAP_NUM(OSTIA_RESEARCH_INSTITUTE_FLOOR_B1),
+        .weatherRegion = WEATHER_REGION_RAINY,
+    },
+    {
+        .mapGroup = MAP_GROUP(VALNI_INN),
+        .mapNum = MAP_NUM(VALNI_INN),
+        .weatherRegion = WEATHER_REGION_RAINY,
+    },
+    {
+        .mapGroup = MAP_GROUP(VALNI_SHOP ),
+        .mapNum = MAP_NUM(VALNI_SHOP ),
+        .weatherRegion = WEATHER_REGION_RAINY,
+    },
+    {
+        .mapGroup = MAP_GROUP(VALNI_GYM),
+        .mapNum = MAP_NUM(VALNI_GYM),
+        .weatherRegion = WEATHER_REGION_RAINY,
+    },
+    {
+        .mapGroup = MAP_GROUP(VALNI_GYM_LOBBY),
+        .mapNum = MAP_NUM(VALNI_GYM_LOBBY),
+        .weatherRegion = WEATHER_REGION_RAINY,
+    },
+    {
+        .mapGroup = MAP_GROUP(VALNI_HOUSE1),
+        .mapNum = MAP_NUM(VALNI_HOUSE1),
+        .weatherRegion = WEATHER_REGION_RAINY,
+    },
+    {
+        .mapGroup = MAP_GROUP(VALNI_HOUSE2),
+        .mapNum = MAP_NUM(VALNI_HOUSE2),
+        .weatherRegion = WEATHER_REGION_RAINY,
+    },
+    {
+        .mapGroup = MAP_GROUP(VALNI_HOUSE3),
+        .mapNum = MAP_NUM(VALNI_HOUSE3),
+        .weatherRegion = WEATHER_REGION_RAINY,
+    },
+    {
+        .mapGroup = MAP_GROUP(PORT_NELERAS_HOUSE1),
+        .mapNum = MAP_NUM(PORT_NELERAS_HOUSE1),
+        .weatherRegion = WEATHER_REGION_DRY,
+    },
+    {
+        .mapGroup = MAP_GROUP(PORT_NELERAS_INN),
+        .mapNum = MAP_NUM(PORT_NELERAS_INN),
+        .weatherRegion = WEATHER_REGION_DRY,
+    },
+    {
+        .mapGroup = MAP_GROUP(PORT_NELERAS_SHIPYARD_F1),
+        .mapNum = MAP_NUM(PORT_NELERAS_SHIPYARD_F1),
+        .weatherRegion = WEATHER_REGION_DRY,
+    },
+    {
+        .mapGroup = MAP_GROUP(PORT_NELERAS_SHIPYARD_F2),
+        .mapNum = MAP_NUM(PORT_NELERAS_SHIPYARD_F2),
+        .weatherRegion = WEATHER_REGION_DRY,
+    },
+    {
+        .mapGroup = MAP_GROUP(PORT_NELERAS_HARBOR),
+        .mapNum = MAP_NUM(PORT_NELERAS_HARBOR),
+        .weatherRegion = WEATHER_REGION_DRY,
+    },
+    {
+        .mapGroup = MAP_GROUP(PORT_NELERAS_MUSEUM),
+        .mapNum = MAP_NUM(PORT_NELERAS_MUSEUM),
+        .weatherRegion = WEATHER_REGION_DRY,
+    },
+    {
+        .mapGroup = MAP_GROUP(PORT_NELERAS_SHOP),
+        .mapNum = MAP_NUM(PORT_NELERAS_SHOP),
+        .weatherRegion = WEATHER_REGION_DRY,
+    },
+};
 
 static const u16 sRoute119WaterTileData[] =
 {
@@ -352,6 +801,222 @@ static u8 ChooseWildMonLevel(const struct WildPokemon *wildPokemon, u8 wildMonIn
     }
 }
 
+void SetWeatherFromWeatherGroup(void)
+{
+    u16 i;
+    u8 currentWeatherValue;
+    u8 currentWeatherGroup;
+
+    if (gSaveBlock1Ptr->weatherTimeHours != VarGet(VAR_LAST_CHECKED_PLAYTIME_HOURS))
+    {
+        VarSet(VAR_CURRENT_RANDOM_WEATHER_VALUE, Random() % 100);
+        VarSet(VAR_LAST_CHECKED_PLAYTIME_HOURS, gSaveBlock1Ptr->weatherTimeHours);
+        if(gSaveBlock1Ptr->weatherTimeHours % 3 == 0) 
+            FlagSet(FLAG_IS_NIGHT);
+        else 
+            FlagClear(FLAG_IS_NIGHT);
+    }
+    for (i = 0; ; i++)
+    {
+        if (sEncounterGroup[i].mapGroup == gSaveBlock1Ptr->location.mapGroup &&
+            sEncounterGroup[i].mapNum == gSaveBlock1Ptr->location.mapNum)
+        {
+            currentWeatherValue = VarGet(VAR_CURRENT_RANDOM_WEATHER_VALUE);
+            currentWeatherGroup = sEncounterGroup[i].weatherGroup;
+            switch (currentWeatherGroup)
+            {
+                case WEATHER_GROUP_NONE:
+                    return;
+                case WEATHER_GROUP_RAINY:
+                    if (currentWeatherValue < 15) 
+                        SetSavedWeather(WEATHER_RAIN_THUNDERSTORM);
+                    else if (currentWeatherValue < 25)
+                        SetSavedWeather(WEATHER_DOWNPOUR);
+                    else if (currentWeatherValue < 35)
+                        SetSavedWeather(WEATHER_RAIN);
+                    else if(FlagGet(FLAG_IS_NIGHT))
+                        SetSavedWeather(WEATHER_NIGHT);
+                    else if (currentWeatherValue < 70)
+                        SetSavedWeather(WEATHER_SHADE);
+                    else if (currentWeatherValue < 95)
+                        SetSavedWeather(WEATHER_SUNNY);
+                    else
+                        SetSavedWeather(WEATHER_DROUGHT);
+                    return;
+                case WEATHER_GROUP_RAINY_FOREST:
+                    if (currentWeatherValue < 15) 
+                        SetSavedWeather(WEATHER_RAIN_THUNDERSTORM);
+                    else if (currentWeatherValue < 25)
+                        SetSavedWeather(WEATHER_DOWNPOUR);
+                    else if (currentWeatherValue < 35)
+                        SetSavedWeather(WEATHER_RAIN);
+                    else if(FlagGet(FLAG_IS_NIGHT))
+                        SetSavedWeather(WEATHER_NIGHT);
+                    else if (currentWeatherValue < 95)
+                        SetSavedWeather(WEATHER_SHADE);
+                    else
+                        SetSavedWeather(WEATHER_SUNNY);
+                    return;
+                case WEATHER_GROUP_DRY:
+                    if (currentWeatherValue < 15) 
+                        SetSavedWeather(WEATHER_RAIN);
+                    else if(FlagGet(FLAG_IS_NIGHT))
+                        SetSavedWeather(WEATHER_NIGHT);
+                    else if (currentWeatherValue < 35)
+                        SetSavedWeather(WEATHER_SHADE);
+                    else if (currentWeatherValue < 85)
+                        SetSavedWeather(WEATHER_SUNNY);
+                    else
+                        SetSavedWeather(WEATHER_DROUGHT);
+                    return;
+                case WEATHER_GROUP_DESERT:
+                    if (currentWeatherValue < 5) 
+                        SetSavedWeather(WEATHER_RAIN);
+                    else if(FlagGet(FLAG_IS_NIGHT))
+                        SetSavedWeather(WEATHER_NIGHT);
+                    else if (currentWeatherValue < 15)
+                        SetSavedWeather(WEATHER_SHADE);
+                    else if (currentWeatherValue < 30)
+                        SetSavedWeather(WEATHER_SANDSTORM);
+                    else if (currentWeatherValue < 45)
+                        SetSavedWeather(WEATHER_DROUGHT);
+                    else if (currentWeatherValue < 70)
+                        SetSavedWeather(WEATHER_SUNNY);
+                    else if (currentWeatherValue < 80)
+                        SetSavedWeather(WEATHER_DROUGHT);
+                    else if (currentWeatherValue < 90)
+                        SetSavedWeather(WEATHER_SANDSTORM);
+                    else
+                        SetSavedWeather(WEATHER_DROUGHT);
+                    return;
+            }
+        }
+    }
+}
+
+static u8 GetEncounterWeather(u8 weather)
+{
+    switch (weather)
+    {
+        case WEATHER_RAIN:
+        case WEATHER_DOWNPOUR:
+            return WILD_ENCOUNTER_RAIN_DAY;
+        case WEATHER_RAIN_THUNDERSTORM:
+            return WILD_ENCOUNTER_THUNDERSTORM_DAY;
+        case WEATHER_SANDSTORM:
+            return WILD_ENCOUNTER_SANDSTORM_DAY;
+        case WEATHER_SNOW:
+            return WILD_ENCOUNTER_SNOW_DAY;
+        case WEATHER_DROUGHT:
+            return WILD_ENCOUNTER_DROUGHT;
+        case WEATHER_NONE:
+        case WEATHER_SUNNY_CLOUDS:
+        case WEATHER_SUNNY:
+        case WEATHER_FOG_HORIZONTAL:
+        case WEATHER_VOLCANIC_ASH:
+        case WEATHER_SHADE:
+        case WEATHER_NIGHT:
+        default:
+            return WILD_ENCOUNTER_DAY;
+    }
+}
+
+static u8 GetEncounterTableOffset(void)
+{
+    u16 i;
+    u8 j;
+    u8 encounterWeather = GetEncounterWeather(GetCurrentWeather());
+
+    for (i = 0; ; i++)
+    {
+        if (sEncounterGroup[i].mapGroup == gSaveBlock1Ptr->location.mapGroup &&
+            sEncounterGroup[i].mapNum == gSaveBlock1Ptr->location.mapNum)
+        {
+            if (sEncounterGroup[i].encounterGroup == sEncounterGroupNone)
+            {
+                return 0;
+            }
+            for (j = 0; ; j++)
+            {
+                if (sEncounterGroup[i].encounterGroup[j] == encounterWeather)
+                {
+                    if (FlagGet(FLAG_IS_NIGHT) && sEncounterGroup[i].encounterGroup != sEncounterGroupNone)
+                    {
+                        j += 1;
+                    }
+
+                    return j;
+                }
+            }
+        }
+    }
+}
+
+const u8 GetRegionWeather(void)
+{
+    u16 i;
+    u8 currentWeatherValue;
+    u8 currentWeatherRegion;
+
+    for (i = 0; ; i++)
+    {
+        if (sEncounterGroup[i].mapGroup == gSaveBlock1Ptr->location.mapGroup &&
+            sEncounterGroup[i].mapNum == gSaveBlock1Ptr->location.mapNum)
+        {
+            currentWeatherValue = VarGet(VAR_CURRENT_RANDOM_WEATHER_VALUE);
+            currentWeatherRegion = sEncounterGroup[i].weatherRegion;
+            switch (currentWeatherRegion)
+            {
+                case WEATHER_REGION_RAINY:
+                    if (currentWeatherValue < 15) 
+                        return WEATHER_RAIN_THUNDERSTORM;
+                    else if (currentWeatherValue < 35)
+                        return WEATHER_RAIN;
+                    else if(FlagGet(FLAG_IS_NIGHT))
+                        return WEATHER_NIGHT;
+                    else if (currentWeatherValue < 70)
+                        return WEATHER_SHADE;
+                    else if (currentWeatherValue < 95)
+                        return WEATHER_SUNNY;
+                    else
+                        return WEATHER_DROUGHT;
+                    break;
+                case WEATHER_REGION_DRY:
+                    if (currentWeatherValue < 15) 
+                        return WEATHER_RAIN;
+                    else if(FlagGet(FLAG_IS_NIGHT))
+                        return WEATHER_NIGHT;
+                    else if (currentWeatherValue < 35)
+                        return WEATHER_SHADE;
+                    else if (currentWeatherValue < 85)
+                        return WEATHER_SUNNY;
+                    else
+                        return WEATHER_DROUGHT;
+                    break;
+                case WEATHER_REGION_DESERT:
+                    if (currentWeatherValue < 5) 
+                        return WEATHER_RAIN;
+                    else if(FlagGet(FLAG_IS_NIGHT))
+                        return WEATHER_NIGHT;
+                    else if (currentWeatherValue < 15)
+                        return WEATHER_SHADE;
+                    else if (currentWeatherValue < 30)
+                        return WEATHER_SANDSTORM;
+                    else if (currentWeatherValue < 45)
+                        return WEATHER_DROUGHT;
+                    else if (currentWeatherValue < 70)
+                        return WEATHER_SUNNY;
+                    else if (currentWeatherValue < 80)
+                        return WEATHER_DROUGHT;
+                    else if (currentWeatherValue < 90)
+                        return WEATHER_SANDSTORM;
+                    else
+                        return WEATHER_DROUGHT;
+            }
+        }
+    }
+}
+
 static u16 GetCurrentMapWildMonHeaderId(void)
 {
     u16 i;
@@ -365,15 +1030,7 @@ static u16 GetCurrentMapWildMonHeaderId(void)
         if (gWildMonHeaders[i].mapGroup == gSaveBlock1Ptr->location.mapGroup &&
             gWildMonHeaders[i].mapNum == gSaveBlock1Ptr->location.mapNum)
         {
-            if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ALTERING_CAVE) &&
-                gSaveBlock1Ptr->location.mapNum == MAP_NUM(ALTERING_CAVE))
-            {
-                u16 alteringCaveId = VarGet(VAR_ALTERING_CAVE_WILD_SET);
-                if (alteringCaveId >= NUM_ALTERING_CAVE_TABLES)
-                    alteringCaveId = 0;
-
-                i += alteringCaveId;
-            }
+            i += GetEncounterTableOffset();
 
             return i;
         }
@@ -978,8 +1635,21 @@ static bool8 IsWildLevelAllowedByRepel(u8 wildLevel)
 {
     u8 i;
 
-    if (!REPEL_STEP_COUNT)
-        return TRUE;
+    // if (!REPEL_STEP_COUNT)
+    //     return TRUE;
+
+    // for (i = 0; i < PARTY_SIZE; i++)
+    // {
+    //     if (GetMonData(&gPlayerParty[i], MON_DATA_HP) && !GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG))
+    //     {
+    //         u8 ourLevel = GetMonData(&gPlayerParty[i], MON_DATA_LEVEL);
+
+    //         if (wildLevel < ourLevel)
+    //             return FALSE;
+    //         else
+    //             return TRUE;
+    //     }
+    // }
 
     for (i = 0; i < PARTY_SIZE; i++)
     {
@@ -987,10 +1657,22 @@ static bool8 IsWildLevelAllowedByRepel(u8 wildLevel)
         {
             u8 ourLevel = GetMonData(&gPlayerParty[i], MON_DATA_LEVEL);
 
-            if (wildLevel < ourLevel)
-                return FALSE;
-            else
-                return TRUE;
+            if (FlagGet(FLAG_ACTIVE_REPEL_STRONG))
+            {
+                if (wildLevel < ourLevel)
+                {
+                    return FALSE;
+                }
+            }
+            if (FlagGet(FLAG_ACTIVE_REPEL_WEAK))
+            {
+                wildLevel = wildLevel + 5;
+                if (wildLevel < ourLevel)
+                {
+                    return FALSE;
+                }
+            }
+            return TRUE;
         }
     }
 

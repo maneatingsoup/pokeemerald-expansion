@@ -779,7 +779,7 @@ static bool8 TryToWaterSudowoodo(void)
     GetXYCoordsOneStepInFrontOfPlayer(&x, &y);
     elevation = PlayerGetElevation();
     objId = GetObjectEventIdByPosition(x, y, elevation);
-    if (objId == OBJECT_EVENTS_COUNT || gObjectEvents[objId].graphicsId != OBJ_EVENT_GFX_SUDOWOODO)
+    if (objId == OBJECT_EVENTS_COUNT || gObjectEvents[objId].graphicsId != OBJ_EVENT_GFX_AVIANA)
         return FALSE;
     else
         return TRUE;
@@ -997,6 +997,53 @@ void HandleUseExpiredLure(struct ScriptContext *ctx)
 #if VAR_LAST_REPEL_LURE_USED != 0
     VarSet(VAR_REPEL_STEP_COUNT, ItemId_GetHoldEffectParam(VarGet(VAR_LAST_REPEL_LURE_USED)) | REPEL_LURE_MASK);
 #endif
+}
+
+static void Task_UsedArumTwigBracelet(u8 taskId)
+{
+    if(++gTasks[taskId].data[8] > 7)
+    {
+        PlaySE(SE_M_ABSORB);
+        if (!InBattlePyramid())
+            DisplayItemMessage(taskId, FONT_NORMAL, gStringVar4, CloseItemMessage);
+        else
+            DisplayItemMessageInBattlePyramid(taskId, gStringVar4, Task_CloseBattlePyramidBagMessage);
+    }
+}
+
+void ItemUseOutOfBattle_ArumTwigBracelet(u8 taskId)
+{
+    CopyItemName(gSpecialVar_ItemId, gStringVar2);
+    if (gSpecialVar_ItemId == ITEM_ARUM_TWIG)
+    {
+        FlagClear(FLAG_ACTIVE_REPEL_STRONG);
+        if (FlagGet(FLAG_ACTIVE_REPEL_WEAK))
+        {
+            FlagClear(FLAG_ACTIVE_REPEL_WEAK);
+            StringExpandPlaceholders(gStringVar4, gText_DeactivatedArumTwigBracelet);
+        }
+        else
+        {
+            FlagSet(FLAG_ACTIVE_REPEL_WEAK);
+            StringExpandPlaceholders(gStringVar4, gText_ActivatedArumTwigBracelet);
+        }
+    }
+    else
+    {
+        FlagClear(FLAG_ACTIVE_REPEL_WEAK);
+        if (FlagGet(FLAG_ACTIVE_REPEL_STRONG))
+        {
+            FlagClear(FLAG_ACTIVE_REPEL_STRONG);
+            StringExpandPlaceholders(gStringVar4, gText_DeactivatedArumTwigBracelet);
+        }
+        else
+        {
+            FlagSet(FLAG_ACTIVE_REPEL_STRONG);
+            StringExpandPlaceholders(gStringVar4, gText_ActivatedArumTwigBracelet);
+        }
+    }
+    gTasks[taskId].data[8] = 0;
+    gTasks[taskId].func = Task_UsedArumTwigBracelet;
 }
 
 static void Task_UsedBlackWhiteFlute(u8 taskId)

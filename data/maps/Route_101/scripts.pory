@@ -1,0 +1,52 @@
+mapscripts Route_101_MapScripts {
+    MAP_SCRIPT_ON_LOAD:Route_101OnLoad
+    MAP_SCRIPT_ON_TRANSITION: SetUpMapWeather
+}
+
+script SetUpMapWeather {
+    special(SetGroupWeather)
+}
+
+script Route_101OnLoad {
+    compare_var_to_value(VAR_CURRENT_RANDOM_WEATHER_VALUE, 35)
+    call_if_ge(Route_101RemovePuddles)
+}
+
+script Route_101RemovePuddles {
+    setmetatile(17, 19, METATILE_General_Grass, FALSE)
+    setmetatile(18, 19, METATILE_General_Grass, FALSE)
+    setmetatile(17, 20, METATILE_General_Grass, FALSE)
+    setmetatile(18, 20, METATILE_General_Grass, FALSE)
+    setmetatile(23, 24, METATILE_General_Grass, FALSE)
+    setmetatile(24, 24, METATILE_General_Grass, FALSE)
+    setmetatile(23, 25, METATILE_General_Grass, FALSE)
+    setmetatile(24, 25, METATILE_General_Grass, FALSE)
+    setmetatile(26, 31, METATILE_General_Grass, FALSE)
+    setmetatile(27, 31, METATILE_General_Grass, FALSE)
+    setmetatile(26, 32, METATILE_General_Grass, FALSE)
+    setmetatile(27, 32, METATILE_General_Grass, FALSE)
+}
+
+script Route101LedgeBoy {
+    lock
+    faceplayer
+    msgbox("You can jump down ledges like these.\n"
+    "But once you do, you can't hop back up.\p"
+    "Better make sure that's what you want\n"
+    "if you choose to hop down.")
+    release
+}
+
+script Route101ExcitedBoy {
+    lock
+    faceplayer
+    msgbox("I'm gonna be a pokémon trainer some\n"
+    "day!\p"
+    "So, I've been studying how to be one\n"
+    "for like, a really long time.\p"
+    "Did you know that if one so much as\n"
+    "looks at you, you have to battle them?\p"
+    "I don't know if that makes any sense,\n"
+    "but those are the rules, I guess.")
+    release
+}

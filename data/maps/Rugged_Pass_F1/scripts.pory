@@ -1,0 +1,48 @@
+mapscripts Rugged_Pass_F1_MapScripts {}
+
+script HikerAdam {
+    trainerbattle_single(TRAINER_HIKER_ADAM, HikerAdamIntro, HikerAdamLose)
+    msgbox("Boy, do I love spelunking!", MSGBOX_AUTOCLOSE)
+}
+
+script HexManiacAmanda {
+    trainerbattle_double(TRAINER_HEX_MANIAC_AMANDA, HexManiacAmandaIntro, HexManiacAmandaLose, Dummy)
+    msgbox("It's awfully dark in here.\n"
+    "I can't see a thing.", MSGBOX_AUTOCLOSE)
+}
+
+script PkmnRangerKevin {
+    trainerbattle_single(TRAINER_PKMN_RANGER_KEVIN, PkmnRangerKevinIntro, PkmnRangerKevinLose)
+    msgbox("I've heard you can find Clamperl if you\n"
+    "fish in the pools here.\p"
+    "Isn't that neat?", MSGBOX_AUTOCLOSE)
+}
+
+text HikerAdamIntro {
+    "Oh, it looks like I've found a trainer on\n"
+    "this expedition."
+}
+
+text HikerAdamLose {
+    "Ope."
+}
+
+text HexManiacAmandaIntro {
+    "I can't see.\p"
+    "I can't see!"
+}
+
+text HexManiacAmandaLose {
+    "I still can't see."
+}
+
+text PkmnRangerKevinIntro {
+    "This cave is important for the river\n"
+    "ecosystem.\p"
+    "The totodile use it for shelter,\n"
+    "so we need to protect it."
+}
+
+text PkmnRangerKevinLose {
+    "Thanks for the battle."
+}

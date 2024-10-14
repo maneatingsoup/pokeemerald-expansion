@@ -1497,44 +1497,44 @@ BattleFrontier_BattleTowerMultiPartnerRoom_Text_RuinManiacReject::
 	.string "Hmm…\n"
 	.string "I think my POKéMON are tough…$"
 
-BattleFrontier_BattleTowerMultiPartnerRoom_Text_CoolTrainerMIntro::
-	.string "I'm COOLTRAINER {STR_VAR_1}!$"
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_ACE_TRAINERMIntro::
+	.string "I'm ACE_TRAINER {STR_VAR_1}!$"
 
-BattleFrontier_BattleTowerMultiPartnerRoom_Text_CoolTrainerMMon1::
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_ACE_TRAINERMMon1::
 	.string "The POKéMON I have right now are one\n"
 	.string "{STR_VAR_2} with {STR_VAR_1} and$"
 
-BattleFrontier_BattleTowerMultiPartnerRoom_Text_CoolTrainerMMon2Ask::
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_ACE_TRAINERMMon2Ask::
 	.string "one {STR_VAR_2} with {STR_VAR_1}.\n"
 	.string "Cool, huh?\p"
 	.string "Don't you think it'd be pretty cool\n"
 	.string "if we made a tag team?$"
 
-BattleFrontier_BattleTowerMultiPartnerRoom_Text_CoolTrainerMAccept::
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_ACE_TRAINERMAccept::
 	.string "Cool!\n"
 	.string "I'll go do the registration in a flash!$"
 
-BattleFrontier_BattleTowerMultiPartnerRoom_Text_CoolTrainerMReject::
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_ACE_TRAINERMReject::
 	.string "I thought that we'd make just\n"
 	.string "the greatest team ever.$"
 
-BattleFrontier_BattleTowerMultiPartnerRoom_Text_CoolTrainerFIntro::
-	.string "I'm COOLTRAINER {STR_VAR_1}!$"
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_ACE_TRAINERFIntro::
+	.string "I'm ACE_TRAINER {STR_VAR_1}!$"
 
-BattleFrontier_BattleTowerMultiPartnerRoom_Text_CoolTrainerFMon1::
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_ACE_TRAINERFMon1::
 	.string "The team I've been raising has one\n"
 	.string "{STR_VAR_2} with {STR_VAR_1} and$"
 
-BattleFrontier_BattleTowerMultiPartnerRoom_Text_CoolTrainerFMon2Ask::
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_ACE_TRAINERFMon2Ask::
 	.string "one {STR_VAR_2} with {STR_VAR_1}.\p"
 	.string "Does that sound okay?\n"
 	.string "How about we become tag partners?$"
 
-BattleFrontier_BattleTowerMultiPartnerRoom_Text_CoolTrainerFAccept::
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_ACE_TRAINERFAccept::
 	.string "Sounds A-OK!\n"
 	.string "I'd better do the registration.$"
 
-BattleFrontier_BattleTowerMultiPartnerRoom_Text_CoolTrainerFReject::
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_ACE_TRAINERFReject::
 	.string "I was thinking how we would be\n"
 	.string "one tough team…$"
 

@@ -45,11 +45,11 @@ LavaridgeTown_Gym_SetGymTrainers::
 	return
 
 PetalburgCity_Gym_SetGymTrainers::
-	settrainerflag TRAINER_RANDALL
-	settrainerflag TRAINER_PARKER
-	settrainerflag TRAINER_GEORGE
-	settrainerflag TRAINER_BERKE
-	settrainerflag TRAINER_MARY
+	settrainerflag TRAINER_HIKER_JUSTIN
+	settrainerflag TRAINER_PSYCHIC_ROBERT
+	settrainerflag TRAINER_BLACK_BELT_AUSTIN
+	settrainerflag TRAINER_HIKER_KYLE
+	settrainerflag TRAINER_PKMN_BREEDER_ALEXIS
 	settrainerflag TRAINER_ALEXIA
 	settrainerflag TRAINER_JODY
 	return
@@ -58,7 +58,7 @@ FortreeCity_Gym_SetGymTrainers::
 	settrainerflag TRAINER_JARED
 	settrainerflag TRAINER_FLINT
 	settrainerflag TRAINER_ASHLEY
-	settrainerflag TRAINER_EDWARDO
+	settrainerflag TRAINER_YOUNGSTER_ETHANWARDO
 	settrainerflag TRAINER_HUMBERTO
 	settrainerflag TRAINER_DARIUS
 	return

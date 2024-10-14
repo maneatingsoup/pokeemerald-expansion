@@ -1,0 +1,20 @@
+mapscripts OstiaHouse2_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION: SetUpOstiaHouses
+}
+
+script OstiaHouse2Boy {
+    lock
+    faceplayer
+    msgbox("I don't wanna go to school tomorrow.\n"
+    "I have a big presentation due, and I\l"
+    "haven't even started it yet.")
+    release
+}
+
+script OstiaHouse2Woman {
+    lock
+    faceplayer
+    msgbox("My son isn't very smart.\p"
+    "At least he's good at sports.")
+    release
+}

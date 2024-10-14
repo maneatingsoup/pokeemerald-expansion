@@ -19,6 +19,7 @@
 #define WEATHER_ABNORMAL                15  // The alternating weather during Groudon/Kyogre conflict
 #define WEATHER_ROUTE119_CYCLE          20
 #define WEATHER_ROUTE123_CYCLE          21
+#define WEATHER_NIGHT                   22
 
 // These are used in maps' coord_weather_event entries.
 // They are not a one-to-one mapping with the engine's
@@ -36,6 +37,7 @@
 #define COORD_EVENT_WEATHER_DROUGHT             11
 #define COORD_EVENT_WEATHER_ROUTE119_CYCLE      20
 #define COORD_EVENT_WEATHER_ROUTE123_CYCLE      21
+#define COORD_EVENT_WEATHER_NIGHT               22
 
 // These are the "abnormal weather events" that are used
 // to find Kyogre and Groudon.
@@ -68,3 +70,29 @@
 #define ABNORMAL_WEATHER_NONE       0
 
 #endif // GUARD_CONSTANTS_WEATHER_H
+
+//Encounter Weather for Wild Encounters
+#define WILD_ENCOUNTER_DAY                      0
+#define WILD_ENCOUNTER_NIGHT                    1
+#define WILD_ENCOUNTER_RAIN_DAY                 2
+#define WILD_ENCOUNTER_RAIN_NIGHT               3
+#define WILD_ENCOUNTER_THUNDERSTORM_DAY         4
+#define WILD_ENCOUNTER_THUNDERSTORM_NIGHT       5
+#define WILD_ENCOUNTER_DROUGHT                  6
+#define WILD_ENCOUNTER_SANDSTORM_DAY            7
+#define WILD_ENCOUNTER_SANDSTORM_NIGHT          8
+#define WILD_ENCOUNTER_SNOW_DAY                 9
+#define WILD_ENCOUNTER_SNOW_NIGHT               10
+
+//Weather Groups for Map Weather Patterns
+#define WEATHER_GROUP_NONE          0
+#define WEATHER_GROUP_INDOOR        1
+#define WEATHER_GROUP_RAINY         2
+#define WEATHER_GROUP_RAINY_FOREST  3
+#define WEATHER_GROUP_DRY           4
+#define WEATHER_GROUP_DESERT        5
+
+//Weather Regions for Weather Menu
+#define WEATHER_REGION_RAINY        0
+#define WEATHER_REGION_DRY          1
+#define WEATHER_REGION_DESERT       2

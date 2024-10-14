@@ -1,0 +1,205 @@
+mapscripts Serafew_PlayerHouse_1F_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION: SetUpPlayerHouse_1F
+    MAP_SCRIPT_ON_FRAME_TABLE [
+        VAR_SERAFEW_STATE, 0: MomGreet
+    ]
+}
+
+script SetUpPlayerHouse_1F {
+    special(SetGroupWeather)
+}
+
+script MomGreet {
+    lock
+    setrespawn(HEAL_LOCATION_SERAFEW_PLAYER_HOUSE_2F)
+    setvar(VAR_SERAFEW_STATE, 1)
+    playse(SE_PIN)
+    applymovement(1, MomNotice)
+    waitse
+    delay(30)
+    applymovement(1, MomApproach)
+    waitmovement(0)
+    msgbox("Oh, {PLAYER}, you're up early.\p"
+    "You must have been so excited for\n"
+    "today that you couldn't sleep.\p"
+    "Come, sit at the table with me.", MSGBOX_AUTOCLOSE)
+    applymovement(1, MomReturn)
+    applymovement(OBJ_EVENT_ID_PLAYER, PlayerToTable)
+    waitmovement(1)
+    checkplayergender
+    if(var(VAR_RESULT) == MALE) {
+        msgbox("I just wanted to chat with you one\n"
+        "last time before you head out on the\l"
+        "big adventure.\p"
+        "...\p"
+        "I remember when you were just a boy.\n"
+        "I'd carry you down to the beach and\l"
+        "you'd laugh as the waves slid across\l"
+        "your little feet.\p"
+        "But look at you now, all grown up!\p"
+        "...\p"
+        "I won't hold you up too much longer,\n"
+        "but I have something to give you.", MSGBOX_AUTOCLOSE)
+    }
+    else {
+        msgbox("I just wanted to chat with you one\n"
+        "last time before you head out on the\l"
+        "big adventure.\p"
+        "...\p"
+        "I remember when you were just a girl.\n"
+        "I'd carry you down to the beach and\l"
+        "you'd laugh as the waves slid across\l"
+        "your little feet.\p"
+        "But look at you now. All grown up!\p"
+        "...\p"
+        "I won't hold you up too much longer,\n"
+        "but I have something to give you.", MSGBOX_AUTOCLOSE) 
+    }
+    applymovement (1, MomGive)
+    waitmovement(0)
+    applymovement (OBJ_EVENT_ID_PLAYER, FaceUp)
+    waitmovement(0)
+    msgbox("Here, I bought you a nice pair of\n"
+        "hiking shoes.")
+    playfanfare(MUS_OBTAIN_ITEM)
+    msgbox("{PLAYER} received the Running Shoes!")
+    setflag(FLAG_SYS_B_DASH)
+    setvar(VAR_TEMP_A, 1)
+    waitfanfare
+    msgbox("You'll have to break those in, but while\n"
+    "you wear them, they should keep your\l"
+    "feet well protected.\p"
+    "...\p"
+    "Alright, {PLAYER}, you have a wonderful\n"
+    "time out there, okay?\p"
+    "But be sure to stop home and say hello\n"
+    "every now and again.\p"
+    "I wanna hear all about the friends and\n"
+    "discoveries you make on your journey.", MSGBOX_AUTOCLOSE)
+    applymovement(1, MomReturnAgain)
+    waitmovement(0)
+}
+
+script MomMasterScript {
+    switch (var(VAR_SERAFEW_STATE)) {
+        case 1: goto(MomState1)
+        case 2: goto(MomState2)
+        case 3: goto(MomState3)
+        case 4: goto(MomState4)
+        default: goto(MomState5)
+    }
+}
+
+script MomState1 {
+    lock
+    faceplayer
+    if(var(VAR_TEMP_A) == 1) {
+        msgbox("The professor is expecting you today\n"
+        "{PLAYER}, you should go see him.")
+    }
+    else {
+        msgbox("Don't you want to start your adventure?\p"
+        "Well, if you aren't quite ready, that's\n"
+        "okay.\p"
+        "You can stay here as long as you'd\n"
+        "like.")
+    }
+    release
+}
+
+script MomState2 {
+    lock
+    faceplayer
+    msgbox("So the professor is going to give you\n"
+    "a pokémon?\p"
+    "That's great! I can't wait to see which\n"
+    "one you choose.")
+    release
+}
+
+script MomState3 {
+    lock
+    faceplayer
+    bufferspeciesname(STR_VAR_1, VAR_STARTER_MON)
+    msgbox("Oh, so {STR_VAR_1} is your partner?\n"
+    "It's so cute!\p"
+    "I bet you're happy to set out with such\n"
+    "a special pokémon.")
+    release
+}
+
+script MomState4 {
+    lock
+    faceplayer
+    msgbox("Wow, the professor really gave you a\n"
+    "pokédex?!\p"
+    "That's an invaluable tool for a pokémon\n"
+    "trainer.\p"
+    "You'll have to think of a way to thank\n"
+    "him.")
+    release
+}
+
+script MomState5 {
+    lock
+    faceplayer
+    msgbox("Hey honey, do you want to rest at home\n"
+    "for a little while?", MSGBOX_YESNO)
+    if (var(VAR_RESULT) == YES) {
+        setrespawn(HEAL_LOCATION_SERAFEW)
+        msgbox("Sit tight and I'll make you something\n"
+        "for lunch.")
+        call(Common_EventScript_OutOfCenterPartyHeal)
+        msgbox("Alright, it's probably time for you to\n"
+        "get back out there.\p"
+        "It was nice to see you, {PLAYER}.\n"
+        "You're always welcome at home.\l"
+        "So drop by any time.")
+    }
+    else {
+        msgbox("Stop home any time you need a break\n"
+        "from your adventure.")
+    }
+    release
+}
+
+movement MomNotice {
+    emote_exclamation_mark
+}
+
+movement MomApproach {
+    walk_up
+    walk_right * 6
+    walk_up
+}
+
+movement MomReturn {
+    walk_down
+    walk_left * 6
+    walk_down
+    face_right
+}
+
+movement PlayerToTable {
+    walk_down
+    walk_down
+    walk_left * 3
+    walk_down
+    face_left
+}
+
+movement MomGive {
+    walk_up
+    walk_right *3
+    face_down
+}
+
+movement MomReturnAgain {
+    walk_left * 3
+    walk_down
+    face_right
+}
+
+movement FaceUp {
+    face_up
+}

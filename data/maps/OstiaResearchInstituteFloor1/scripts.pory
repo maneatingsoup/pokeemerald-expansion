@@ -1,0 +1,68 @@
+mapscripts OstiaResearchInstituteFloor1_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION: SetUpOstiaResearchInstituteFloor1
+}
+
+script SetUpOstiaResearchInstituteFloor1 {
+    if(var(VAR_CURRENT_RANDOM_WEATHER_VALUE) >= 35) {
+        setflag(FLAG_TEMP_1)
+    }
+}
+
+script OstiaResearchDisplay {
+    lock
+    msgbox("It's a glass display showing a fossil of\n"
+    "an ancient pokémon.")
+    release
+}
+
+script OstiaResearchExcitedBoy {
+    lock
+    faceplayer
+    msgbox("I like looking at the fossils.\n"
+    "It helps me imagine what the world was\l"
+    "like so long ago.")
+    applymovement(3, FaceRight)
+    waitmovement(0)
+    release
+}
+
+script OstiaResearchGrandma{
+    lock
+    faceplayer
+    msgbox("I take my grandson here every few\n"
+    "days.\p"
+    "He really gets inspired by the rocks.\p"
+    "It does bring a smile to my face to\n"
+    "see him so interested.")
+    release
+}
+
+script OstiaResearchGalleryScientist {
+    lock
+    faceplayer
+    msgbox("It seems that there was a great variety\n"
+    "of pokémon roaming the planet, even in\l"
+    "ancient times.\p"
+    "Some fossils of those pokémon are here\n"
+    "on display in the gallery.")
+    release
+}
+
+script OstiaResearchCounterLady{
+    lock
+    faceplayer
+    msgbox("Hello, and welcome to the Ostia Research\n"
+    "Institute Gallery.\p"
+    "Please enjoy the exhibits.")
+    release
+}
+
+script OstiaResearchCounterMan {
+    lock
+    faceplayer
+    msgbox("Hello, and welcome to the Ostia Research\n"
+    "Institute Gallery.\p"
+    "Unfortunately, we have no active tours\n"
+    "today. Please come back another time.")
+    release
+}

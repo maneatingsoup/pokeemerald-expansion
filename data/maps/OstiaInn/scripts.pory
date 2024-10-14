@@ -1,0 +1,92 @@
+mapscripts OstiaInn_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION: SetUpOstiaHouses
+}
+
+script OsitaInnKeeper {
+    lock
+    faceplayer
+    if(var(VAR_TEMP_5) == 0){
+    msgbox("Welcome to the Ostia Inn.\p"
+    "Do you want to rest here for the day?", MSGBOX_YESNO)
+    }
+    elif(var(VAR_TEMP_5) == 1){
+        msgbox("Oh, do you want to stay another night?\n"
+        "You're more than welcome to.", MSGBOX_YESNO)
+    }
+    elif(var(VAR_TEMP_5) ==2) {
+        msgbox("Change your mind, did you?", MSGBOX_YESNO)
+    }
+    if(var(VAR_RESULT) == YES){
+        setvar(VAR_TEMP_5, 1)
+        setrespawn(HEAL_LOCATION_OSTIA)
+        msgbox("Alright, I'll get your room set up.")
+        call(Common_EventScript_OutOfCenterPartyHeal)
+        msgbox("Do come again.\n"
+        "We'd be happy to have you back.")
+    }
+    else{
+        setvar(VAR_TEMP_5, 2)
+        msgbox("We'll be here if you change you mind.")
+    }
+    if(!flag(FLAG_INN_PC_INFO)){
+        setflag(FLAG_INN_PC_INFO)
+        msgbox("Oh, by the way, there's a PC over by\n"
+        "the bed in the other room.\p" 
+        "You can use it to switch which of your\n"
+        "pokémon you bring on your journey.")
+    }
+    release
+}
+
+script OstiaInnMan {
+    lock
+    faceplayer
+    if(var(VAR_TEMP_0) == 0) {
+        checkplayergender
+        setvar(VAR_TEMP_0, 1)
+        if(var(VAR_RESULT) == MALE) {
+            message("Welcome to the Ostia Inn my boy.\p"
+            "My wife runs the inn, so talk to her if\n"
+            "you're looking to spend the night.\p"
+            "I do sell a few goods here though.\n"
+            "Care to take a look?")
+        }
+        else {
+            message("Welcome to the Ostia Inn lass.\p"
+            "My wife runs the inn, so talk to her if\n"
+            "you're looking to spend the night.\p"
+            "I do sell a few goods here though. Care\n"
+            "to take a look?")
+        }
+    }
+    else{
+        message("Do you want to buy something?")
+    }
+    waitmessage
+    pokemartdecoration2(OstiaInnMart)
+    msgbox("I always have items in stock, so come\n"
+    "back if you need anything.")
+    release
+}
+
+mart OstiaInnMart {
+    ITEM_CHARCOAL
+    ITEM_MYSTIC_WATER
+    ITEM_MIRACLE_SEED
+    ITEM_MAGNET
+    ITEM_SHARP_BEAK
+    ITEM_POISON_BARB
+    ITEM_SILVER_POWDER
+    ITEM_METAL_COAT
+    ITEM_HARD_STONE
+    ITEM_SOFT_SAND
+    ITEM_NEVER_MELT_ICE
+    ITEM_BLACK_BELT
+    ITEM_TWISTED_SPOON
+    ITEM_SILK_SCARF
+    ITEM_BLACK_GLASSES
+    ITEM_SPELL_TAG
+    ITEM_SILK_SCARF
+    ITEM_DRAGON_FANG
+    ITEM_FAIRY_FEATHER
+}

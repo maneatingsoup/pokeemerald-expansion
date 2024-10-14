@@ -1,0 +1,49 @@
+mapscripts Port_Neleras_MapScripts {
+    MAP_SCRIPT_ON_LOAD: PortNelerasOnLoad
+    MAP_SCRIPT_ON_TRANSITION: SetUpPortNeleras
+}
+
+script PortNelerasOnLoad {
+    compare_var_to_value(VAR_CURRENT_RANDOM_WEATHER_VALUE, 15)
+    call_if_ge(PortNelerasRemovePuddles)
+}
+
+script PortNelerasRemovePuddles {
+    setmetatile(28, 13, METATILE_General_Grass, FALSE)
+    setmetatile(29, 13, METATILE_General_Grass, FALSE)
+    setmetatile(28, 14, METATILE_General_Grass, FALSE)
+    setmetatile(29, 14, METATILE_General_Grass, FALSE)
+    setmetatile(15, 15, METATILE_General_Grass, FALSE)
+    setmetatile(16, 15, METATILE_General_Grass, FALSE)
+    setmetatile(15, 16, METATILE_General_Grass, FALSE)
+    setmetatile(16, 16, METATILE_General_Grass, FALSE)
+    setmetatile(15, 17, METATILE_General_Grass, FALSE)
+    setmetatile(16, 17, METATILE_General_Grass, FALSE)
+    setmetatile(15, 18, METATILE_General_Grass, FALSE)
+    setmetatile(16, 18, METATILE_General_Grass, FALSE)
+    setmetatile(15, 38, METATILE_General_Grass, FALSE)
+    setmetatile(16, 38, METATILE_General_Grass, FALSE)
+    setmetatile(15, 39, METATILE_General_Grass, FALSE)
+    setmetatile(16, 39, METATILE_General_Grass, FALSE)
+    setmetatile(26, 37, METATILE_General_Grass, FALSE)
+    setmetatile(27, 37, METATILE_General_Grass, FALSE)
+    setmetatile(26, 38, METATILE_General_Grass, FALSE)
+    setmetatile(27, 38, METATILE_General_Grass, FALSE)
+    setmetatile(23, 42, METATILE_General_Grass, FALSE)
+    setmetatile(24, 42, METATILE_General_Grass, FALSE)
+    setmetatile(23, 43, METATILE_General_Grass, FALSE)
+    setmetatile(24, 43, METATILE_General_Grass, FALSE)
+}
+
+script SetUpPortNeleras {
+    special(SetGroupWeather)
+    if(var(VAR_CURRENT_RANDOM_WEATHER_VALUE) < 15) {
+        setflag(FLAG_TEMP_1)        
+    }
+}
+
+script NelerasBoy {
+    lock
+    faceplayer
+    
+}

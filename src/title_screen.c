@@ -60,8 +60,8 @@ static void SpriteCB_PokemonLogoShine(struct Sprite *sprite);
 // const rom data
 static const u16 sUnusedUnknownPal[] = INCBIN_U16("graphics/title_screen/unused.gbapal");
 
-static const u32 sTitleScreenRayquazaGfx[] = INCBIN_U32("graphics/title_screen/rayquaza.4bpp.lz");
-static const u32 sTitleScreenRayquazaTilemap[] = INCBIN_U32("graphics/title_screen/rayquaza.bin.lz");
+static const u32 sTitleScreenRayquazaGfx[] = INCBIN_U32("graphics/title_screen/deoxys3.4bpp.lz");
+static const u32 sTitleScreenRayquazaTilemap[] = INCBIN_U32("graphics/title_screen/deoxys3.bin.lz");
 static const u32 sTitleScreenLogoShineGfx[] = INCBIN_U32("graphics/title_screen/logo_shine.4bpp.lz");
 static const u32 sTitleScreenCloudsGfx[] = INCBIN_U32("graphics/title_screen/clouds.4bpp.lz");
 
@@ -499,7 +499,7 @@ static void SpriteCB_PokemonLogoShine(struct Sprite *sprite)
              || sprite->x == DISPLAY_WIDTH / 2 + (4 * SHINE_SPEED)
              || sprite->x == DISPLAY_WIDTH / 2 + (5 * SHINE_SPEED)
              || sprite->x == DISPLAY_WIDTH / 2 + (6 * SHINE_SPEED))
-                gPlttBufferFaded[0] = RGB(24, 31, 12);
+                gPlttBufferFaded[0] = RGB(11, 2, 12);
             else
                 gPlttBufferFaded[0] = backgroundColor;
         }
@@ -603,8 +603,8 @@ void CB2_InitTitleScreen(void)
         LZ77UnCompVram(sTitleScreenRayquazaGfx, (void *)(BG_CHAR_ADDR(2)));
         LZ77UnCompVram(sTitleScreenRayquazaTilemap, (void *)(BG_SCREEN_ADDR(26)));
         // bg1
-        LZ77UnCompVram(sTitleScreenCloudsGfx, (void *)(BG_CHAR_ADDR(3)));
-        LZ77UnCompVram(gTitleScreenCloudsTilemap, (void *)(BG_SCREEN_ADDR(27)));
+        //LZ77UnCompVram(sTitleScreenCloudsGfx, (void *)(BG_CHAR_ADDR(3)));
+        //LZ77UnCompVram(gTitleScreenCloudsTilemap, (void *)(BG_SCREEN_ADDR(27)));
         ScanlineEffect_Stop();
         ResetTasks();
         ResetSpriteData();
@@ -776,13 +776,13 @@ static void Task_TitleScreenPhase2(u8 taskId)
     gTasks[taskId].data[6] = 6;  // Unused
 }
 
-// Show Rayquaza silhouette and process main title screen input
+// Show Deoxys silhouette and process main title screen input
 static void Task_TitleScreenPhase3(u8 taskId)
 {
     if (JOY_NEW(A_BUTTON) || JOY_NEW(START_BUTTON))
     {
         FadeOutBGM(4);
-        BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_WHITEALPHA);
+        BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
         SetMainCallback2(CB2_GoToMainMenu);
     }
     else if (JOY_HELD(CLEAR_SAVE_BUTTON_COMBO) == CLEAR_SAVE_BUTTON_COMBO)
@@ -859,11 +859,42 @@ static void UpdateLegendaryMarkingColor(u8 frameNum)
     if ((frameNum % 4) == 0) // Change color every 4th frame
     {
         s32 intensity = Cos(frameNum, 128) + 128;
-        s32 r = 31 - ((intensity * 32 - intensity) / 256);
-        s32 g = 31 - (intensity * 22 / 256);
-        s32 b = 12;
+        s32 r = 7 + (intensity * 8 / 256);
+        s32 g = 0;
+        s32 b = 4 + (intensity * 26 / 256);
 
         u16 color = RGB(r, g, b);
-        LoadPalette(&color, BG_PLTT_ID(14) + 15, sizeof(color));
+
+        LoadPalette(&color, 0xEF, sizeof(color));
+    }   
+   if ((frameNum % 4) == 0)
+    {
+        s32 intensity = Cos(frameNum, 128) + 128;
+        s32 r = 31;
+        s32 g = 22 + (intensity * 9 / 256);
+        s32 b = 31;
+
+        u16 color = RGB(r, g, b);
+        LoadPalette(&color, 0xE3, sizeof(color));
+   }
+   if ((frameNum % 4) == 0)
+    {
+        s32 intensity = Cos(frameNum, 128) + 128;
+        s32 r = 22 + (intensity * 9 / 256);
+        s32 g = 31;
+        s32 b = 31;
+
+        u16 color = RGB(r, g, b);
+        LoadPalette(&color, 0xE2, sizeof(color));
+   }
+   if ((frameNum % 4) == 0)
+    {
+        s32 intensity = Cos(frameNum, 128) + 128;
+        s32 r = 31;
+        s32 g = 31;
+        s32 b = 22 + (intensity * 9 / 256);
+
+        u16 color = RGB(r, g, b);
+        LoadPalette(&color, 0xE1, sizeof(color));
    }
 }

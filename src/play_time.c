@@ -20,12 +20,24 @@ void PlayTimeCounter_Reset(void)
     gSaveBlock2Ptr->playTimeVBlanks = 0;
 }
 
+void WeatherTimeCounter_Reset(void)
+{
+    sPlayTimeCounterState = STOPPED;
+
+    gSaveBlock1Ptr->weatherTimeHours = 1;
+    gSaveBlock1Ptr->weatherTimeMinutes = 0;
+    gSaveBlock1Ptr->weatherTimeSeconds = 0;
+}
+
 void PlayTimeCounter_Start(void)
 {
     sPlayTimeCounterState = RUNNING;
 
     if (gSaveBlock2Ptr->playTimeHours > 999)
         PlayTimeCounter_SetToMax();
+    
+    if (gSaveBlock1Ptr->weatherTimeHours > 999)
+    WeatherTimeCounter_Reset();
 }
 
 void PlayTimeCounter_Stop(void)
@@ -45,6 +57,7 @@ void PlayTimeCounter_Update(void)
 
     gSaveBlock2Ptr->playTimeVBlanks = 0;
     gSaveBlock2Ptr->playTimeSeconds++;
+    gSaveBlock1Ptr->weatherTimeSeconds++;
 
     if (gSaveBlock2Ptr->playTimeSeconds < 60)
         return;
@@ -60,6 +73,27 @@ void PlayTimeCounter_Update(void)
 
     if (gSaveBlock2Ptr->playTimeHours > 999)
         PlayTimeCounter_SetToMax();
+}
+
+void WeatherTimeCounter_Update(void)
+{
+    if (sPlayTimeCounterState != RUNNING)
+        return;
+
+    if (gSaveBlock1Ptr->weatherTimeSeconds < 60)
+        return;
+
+    gSaveBlock1Ptr->weatherTimeSeconds = 0;
+    gSaveBlock1Ptr->weatherTimeMinutes++;
+
+    if (gSaveBlock1Ptr->weatherTimeMinutes < 60)
+        return;
+
+    gSaveBlock1Ptr->weatherTimeMinutes = 0;
+    gSaveBlock1Ptr->weatherTimeHours++;
+
+    if (gSaveBlock1Ptr->weatherTimeHours > 999)
+        WeatherTimeCounter_Reset();
 }
 
 void PlayTimeCounter_SetToMax(void)

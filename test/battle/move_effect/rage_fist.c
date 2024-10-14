@@ -255,7 +255,7 @@ SINGLE_BATTLE_TEST("Rage Fist base power is increased if Disguise breaks")
     u16 species = SPECIES_NONE;
 
     PARAMETRIZE { species = SPECIES_MIMIKYU_DISGUISED; }
-    PARAMETRIZE { species = SPECIES_MIMIKYU_TOTEM_DISGUISED; }
+    // PARAMETRIZE { species = SPECIES_MIMIKYU_TOTEM_DISGUISED; }
 
     GIVEN {
         PLAYER(species) { Ability(ABILITY_DISGUISE); }

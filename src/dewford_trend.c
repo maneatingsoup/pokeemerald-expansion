@@ -295,23 +295,6 @@ void BufferTrendyPhraseString(void)
 
 // Returns TRUE if the current trendy phrase is "boring", FALSE otherwise
 // This only influences the comment of an NPC inside the Dewford Town Hall
-void IsTrendyPhraseBoring(void)
-{
-    bool16 result = FALSE;
-
-    do
-    {
-        if (gSaveBlock1Ptr->dewfordTrends[0].trendiness - gSaveBlock1Ptr->dewfordTrends[1].trendiness > 1)
-            break;
-        if (gSaveBlock1Ptr->dewfordTrends[0].gainingTrendiness)
-            break;
-        if (!gSaveBlock1Ptr->dewfordTrends[1].gainingTrendiness)
-            break;
-        result = TRUE;
-    } while (0);
-
-    gSpecialVar_Result = result;
-}
 
 // A painting hangs on the wall of the Dewford Hall
 // When interacted with it says "{trendy phrase}'S {name} is the title"

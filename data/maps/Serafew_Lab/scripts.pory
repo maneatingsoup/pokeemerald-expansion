@@ -1,0 +1,610 @@
+mapscripts Serafew_Lab_MapScripts {
+    MAP_SCRIPT_ON_LOAD: SerafewLabOnLoad
+    MAP_SCRIPT_ON_TRANSITION: SetUpSerafewLab
+    MAP_SCRIPT_ON_FRAME_TABLE [
+        VAR_SERAFEW_STATE, 1: ProfessorGreeting
+    ]
+}
+
+script SerafewLabOnLoad {
+    call(MoveProfessor)
+    compare_var_to_value(VAR_SERAFEW_STATE, 3)
+    goto_if_gt(SerafewLabRemoveTable)
+}
+
+script SerafewLabRemoveTable {
+    setmetatile(5, 3, 0x22A, FALSE)
+    setmetatile(6, 3, 0x22A, FALSE)
+    setmetatile(7, 3, 0x22A, FALSE)
+    setmetatile(5, 4, 0x22A, FALSE)
+    setmetatile(6, 4, 0x22A, FALSE)
+    setmetatile(7, 4, 0x22A, FALSE)
+}
+
+script SetUpSerafewLab {
+    setflag(FLAG_TEMP_1)
+    if(flag(FLAG_FAT_MAN)) {
+        setflag(FLAG_TEMP_2)
+    }
+    if(var(VAR_SERAFEW_STATE) < 3) {
+        setflag(FLAG_TEMP_3)
+    }
+    if(var(VAR_CURRENT_RANDOM_WEATHER_VALUE) >= 35) {
+        setflag(FLAG_TEMP_2)
+        setflag(FLAG_TEMP_3)
+        setflag(FLAG_TEMP_4)
+    }
+    if(var(VAR_SERAFEW_STATE) > 3) {
+        setflag(FLAG_TEMP_A)
+        setflag(FLAG_TEMP_B)
+        setflag(FLAG_TEMP_C)
+    }
+    else {
+        switch (var(VAR_STARTER_MON)) {
+            default:
+                break
+            case SPECIES_CHESPIN:
+                setflag(FLAG_TEMP_A)
+                break
+            case SPECIES_MAGBY:
+                setflag(FLAG_TEMP_B)
+                break
+            case SPECIES_SPHEAL:
+                setflag(FLAG_TEMP_C)
+                break
+        }
+    }
+}
+
+script ProfessorLabScientist1 {
+    lock
+    faceplayer
+    msgbox("We study pokémon in this laboratory.\p"
+    "I bet you knew that already.\p"
+    "More specifically, we look into pokémon\n"
+    "habitats.\p"
+    "We try to learn why some pokémon live\n"
+    "in certain environments but not others.")
+    release
+}
+
+script ProfessorLabScientist2 {
+    lock
+    msgbox("I'm a bit busy at the moment.\p"
+    "Please do not distract me.")
+    release
+}
+
+script GetMonDebug{
+    lockall
+    bufferspeciesname(STR_VAR_1, SPECIES_DEOXYS)
+    setvar(VAR_TEMP_2, SPECIES_DEOXYS)
+    showmonpic(VAR_TEMP_2, 10, 3)
+    playmoncry(VAR_TEMP_2, CRY_MODE_ENCOUNTER)
+    waitmoncry
+    msgbox("Do you want the debug kit?", MSGBOX_YESNO)
+    if(var(VAR_RESULT) == YES){
+        givemon(VAR_TEMP_2, 100)
+        if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
+            playfanfare(MUS_OBTAIN_BADGE)
+            msgbox("{PLAYER} received {STR_VAR_1}!")
+            waitfanfare
+            removeobject(5)
+            setflag(FLAG_DEBUG_MON)
+            call(NicknamePartyMon)
+            call(GiveDebugItems)
+        }
+        elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
+        playfanfare(MUS_OBTAIN_BADGE)
+        msgbox("{PLAYER} received {STR_VAR_1}!")
+        waitfanfare
+        removeobject(5)
+        setflag(FLAG_DEBUG_MON)
+        call(NicknameBoxMon)
+        call(GiveDebugItems)
+        }
+        else{
+            hidemonpic
+            msgbox("You don't have room.")
+        }
+    }
+    else{
+    hidemonpic
+    }
+    waitmessage
+    releaseall
+    end
+}
+
+script GiveDebugItems{
+    giveitem(ITEM_RARE_CANDY, 99)
+    giveitem(ITEM_METEORITE, 1)
+    giveitem(ITEM_FLAME_GENE, 1)
+    giveitem(ITEM_SPLASH_GENE, 1)
+    giveitem(ITEM_ZAP_GENE, 1)
+    giveitem(ITEM_MEADOW_GENE, 1)
+    giveitem(ITEM_ICICLE_GENE, 1)
+    giveitem(ITEM_FIST_GENE, 1)
+    giveitem(ITEM_TOXIC_GENE, 1)
+    giveitem(ITEM_EARTH_GENE, 1)
+    giveitem(ITEM_SKY_GENE, 1)
+    giveitem(ITEM_MIND_GENE, 1)
+    giveitem(ITEM_INSECT_GENE, 1)
+    giveitem(ITEM_STONE_GENE, 1)
+    giveitem(ITEM_SPOOKY_GENE, 1)
+    giveitem(ITEM_DRACO_GENE, 1)
+    giveitem(ITEM_DREAD_GENE, 1)
+    giveitem(ITEM_IRON_GENE, 1)
+    giveitem(ITEM_PIXIE_GENE, 1)
+    giveitem(ITEM_BLANK_GENE, 1)
+    setflag(FLAG_SYS_POKEMON_GET)
+    setflag(FLAG_ADVENTURE_STARTED)
+    setflag(FLAG_SYS_B_DASH)
+    setflag(FLAG_SYS_POKEDEX_GET)
+    setflag(FLAG_BADGE01_GET)
+    setflag(FLAG_BADGE02_GET)
+    setflag(FLAG_BADGE03_GET)
+    setflag(FLAG_BADGE04_GET)
+    setflag(FLAG_BADGE05_GET)
+    setflag(FLAG_BADGE06_GET)
+    setflag(FLAG_BADGE07_GET)
+    setflag(FLAG_BADGE08_GET)
+    setflag(FLAG_IS_CHAMPION)
+    setflag(FLAG_RECEIVED_HM01)
+    setflag(FLAG_RECEIVED_HM05)
+    setflag(FLAG_RECEIVED_HM03)
+    setflag(FLAG_RECEIVED_HM04)
+    setflag(FLAG_RECEIVED_HM05)
+    setflag(FLAG_RECEIVED_HM06)
+    setflag(FLAG_RECEIVED_HM07)
+    setflag(FLAG_RECEIVED_HM08)
+}
+
+script NicknameBoxMon{
+    msgbox("Would you like to give {STR_VAR_1}\n"
+    "a nickname?", MSGBOX_YESNO)
+    hidemonpic
+    if(var(VAR_RESULT) == YES){
+        call(Common_EventScript_NameReceivedBoxMon)
+    }
+}
+
+script NicknamePartyMon{
+
+    msgbox("Would you like to give {STR_VAR_1}\n"
+    "a nickname?", MSGBOX_YESNO)
+    hidemonpic
+    if(var(VAR_RESULT) == YES){
+        call(Common_EventScript_GetGiftMonPartySlot)
+        call(Common_EventScript_NameReceivedPartyMon)
+    }
+}
+
+script InitializeStarterSelectionLeft {
+    lock
+    if(!(flag(FLAG_SYS_POKEMON_GET))){
+        setvar(VAR_STARTER_MON, SPECIES_CHESPIN)
+        setvar(VAR_TEMP_0, 1)
+        call(SelectStarterPokemon)
+    }
+    else{
+        msgbox(OnlyOne)
+    }
+    release
+}
+
+script InitializeStarterSelectionMiddle {
+    lock
+    if(!(flag(FLAG_SYS_POKEMON_GET))){
+        setvar(VAR_STARTER_MON, SPECIES_MAGBY)
+        setvar(VAR_TEMP_0, 2)
+        call(SelectStarterPokemon)
+    }
+    else{
+        msgbox(OnlyOne)
+    }
+    release
+}
+
+script InitializeStarterSelectionRight {
+    lock
+    if(!(flag(FLAG_SYS_POKEMON_GET))){
+        setvar(VAR_STARTER_MON, SPECIES_SPHEAL)
+        setvar(VAR_TEMP_0, 3)
+        call(SelectStarterPokemon)
+    }
+    else{
+        msgbox(OnlyOne)
+    }
+    release
+}
+
+script SelectStarterPokemon {
+    bufferspeciesname(STR_VAR_1, VAR_STARTER_MON)
+    showmonpic(VAR_STARTER_MON, 10, 3)
+    playmoncry(VAR_STARTER_MON, CRY_MODE_ENCOUNTER)
+    waitmoncry
+    delay(40)
+    msgbox("Do you want to choose {STR_VAR_1}?", MSGBOX_YESNO)
+    if(var(VAR_RESULT) == YES){
+        setflag(FLAG_SYS_POKEMON_GET)
+        switch (var(VAR_STARTER_MON)) {
+            case SPECIES_CHESPIN:
+                setflag(FLAG_TEMP_A)
+                break
+            case SPECIES_MAGBY:
+                setflag(FLAG_TEMP_B)
+                break
+            case SPECIES_SPHEAL:
+                setflag(FLAG_TEMP_C)
+                break
+        }
+        setflag(FLAG_ADVENTURE_STARTED)
+        setvar(VAR_SERAFEW_STATE, 3)
+        setvar(VAR_TEMP_1, 0)
+        givemon(VAR_STARTER_MON, 5)
+        removeobject(VAR_TEMP_0)
+        playfanfare(MUS_OBTAIN_BADGE)
+        msgbox("{PLAYER} received {STR_VAR_1}!")
+        waitfanfare
+        call(NicknamePartyMon)
+        call(ProfessorChoseMon)
+    }
+    else{
+        hidemonpic
+    }
+}
+
+script ProfessorGreeting {
+    lock
+    setvar(VAR_SERAFEW_STATE, 2)
+    playse(SE_PIN)
+    applymovement(4, ProfessorNotice)
+    waitse
+    delay(30)
+    msgbox("Oh, hey {PLAYER}.", MSGBOX_AUTOCLOSE)
+    applymovement(4, ProfessorMeetsPlayer)
+    waitmovement(0)
+    msgbox("I didn't expect to see you here so\n"
+    "soon!\p"
+    "I'm sure you're excited to get out and\n"
+    "explore, so I'll try to be brief.\p"
+    "Why don't you follow me?", MSGBOX_AUTOCLOSE)
+    applymovement(4, ProfessorWalkUp)
+    applymovement(OBJ_EVENT_ID_PLAYER, PlayerWalkUp)
+    waitmovement(4)
+    msgbox("I have a gift to give you before you\n"
+    "leave.\p"
+    "It'll help you get your footing\n"
+    "out there.\p"
+    "On the table here are three pokémon,\n"
+    "and I'd like you to choose one.\p"
+    "Whichever one you pick will be your\n"
+    "partner.\p"
+    "They're all good pokémon, so no matter\n"
+    "which partner you choose, I'm sure you\l"
+    "two will form a strong bond.", MSGBOX_AUTOCLOSE)
+    applymovement(4, WalkRightFaceLeft)
+    waitmovement(0)
+    release
+}
+
+script MoveProfessor {
+    switch (var(VAR_SERAFEW_STATE)) {
+        case 0:
+        case 1:
+            break
+        case 2:
+        case 3:
+            setobjectxyperm(4, 8, 5)
+            setobjectmovementtype(4, MOVEMENT_TYPE_FACE_DOWN)
+            break
+        default:
+            setobjectxyperm(4, 6, 4)
+            setobjectmovementtype(4, MOVEMENT_TYPE_FACE_DOWN)
+            break
+    }
+}
+
+script ProfessorMasterScript {
+    switch (var(VAR_SERAFEW_STATE)) {
+        case 2: goto(ProfessorState2) 
+        case 3: goto(ProfessorState3)
+        case 4: goto(ProfessorState4)
+        case 5: goto(ProfessorState5)
+        case 6: goto(ProfessorState5)
+        case 7: goto(ProfessorState7)
+    }
+}
+
+script ProfessorState2 {
+    lock
+    faceplayer
+    if(var(VAR_TEMP_1) == 0){
+        setvar(VAR_TEMP_1, 1)
+        checkplayergender
+        if(var(VAR_RESULT) == MALE){
+            msgbox("You know, I gave my daughter the same\n"
+            "three pokémon to choose from when she\l"
+            "first set out on her journey.\p"
+            "I'm eager to see if you make the same\n"
+            "selection she did.")
+        }
+        else{
+            msgbox("You know, I gave my son the same three\n"
+            "pokémon to choose from when he first\l"
+            "set out on his journey.\p"
+            "I'm eager to see if you make the same\n"
+            "selection he did.")
+        }
+    }
+    elif(var(VAR_TEMP_1) == 1){
+        msgbox("What's that?\p"
+        "You want to know which pokémon {RIVAL}\n"
+        "chose as her first partner?", MSGBOX_YESNO)
+        if(var(VAR_RESULT) == YES){
+            msgbox("Well, I think I'll let you pick your\n"
+            "partner before I tell you.\p"
+            "It wouldn't be good to make your choice\n"
+            "based on someone else's.")
+        }
+        else {
+            checkplayergender
+            if(var(VAR_RESULT) == MALE){
+                msgbox("Ah, you want to keep it a surprise,\n"
+                "I see. I'm sure she'd be happy to show\l"
+                "you if you run into her.")
+            }
+            else{
+                msgbox("Ah, you want to keep it a surprise,\n"
+                "I see. I'm sure he'd be happy to show\l"
+                "you if you run into him.")
+            }
+        }
+    }
+    release
+}
+
+script ProfessorState3 {
+    lock
+    faceplayer
+    if(var(VAR_STARTER_MON) == SPECIES_CHESPIN) {
+        bufferspeciesname(STR_VAR_1, SPECIES_MAGBY)
+    }
+    elif(var(VAR_STARTER_MON) == SPECIES_MAGBY) {
+        bufferspeciesname(STR_VAR_1, SPECIES_SPHEAL)
+    }
+    elif(var(VAR_STARTER_MON) == SPECIES_SPHEAL) {
+        bufferspeciesname(STR_VAR_1, SPECIES_CHESPIN)
+    }
+    checkplayergender
+    if(var(VAR_RESULT) == MALE) {
+        msgbox("{RIVAL} chose {STR_VAR_1} as her first\n"
+        "pokémon.\p"
+        "Sounds like she'll have the upper hand\n"
+        "if you two battle.")
+    }
+    else {
+        msgbox("{RIVAL} chose {STR_VAR_1} as his first\n"
+        "pokémon.\p"
+        "Sounds like he'll have the upper hand\n"
+        "if you two battle.")
+    }
+    release
+}
+
+script ProfessorState4 {
+    lock
+    faceplayer
+    if(var(VAR_TEMP_1) == 0) {
+        setvar(VAR_TEMP_1, 1)
+        bufferspeciesname(STR_VAR_1, VAR_STARTER_MON)
+        msgbox("Hey {PLAYER}, how are you and {STR_VAR_1}\n"
+        "doing?\p"
+        "Have you two become good friends\n"
+        "already?", MSGBOX_YESNO)
+        if(var(VAR_RESULT) == YES) {
+            msgbox("I'm glad to hear that!\p"
+            "I'm sure your bond will continue to\n"
+            "grow as you two travel.")
+        }
+        else {
+            msgbox("I see.\p"
+            "Well, these things take time.\p"
+            "Give it a while, I'm sure you'll come\n"
+            "to understand one another.")
+        }
+    }
+    else {
+        checkplayergender
+        if(var(VAR_RESULT) == MALE) {
+            msgbox("Have you run into May yet?\n"
+            "She should be at the inn in Aldus.")
+        }
+        else {
+            msgbox("Have you run into Brendan yet?\n"
+            "He should be at the inn in Aldus.")
+        }
+    }
+    release
+}
+
+script ProfessorState5 {
+    lock
+    faceplayer
+    msgbox("Hey {PLAYER}, have you run into {RIVAL}\n"
+    "yet?\p"
+    "...\p"
+    "It's nice to hear you two are getting\n"
+    "along so well.\p"
+    "I bet you'll be seeing more of\n"
+    "each other on your adventures.")
+    release
+}
+
+script ProfessorState7 {
+    lock
+    faceplayer
+    msgbox("When Mitch finishes indexing the\n"
+    "pokédex, I'll rate your progress.\p"
+    "Until then, I'll break the fourth\n"
+    "wall with this placeholder dialogue.\p"
+    "...\p"
+    "...\p"
+    "...\p"
+    "What? You wanna know why me and my\n"
+    "family sleep on the floor?\l"
+    "And where my wife is?\p"
+    "That's too damn bad!\p"
+    "It's a secret.")
+    release
+}
+
+script ProfessorChoseMon {
+    lock
+    delay(20)
+    applymovement(OBJ_EVENT_ID_PLAYER, FaceRight)
+    if(var(VAR_TEMP_0) == 1) {
+        call(ProfessorMoveChespin)
+    }
+    elif(var(VAR_TEMP_0) == 2) {
+        call(ProfessorMoveMagby)
+    }
+    elif(var(VAR_TEMP_0) == 3) {
+        call(ProfessorMoveSpheal)
+    }
+    waitmovement(4)
+    bufferspeciesname(STR_VAR_1, VAR_STARTER_MON)
+    msgbox("So, you decided that {STR_VAR_1} is going to\n"
+    "be your partner.\p"
+    "What a wonderful choice!\p"
+    "You two will accomplish great things,\n"
+    "I'm sure of it.\p"
+    "Let's see, you'll also need some\n"
+    "pokéballs before you go.\p"
+    "Here, take these.")
+    giveitem(ITEM_POKE_BALL, 5)
+    checkplayergender
+    if(var(VAR_RESULT) == MALE){
+        msgbox("It's been a long time since I've caught\n"
+        "a pokémon myself.\p"
+        "I bet my daughter could help get you\n"
+        "started off on the right foot.\p"
+        "She should still be at the inn up in\n"
+        "Aldus if you want to go find her.\p"
+        "Well then, I don't think I'm forgetting\n"
+        "anything.\p" 
+        "So, off you go!\p"
+        "And don't be afraid to stop by.\n"
+        "I'd love to hear all about your\l"
+        "experiences when you return.", MSGBOX_AUTOCLOSE)
+    }
+    else{
+        msgbox("It's been a long time since I've caught\n"
+        "a pokémon myself.\p"
+        "I bet my son could help get you started\n"
+        "off on the right foot.\p"
+        "He should still be at the inn up in\n"
+        "Aldus if you want to go find him.\p"
+        "Well then, I don't think I'm forgetting\n"
+        "anything.\p" 
+        "So, off you go!\p"
+        "And don't be afraid to stop by.\n"
+        "I'd love to hear all about your\l"
+        "experiences when you return.", MSGBOX_AUTOCLOSE)
+    }
+    if(var(VAR_TEMP_0) == 1) {
+        applymovement(4, ReturnChespin)
+    }
+    elif(var(VAR_TEMP_0) == 2) {
+        applymovement(4, ReturnMagby)
+    }
+    elif(var(VAR_TEMP_0) == 3) {
+        applymovement(4, ReturnSpheal)
+    }
+    waitmovement(0)
+    release
+}
+
+script SadBoyLab {
+    lock
+    faceplayer
+    msgbox("I like to read the books here.\p"
+    "The professor has a huge collection of\n"
+    "knowledge about pokémon, and I want to\l"
+    "learn everything I can.")
+    release
+}
+
+script ProfessorMoveChespin {
+    applymovement(4, MoveChespin)
+}
+
+script ProfessorMoveMagby {
+    applymovement(4, MoveMagby)
+}
+
+script ProfessorMoveSpheal {
+    applymovement(4, MoveSpheal)
+}
+
+movement ReturnChespin {
+    walk_right * 2
+    walk_up
+    face_down
+}
+
+movement ReturnMagby {
+    walk_right
+    walk_up
+    face_down
+}
+
+movement ReturnSpheal {
+    walk_up
+    face_down
+}
+
+movement MoveChespin {
+    walk_up
+    walk_left * 2
+}
+
+movement MoveMagby {
+    walk_up
+    walk_left
+}
+
+movement MoveSpheal {
+    walk_up
+    face_left
+}
+
+movement ProfessorNotice {
+    face_left
+    emote_exclamation_mark
+}
+
+movement ProfessorMeetsPlayer {
+    walk_left * 4
+    walk_down
+}
+
+movement ProfessorWalkUp {
+    walk_up * 6
+    walk_right
+    face_left
+}
+
+movement PlayerWalkUp {
+    walk_up * 7
+    face_right
+}
+
+movement FaceRight {
+    face_right
+}
+
+text OnlyOne {
+    "I better not take another..."
+}

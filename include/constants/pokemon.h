@@ -91,8 +91,20 @@
 #define DEFAULT_STAT_STAGE 6
 #define MAX_STAT_STAGE    12
 
+//Obedience Levels
+#define OBEDIENCE_LEVEL_BASE      16
+#define OBEDIENCE_LEVEL_BADGE1    25
+#define OBEDIENCE_LEVEL_BADGE2    34
+#define OBEDIENCE_LEVEL_BADGE3    43
+#define OBEDIENCE_LEVEL_BADGE4    52
+#define OBEDIENCE_LEVEL_BADGE5    61
+#define OBEDIENCE_LEVEL_BADGE6    70
+#define OBEDIENCE_LEVEL_BADGE7    80
+#define OBEDIENCE_LEVEL_BADGE8    90
+#define OBEDIENCE_LEVEL_CHAMPION  100
+
 // Shiny odds
-#define SHINY_ODDS 8 // Actual probability is SHINY_ODDS/65536
+#define SHINY_ODDS 656 // Actual probability is SHINY_ODDS/65536
 
 // Ribbon IDs used by TV and Pokénav
 #define CHAMPION_RIBBON       0

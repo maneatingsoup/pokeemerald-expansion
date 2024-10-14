@@ -1,0 +1,48 @@
+mapscripts ValniHouse1_MapScripts {}
+
+script ValniHouse1Girl {
+    lock
+    faceplayer
+    msgbox("I like the way the wood squeeks when\n"
+    "I walk on it.")
+    setobjectmovementtype(1, MOVEMENT_TYPE_WALK_SEQUENCE_UP_LEFT_DOWN_RIGHT)
+    release
+}
+
+script ValniHouse1Fisherman {
+    lock
+    faceplayer
+    if(flag(FLAG_RECEIVED_GOOD_ROD) == FALSE) {
+        msgbox("You look like you're on an adventure.\n"
+        "Are you traveling through Valni?", MSGBOX_YESNO)
+        if (var(VAR_RESULT) == NO) {
+            msgbox("Ah, I see.\n"
+            "Sorry, I was mistaken.")
+        }
+        else {
+            msgbox("I thought so.\n"
+            "Here, take this.")
+            setflag(FLAG_RECEIVED_GOOD_ROD)
+            setflag(FLAG_TEMP_1)
+            giveitem(ITEM_GOOD_ROD)
+            msgbox("I was planning on giveing that to my\n"
+            "daughter, but she isn't interested in\l"
+            "fishing at all.\p"
+            "I figure you'll put that to good use.")
+        }
+    }
+    else {
+        if(flag(FLAG_TEMP_1) == FALSE) {
+            msgbox("How's that Good Rod treating you?\p"
+            "I bet you've been catching a lot of\n"
+            "rare pokémon with it.")
+        }
+        else {
+            msgbox("That rod will let you catch rarer\n"
+            "pokémon than an Old Rod does.\p"
+            "Take it out to the river and see what\n"
+            "you reel in.")
+        }
+    }
+    release
+}

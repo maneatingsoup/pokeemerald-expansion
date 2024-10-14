@@ -1,0 +1,466 @@
+{
+  "id": "MAP_OSTIA",
+  "name": "Ostia",
+  "layout": "LAYOUT_OSTIA",
+  "music": "MUS_RUSTBORO",
+  "region_map_section": "MAPSEC_RUSTBORO_CITY",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_CITY",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "map": "MAP_ROUTE_103",
+      "offset": 5,
+      "direction": "down"
+    }
+  ],
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_2",
+      "x": 34,
+      "y": 39,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "OstiaFountainBoy",
+      "flag": "FLAG_TEMP_1"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_DEVON_EMPLOYEE",
+      "x": 23,
+      "y": 36,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "OstiaRudeDude",
+      "flag": "FLAG_TEMP_2"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_WOMAN_5",
+      "x": 16,
+      "y": 29,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 1,
+      "movement_range_y": 2,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "OstiaWherePokeballs",
+      "flag": "FLAG_TEMP_1"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SCIENTIST_1",
+      "x": 35,
+      "y": 19,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 2,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "OstiaScientistBuffoon",
+      "flag": "FLAG_TEMP_4"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_TWIN",
+      "x": 16,
+      "y": 15,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "OstiaYoungGirl",
+      "flag": "FLAG_TEMP_1"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_LITTLE_BOY",
+      "x": 17,
+      "y": 15,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "OstiaYoungBoy",
+      "flag": "FLAG_TEMP_1"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_LITTLE_GIRL",
+      "x": 32,
+      "y": 41,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "OstiaYoungFountainGirl",
+      "flag": "FLAG_TEMP_1"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SCIENTIST_1",
+      "x": 24,
+      "y": 20,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "OstiaScientistGreeter",
+      "flag": "FLAG_TEMP_4"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_GENTLEMAN",
+      "x": 31,
+      "y": 44,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 2,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "OstiaGentleman",
+      "flag": "FLAG_TEMP_1"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MAN_4",
+      "x": 8,
+      "y": 6,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "OstiaCountryMan",
+      "flag": "FLAG_TEMP_1"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 40,
+      "y": 12,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 1,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "ITEM_CHILAN_BERRY",
+      "script": "Common_EventScript_FindItem",
+      "flag": "FLAG_OSTIA_ITEM"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SCIENTIST_1",
+      "x": 26,
+      "y": 43,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "FLAG_TEMP_3"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_CAMERAMAN",
+      "x": 33,
+      "y": 21,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "WeAreFilming",
+      "flag": "FLAG_TEMP_5"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_REPORTER_F",
+      "x": 36,
+      "y": 21,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "ReporterOstia",
+      "flag": "FLAG_TEMP_5"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
+      "x": 30,
+      "y": 15,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "OstiaResearchInstituteClosed",
+      "flag": "FLAG_TEMP_5"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MAN_2",
+      "x": 31,
+      "y": 15,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "OstiaResearchInstituteClosed2",
+      "flag": "FLAG_TEMP_5"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SCIENTIST_1",
+      "x": 36,
+      "y": 20,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NervousScientist",
+      "flag": "FLAG_TEMP_5"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 26,
+      "y": 43,
+      "elevation": 0,
+      "dest_map": "MAP_OSTIA_GYM",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 25,
+      "y": 32,
+      "elevation": 0,
+      "dest_map": "MAP_OSTIA_STORE",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 33,
+      "y": 32,
+      "elevation": 0,
+      "dest_map": "MAP_OSTIA_INN",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 17,
+      "y": 43,
+      "elevation": 0,
+      "dest_map": "MAP_OSTIA_HOUSE5FLOOR1",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 10,
+      "y": 43,
+      "elevation": 0,
+      "dest_map": "MAP_OSTIA_HOUSE6FLOOR1",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 17,
+      "y": 24,
+      "elevation": 0,
+      "dest_map": "MAP_OSTIA_HOUSE3",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 12,
+      "y": 24,
+      "elevation": 0,
+      "dest_map": "MAP_OSTIA_HOUSE4",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 16,
+      "y": 11,
+      "elevation": 0,
+      "dest_map": "MAP_OSTIA_HOUSE2",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 10,
+      "y": 11,
+      "elevation": 0,
+      "dest_map": "MAP_OSTIA_HOUSE1",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 30,
+      "y": 14,
+      "elevation": 0,
+      "dest_map": "MAP_OSTIA_RESEARCH_INSTITUTE_FLOOR1",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 31,
+      "y": 14,
+      "elevation": 0,
+      "dest_map": "MAP_OSTIA_RESEARCH_INSTITUTE_FLOOR1",
+      "dest_warp_id": "1"
+    }
+  ],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 26,
+      "y": 44,
+      "elevation": 0,
+      "var": "VAR_TEMP_F",
+      "var_value": "0",
+      "script": "ResetOstiaGymTrainers"
+    },
+    {
+      "type": "trigger",
+      "x": 25,
+      "y": 44,
+      "elevation": 0,
+      "var": "VAR_TEAM_HELIX_ENCOUNTER_SEQUENCE",
+      "var_value": "1",
+      "script": "OstiaScientistHelp"
+    },
+    {
+      "type": "trigger",
+      "x": 26,
+      "y": 45,
+      "elevation": 0,
+      "var": "VAR_TEAM_HELIX_ENCOUNTER_SEQUENCE",
+      "var_value": "1",
+      "script": "OstiaScientistHelp"
+    },
+    {
+      "type": "trigger",
+      "x": 27,
+      "y": 44,
+      "elevation": 0,
+      "var": "VAR_TEAM_HELIX_ENCOUNTER_SEQUENCE",
+      "var_value": "1",
+      "script": "OstiaScientistHelp"
+    },
+    {
+      "type": "trigger",
+      "x": 34,
+      "y": 21,
+      "elevation": 0,
+      "var": "VAR_TEAM_HELIX_ENCOUNTER_SEQUENCE",
+      "var_value": "0",
+      "script": "GetOutOfTheShot"
+    },
+    {
+      "type": "trigger",
+      "x": 35,
+      "y": 21,
+      "elevation": 0,
+      "var": "VAR_TEAM_HELIX_ENCOUNTER_SEQUENCE",
+      "var_value": "0",
+      "script": "GetOutOfTheShot"
+    },
+    {
+      "type": "trigger",
+      "x": 35,
+      "y": 20,
+      "elevation": 0,
+      "var": "VAR_TEAM_HELIX_ENCOUNTER_SEQUENCE",
+      "var_value": "0",
+      "script": "GetOutOfTheShot"
+    },
+    {
+      "type": "trigger",
+      "x": 34,
+      "y": 21,
+      "elevation": 0,
+      "var": "VAR_TEAM_HELIX_ENCOUNTER_SEQUENCE",
+      "var_value": "1",
+      "script": "GetOutOfTheShot"
+    },
+    {
+      "type": "trigger",
+      "x": 35,
+      "y": 21,
+      "elevation": 0,
+      "var": "VAR_TEAM_HELIX_ENCOUNTER_SEQUENCE",
+      "var_value": "1",
+      "script": "GetOutOfTheShot"
+    },
+    {
+      "type": "trigger",
+      "x": 35,
+      "y": 20,
+      "elevation": 0,
+      "var": "VAR_TEAM_HELIX_ENCOUNTER_SEQUENCE",
+      "var_value": "1",
+      "script": "GetOutOfTheShot"
+    }
+  ],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 22,
+      "y": 2,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "OstiaCitySignPost"
+    },
+    {
+      "type": "sign",
+      "x": 23,
+      "y": 20,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "OstiaResearchSign"
+    },
+    {
+      "type": "sign",
+      "x": 22,
+      "y": 32,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "OstiaCityStoreSign"
+    },
+    {
+      "type": "sign",
+      "x": 29,
+      "y": 32,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "OstiaCityInnSign"
+    },
+    {
+      "type": "sign",
+      "x": 22,
+      "y": 43,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "OstiaCityGymSign"
+    },
+    {
+      "type": "sign",
+      "x": 22,
+      "y": 50,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "OstiaCitySignPost"
+    }
+  ]
+}

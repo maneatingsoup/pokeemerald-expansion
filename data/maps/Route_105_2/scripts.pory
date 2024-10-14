@@ -1,0 +1,140 @@
+mapscripts Route_105_2_MapScripts {
+    MAP_SCRIPT_ON_LOAD: Route_105_2OnLoad
+    MAP_SCRIPT_ON_TRANSITION: SetUpMapWeather
+}
+
+script Route_105_2OnLoad {
+    compare_var_to_value(VAR_CURRENT_RANDOM_WEATHER_VALUE, 15)
+    call_if_ge(Route_105_2RemovePuddles)
+}
+
+script Route_105_2RemovePuddles {
+    setmetatile(13, 15, METATILE_General_Grass, FALSE)
+    setmetatile(14, 15, METATILE_General_Grass, FALSE)
+    setmetatile(13, 16, METATILE_General_Grass, FALSE)
+    setmetatile(14, 16, METATILE_General_Grass, FALSE)
+    setmetatile(31, 17, METATILE_General_Grass, FALSE)
+    setmetatile(32, 17, METATILE_General_Grass, FALSE)
+    setmetatile(31, 18, METATILE_General_Grass, FALSE)
+    setmetatile(32, 18, METATILE_General_Grass, FALSE)
+}
+
+script AromaLadyLauren {
+    trainerbattle_single(TRAINER_AROMA_LADY_LAUREN, AromaLadyLaurenIntro, AromaLadyLaurenLose)
+    msgbox("I caught my pokémon over in the Valni\n"
+    "Forest.\p"
+    "There are a lot more Grass-type pokémon\n"
+    "on the other side of the river.\p"
+    "So I've been thinking about moving back\n"
+    "to Valni.", MSGBOX_AUTOCLOSE)
+}
+
+script RunnerRachel {
+    trainerbattle_single(TRAINER_RUNNER_RACHEL, RunnerRachelIntro, RunnerRachelLose)
+    msgbox("You look like you get a lot of\n"
+    "exercise.\p"
+    "You must travel a lot.", MSGBOX_AUTOCLOSE)
+}
+
+script BirdKeeperRichard {
+    trainerbattle_single(TRAINER_BIRD_KEEPER_RICHARD, BirdKeeperRichardIntro, BirdKeeperRichardLose)
+    msgbox("Aviana is a lot tougher than I am.\p"
+    "If you plan on challenging the gym in\n"
+    "Port Neleras, you'll find out.", MSGBOX_AUTOCLOSE)
+}
+
+script LadyNicole {
+    trainerbattle_single(TRAINER_LADY_NICOLE, LadyNicoleIntro, LadyNicoleLose)
+    msgbox("That was supposed to be my battle.\n"
+    "Why did you have to win?", MSGBOX_AUTOCLOSE)
+}
+
+script RichBoyPatrick {
+    trainerbattle_double(TRAINER_RICH_BOY_PATRICK, RichBoyPatrickIntro, RichBoyPatrickLose, Dummy)
+    msgbox("Having money is more important than\n"
+    "having friends.\p"
+    "...\p"
+    "You can buy good friends, right?", MSGBOX_AUTOCLOSE)
+}
+
+script GentlemanCharles {
+    trainerbattle_single(TRAINER_GENTLEMAN_CHARLES, GentlemanCharlesIntro, GentlemanCharlesLose)
+    msgbox("Thank you for indulging me.\p"
+    "I haven't had a good battle in some\n"
+    "time.", MSGBOX_AUTOCLOSE)
+}
+
+script PkmnBreederAlexis {
+    trainerbattle_single(TRAINER_PKMN_BREEDER_ALEXIS, PkmnBreederAlexisIntro, PkmnBreederAlexisLose)
+    msgbox("Well, I may not be great at battling\n"
+    "but that's okay.\p"
+    "I love my pokémon, and I'm going to show\n"
+    "that to them while I raise them.", MSGBOX_AUTOCLOSE)
+}
+
+text AromaLadyLaurenIntro {
+    "Congratulations on making it through\n"
+    "the Rugged Pass.\p"
+    "Let's celebrate with a battle!"
+}
+
+text AromaLadyLaurenLose {
+    "I'm sure you're celebrating now..."
+}
+
+text RunnerRachelIntro {
+    "Exercising on the mountainside is a\n"
+    "great workout!"
+}
+
+text RunnerRachelLose {
+    "Ack, okay."
+}
+
+text BirdKeeperRichardIntro {
+    "My birds will fly circles around you!"
+}
+
+text BirdKeeperRichardLose {
+    "Urk, you beat me."
+}
+
+text LadyNicoleIntro {
+    "Oh my, a youth to play the foe in my\n"
+    "battle."
+}
+
+text LadyNicoleLose {
+    "You weren't supposed to win.\n"
+    "How rude!"
+}
+
+text RichBoyPatrickIntro {
+    "What am I supposed to do with all of\n"
+    "this money?"
+}
+
+text RichBoyPatrickLose {
+    "Oh well, at least I'm still rich."
+}
+
+text GentlemanCharlesIntro {
+    "Hello there, young one.\p"
+    "Can I interest you in a pokémon battle?"
+}
+
+text GentlemanCharlesLose {
+    "Haha, oh my.\n"
+    "Wasn't that exciting!"
+}
+
+text PkmnBreederAlexisIntro {
+    "I've been breeding a whole bunch of\n"
+    "different pokémon.\p"
+    "Take a look!"
+}
+
+text PkmnBreederAlexisLose {
+    "Aw, I thought having six pokémon would\n"
+    "help me win battles."
+}

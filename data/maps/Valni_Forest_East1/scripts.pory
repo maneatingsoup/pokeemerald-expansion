@@ -1,0 +1,75 @@
+mapscripts Valni_Forest_East1_MapScripts {
+    MAP_SCRIPT_ON_LOAD: AldusForestEastOnLoad
+    MAP_SCRIPT_ON_TRANSITION: SetUpMapWeather
+}
+
+script AldusForestEastOnLoad {
+    compare_var_to_value(VAR_CURRENT_RANDOM_WEATHER_VALUE, 35)
+    call_if_ge(AldusForestEastRemovePuddles)
+}
+
+script AldusForestEastRemovePuddles {
+    setmetatile(13, 2, METATILE_General_Grass, FALSE)
+    setmetatile(14, 2, METATILE_General_Grass, FALSE)
+    setmetatile(13, 3, METATILE_General_Grass, FALSE)
+    setmetatile(14, 3, METATILE_General_Grass, FALSE)
+    setmetatile(22, 5, METATILE_General_Grass, FALSE)
+    setmetatile(23, 5, METATILE_General_Grass, FALSE)
+    setmetatile(22, 6, METATILE_General_Grass, FALSE)
+    setmetatile(23, 6, METATILE_General_Grass, FALSE)
+    setmetatile(24, 21, METATILE_General_Grass, FALSE)
+    setmetatile(25, 21, METATILE_General_Grass, FALSE)
+    setmetatile(24, 22, METATILE_General_Grass, FALSE)
+    setmetatile(25, 22, METATILE_General_Grass, FALSE)
+}
+
+script PkmnRangerLily {
+    trainerbattle_single(TRAINER_PKMN_RANGER_LILY, PkmnRangerLilyIntro, PkmnRangerLilyLose)
+    msgbox("The Forest has been here long before\n"
+    "people ever were.\p"
+    "It's a vital part of the ecosystem\n"
+    "here in the rainy region.", MSGBOX_AUTOCLOSE)
+}
+
+script BugManiacCaden {
+    trainerbattle_single(TRAINER_BUG_MANIAC_CADEN, BugManiacCadenIntro, BugManiacCadenLose)
+    msgbox("I'll beat the next guy who wanders\n"
+    "through here, and they'll see just\l"
+    "how strong my bug pokémon are!", MSGBOX_AUTOCLOSE)
+}
+
+script BirdKeeperLucas {
+    trainerbattle_single(TRAINER_BIRD_KEEPER_LUCAS, BirdKeeperLucasIntro, BirdKeeperLucasLose, Dummy)
+    msgbox("I'm here looking for a Trumbeak,\n"
+    "but I haven't seen one yet.", MSGBOX_AUTOCLOSE)
+}
+
+text PkmnRangerLilyIntro {
+    "The Vlani Forest is such a beautiful\n"
+    "place, don't you think?"
+}
+
+text PkmnRangerLilyLose {
+    "Aw, you beat me."
+}
+
+text BugManiacCadenIntro {
+    "My bug pokémon are too strong to\n"
+    "lose to you!"
+}
+
+text BugManiacCadenLose {
+    "Ack! Maybe they aren't so strong\n"
+    "after all."
+}
+
+text BirdKeeperLucasIntro {
+    "The thick trees in this forest\n"
+    "provide a perfect vantage point\l"
+    "for my bird pokémon."
+}
+
+text BirdKeeperLucasLose {
+    "Looks like it wasn't good enough\n"
+    "for them to claim victory."
+}

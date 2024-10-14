@@ -1,0 +1,209 @@
+mapscripts OstiaResearchInstituteFloorB1_MapScripts {}
+
+script OstiaResearchMachine {
+    lock
+    msgbox("It's a strange machine with an old fossil\n"
+    "sitting inside a glass chamber.")
+    release
+}
+
+script OstiaResearchLabScientist1 {
+    lock
+    faceplayer
+    msgbox("I'm still learning how to type. When I\n"
+    "started working here, we did all of our\l"
+    "documentation in notebooks.")
+    release
+}
+
+script OstiaResearchLabScientist2 {
+    lock
+    faceplayer
+    goto_if_set(FLAG_SHELLOS_GIVE, ShellosReceived)
+    msgbox("You're a pokémon trainer right?\n"
+    "Do you have a Shellos?", MSGBOX_YESNO)
+    if(var(VAR_RESULT) == NO) {
+        msgbox("I see. If you catch a Shellos, please\n"
+        "bring it to me.")
+        release
+        end
+    }
+    msgbox("I need a sample of the mucous that\n"
+        "coats a Shellos for my research.\p"
+        "Would you let me take a sample from your\n"
+        "Shellos?", MSGBOX_YESNO)
+    if(var(VAR_RESULT) == NO) {
+        msgbox(ShellosDeclined)
+        release
+        end
+    }
+    msgbox("Oh, thank you so much!\p"
+    "Please show me your Shellos.")
+    special(ChoosePartyMon)
+    waitstate
+    if(var(VAR_0x8004) == PARTY_NOTHING_CHOSEN) {
+        msgbox(ShellosDeclined)
+        release
+        end
+    }
+    specialvar(VAR_RESULT, ScriptGetPartyMonSpecies)
+    if(var(VAR_RESULT) == SPECIES_SHELLOS) {
+        msgbox("Wow, you caught an ancient Shellos?!\p"
+        "That's incredible! but I need a sample\n"
+        "from a modern day Shellos.")
+        release
+        end
+
+    }
+    elif(var(VAR_RESULT) != SPECIES_SHELLOS_EAST_SEA) {
+        msgbox("Wait, that isn't a Shellos!\n"
+        "I need a sample from a Shellos.")
+        release
+        end
+    }
+    msgbox("Okay, this will only take a second.")
+    fadescreen(FADE_TO_BLACK)
+    delay(60)
+    fadescreen(FADE_FROM_BLACK)
+    msgbox("Wonderful! This sample will greatly help\n"
+    "my research.\p"
+    "As a thank you, why don't you take this\n"
+    "Shellos with you?\p"
+    "It's not like the one you just showed me.\n"
+    "This Shellos is from ancient times.\p"
+    "I won't tell you how we obtained it, but\n"
+    "I think it's time that it gets to meet\l"
+    "a pokémon trainer.")
+    givemon(SPECIES_SHELLOS, 12)
+    if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY) {
+        playfanfare(MUS_OBTAIN_ITEM)
+        bufferspeciesname(STR_VAR_1, SPECIES_SHELLOS)
+        msgbox("{PLAYER} received Shellos!")
+        waitfanfare
+        setflag(FLAG_SHELLOS_GIVE)
+        call(NicknamePartyMon)
+    }
+    elif(var(VAR_RESULT) == MON_GIVEN_TO_PC) {
+        playfanfare(MUS_OBTAIN_ITEM)
+        bufferspeciesname(STR_VAR_1, SPECIES_SHELLOS)
+        msgbox("{PLAYER} received Shellos!")
+        waitfanfare
+        setflag(FLAG_SHELLOS_GIVE)
+        call(NicknameBoxMon)
+    }
+    else {
+        msgbox("Oh, it seems that you don't have room\n"
+        "in your PC for Shellos. That's too bad.")
+        release
+        end
+    }
+    msgbox("That Shellos really is special. It might\n"
+    "be the only of its kind around today.")
+    release
+}
+
+script ShellosReceived {
+    msgbox("Thanks for letting me take a sample from\n"
+    "your Shellos.\p"
+    "With it, we'll learn a lot about how these\n"
+    "these pokémon changed over time.")
+    release
+    end
+}
+
+script OstiaResearchLabScientist3 {
+    lock
+    faceplayer
+    msgbox("Our first revival experiment was a\n"
+    "success.\p"
+    "With the DNA we extracted, we were able\n"
+    "to create an ancient pokémon in the\l"
+    "modern day.")
+    release
+}
+
+script OstiaResearchLabScientist4 {
+    lock
+    faceplayer
+    msgbox("The temporal transporter is still under\n"
+    "construction.\p"
+    "One day, we'll be able to send people into\n"
+    "the past.\p"
+    "Then, we'll be able to observe ancient\n"
+    "pokémon in their natural habitat.")
+    release
+}
+
+script OstiaResearchAccessDenied {
+    lock
+    applymovement(4, FaceLeft)
+    waitmovement(0)
+    specialvar(VAR_RESULT, GetPlayerFacingDirection)
+    msgbox("The temporal transporter is currently\n"
+    "under construction.\p"
+    "Please step away from the machine.", MSGBOX_AUTOCLOSE)
+    if(var(VAR_RESULT) == DIR_EAST) {
+        applymovement(OBJ_EVENT_ID_PLAYER, WalkLeft)
+    }
+    else {
+        applymovement(OBJ_EVENT_ID_PLAYER, WalkDown)
+    }
+    waitmovement(0)
+    applymovement(4, FaceDown)
+    waitmovement(0)
+    release
+}
+
+script OstiaResearchBlueprintsReturned {
+    lock
+    if(flag(FLAG_OSTIA_SCIENTIST)) {
+        call(OstiaResearchBlueprintsReturnedAlternate)
+    }
+    else {
+        if(var(VAR_TEAM_HELIX_ENCOUNTER_SEQUENCE) >= 2) {
+            setflag(FLAG_OSTIA_SCIENTIST)
+            msgbox("Hmm, but what about the issue of time\n"
+            "dilation...", MSGBOX_AUTOCLOSE)
+            delay(15)
+            playse(SE_PIN)
+            applymovement(5, Exclamation)
+            delay(60)
+            faceplayer
+            msgbox("Ah, you made it.\p"
+            "Thanks again for returning those\n"
+            "blueprints.\p"
+            "We're working on creating a new temporal\n"
+            "translocator.\p"
+            "We were almost done with the temporal\n"
+            "transporter when the part was stolen.\p"
+            "Now, we're on track to finishing it in\n"
+            "the near future.\p"
+            "So, take this a thank you from everyone\n"
+            "here at the institute.")
+            giveitem(ITEM_ABILITY_CAPSULE, 1)
+            msgbox("That item will let you change the\n"
+            "ability of one of your pokémon.\p"
+            "It's a small token when you compare it\n"
+            "to the temporal translocator, but I\l"
+            "hope you find it useful.", MSGBOX_AUTOCLOSE)
+        }
+        else {
+            call(OstiaResearchBlueprintsReturnedAlternate)
+        }
+    }
+    release
+}
+
+script OstiaResearchBlueprintsReturnedAlternate {
+    faceplayer
+    msgbox("I must admit, I can hardly wait to see\n"
+    "the ancient world with my own eyes.\p"
+    "But I've much work to do before then.\p"
+    "Please excuse me, but I must return\n"
+    "to my work.", MSGBOX_AUTOCLOSE)
+    turnobject(5, DIR_NORTH)
+}
+
+text ShellosDeclined {
+    "But I need a sample for my research..."
+}

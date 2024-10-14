@@ -1161,18 +1161,6 @@ static const struct SpriteFrameImage sPicTable_UnionRoomAttendant[] = {
     overworld_frame(gObjectEventPic_UnionRoomAttendant, 2, 4, 2),
 };
 
-static const struct SpriteFrameImage sPicTable_Sudowoodo[] = {
-    overworld_frame(gObjectEventPic_Sudowoodo, 2, 4, 0),
-    overworld_frame(gObjectEventPic_Sudowoodo, 2, 4, 0),
-    overworld_frame(gObjectEventPic_Sudowoodo, 2, 4, 1),
-    overworld_frame(gObjectEventPic_Sudowoodo, 2, 4, 0),
-    overworld_frame(gObjectEventPic_Sudowoodo, 2, 4, 0),
-    overworld_frame(gObjectEventPic_Sudowoodo, 2, 4, 0),
-    overworld_frame(gObjectEventPic_Sudowoodo, 2, 4, 0),
-    overworld_frame(gObjectEventPic_Sudowoodo, 2, 4, 1),
-    overworld_frame(gObjectEventPic_Sudowoodo, 2, 4, 2),
-};
-
 static const struct SpriteFrameImage sPicTable_Mew[] = {
     overworld_ascending_frames(gObjectEventPic_Mew, 2, 4),
 };
@@ -1197,9 +1185,9 @@ static const struct SpriteFrameImage sPicTable_Deoxys[] = {
     overworld_frame(gObjectEventPic_Deoxys, 4, 4, 0),
 };
 
-static const struct SpriteFrameImage sPicTable_BirthIslandStone[] = {
-    obj_frame_tiles(gObjectEventPic_BirthIslandStone),
-};
+// static const struct SpriteFrameImage sPicTable_BirthIslandStone[] = {
+//     obj_frame_tiles(gObjectEventPic_BirthIslandStone),
+// };
 
 static const struct SpriteFrameImage sPicTable_Anabel[] = {
     overworld_ascending_frames(gObjectEventPic_Anabel, 2, 4),
@@ -1259,4 +1247,16 @@ static const struct SpriteFrameImage sPicTable_RubySapphireBrendan[] = {
 
 static const struct SpriteFrameImage sPicTable_RubySapphireMay[] = {
     overworld_ascending_frames(gObjectEventPic_RubySapphireMayNormal, 2, 4),
+};
+
+static const struct SpriteFrameImage sPicTable_HelixMemberM[] = {
+    overworld_ascending_frames(gObjectEventPic_HelixMemberM, 2, 4),
+};
+
+static const struct SpriteFrameImage sPicTable_HelixMemberF[] = {
+    overworld_ascending_frames(gObjectEventPic_HelixMemberF, 2, 4),
+};
+
+static const struct SpriteFrameImage sPicTable_Aviana[] = {
+    overworld_ascending_frames(gObjectEventPic_Aviana, 2, 4),
 };

@@ -796,3 +796,28 @@ u8 *StringCopyUppercase(u8 *dest, const u8 *src)
     *dest = EOS;
     return dest;
 }
+
+const u8 *GetTimeOfDayString(void)
+{
+    u16 hours = gSaveBlock1Ptr->vars[VAR_LAST_CHECKED_PLAYTIME_HOURS - VARS_START];
+    const u8 *timeOfDay;
+
+    if (hours % 3 == 0) 
+    {
+        timeOfDay = gText_ContinueMenuTimeNight;
+    }
+    else 
+    {
+        hours += 1;
+        if (hours % 3 == 0) 
+        {
+            timeOfDay = gText_ContinueMenuTimeAfternoon;
+        }
+        else 
+        {
+            timeOfDay = gText_ContinueMenuTimeMorning;
+        }
+    }
+
+    return timeOfDay;
+}

@@ -1,0 +1,166 @@
+{
+  "id": "MAP_ALDUS",
+  "name": "Aldus",
+  "layout": "LAYOUT_ALDUS",
+  "music": "MUS_OLDALE",
+  "region_map_section": "MAPSEC_OLDALE_TOWN",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_TOWN",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "map": "MAP_ROUTE_101",
+      "offset": -2,
+      "direction": "down"
+    },
+    {
+      "map": "MAP_ROUTE_102",
+      "offset": 5,
+      "direction": "up"
+    },
+    {
+      "map": "MAP_ROUTE_104_1",
+      "offset": -3,
+      "direction": "right"
+    }
+  ],
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_VAR_0",
+      "x": 16,
+      "y": 14,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "RivalAldus",
+      "flag": "FLAG_RIVAL_BATTLE_1"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 8,
+      "y": 11,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 1,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "ITEM_MOOMOO_MILK",
+      "script": "Common_EventScript_FindItem",
+      "flag": "FLAG_ALDUS_ITEM"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_EXPERT_M",
+      "x": 16,
+      "y": 7,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 2,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "AldusGeezer",
+      "flag": "FLAG_TEMP_1"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 16,
+      "y": 14,
+      "elevation": 0,
+      "dest_map": "MAP_ALDUS_INN_1F",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 25,
+      "y": 8,
+      "elevation": 0,
+      "dest_map": "MAP_ALDUS_FISHERMAN_HOUSE",
+      "dest_warp_id": "0"
+    }
+  ],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 16,
+      "y": 15,
+      "elevation": 0,
+      "var": "VAR_SERAFEW_STATE",
+      "var_value": "4",
+      "script": "MeetRivalB"
+    },
+    {
+      "type": "trigger",
+      "x": 20,
+      "y": 14,
+      "elevation": 0,
+      "var": "VAR_SERAFEW_STATE",
+      "var_value": "6",
+      "script": "YouNeedToBattleMe"
+    },
+    {
+      "type": "trigger",
+      "x": 20,
+      "y": 14,
+      "elevation": 0,
+      "var": "VAR_SERAFEW_STATE",
+      "var_value": "5",
+      "script": "YouNeedTwoPokemon"
+    },
+    {
+      "type": "trigger",
+      "x": 22,
+      "y": 14,
+      "elevation": 0,
+      "var": "VAR_SERAFEW_STATE",
+      "var_value": "5",
+      "script": "YouNeedTwoPokemon"
+    },
+    {
+      "type": "trigger",
+      "x": 22,
+      "y": 14,
+      "elevation": 0,
+      "var": "VAR_SERAFEW_STATE",
+      "var_value": "6",
+      "script": "YouNeedToBattleMe"
+    },
+    {
+      "type": "trigger",
+      "x": 22,
+      "y": 15,
+      "elevation": 0,
+      "var": "VAR_SERAFEW_STATE",
+      "var_value": "4",
+      "script": "MeetRivalA"
+    },
+    {
+      "type": "trigger",
+      "x": 21,
+      "y": 15,
+      "elevation": 0,
+      "var": "VAR_SERAFEW_STATE",
+      "var_value": "4",
+      "script": "MeetRivalA"
+    },
+    {
+      "type": "trigger",
+      "x": 20,
+      "y": 15,
+      "elevation": 0,
+      "var": "VAR_SERAFEW_STATE",
+      "var_value": "4",
+      "script": "MeetRivalA"
+    }
+  ],
+  "bg_events": [
+
+  ]
+}

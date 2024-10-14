@@ -156,7 +156,7 @@ const u8 gTowerMaleFacilityClasses[30] =
 {
     FACILITY_CLASS_RUIN_MANIAC,
     FACILITY_CLASS_TUBER_M,
-    FACILITY_CLASS_COOLTRAINER_M,
+    FACILITY_CLASS_ACE_TRAINER_M,
     FACILITY_CLASS_RICH_BOY,
     FACILITY_CLASS_POKEMANIAC,
     FACILITY_CLASS_SWIMMER_M,
@@ -190,7 +190,7 @@ const u8 gTowerFemaleFacilityClasses[20] =
 {
     FACILITY_CLASS_AROMA_LADY,
     FACILITY_CLASS_TUBER_F,
-    FACILITY_CLASS_COOLTRAINER_F,
+    FACILITY_CLASS_ACE_TRAINER_F,
     FACILITY_CLASS_HEX_MANIAC,
     FACILITY_CLASS_LADY,
     FACILITY_CLASS_BEAUTY,
@@ -279,8 +279,8 @@ static const u8 sRubyFacilityClassToEmerald[RS_FACILITY_CLASSES_COUNT - 2][2] =
     {RS_FACILITY_CLASS_INTERVIEWER, FACILITY_CLASS_INTERVIEWER},
     {RS_FACILITY_CLASS_TUBER_F, FACILITY_CLASS_TUBER_F},
     {RS_FACILITY_CLASS_TUBER_M, FACILITY_CLASS_TUBER_M},
-    {RS_FACILITY_CLASS_COOLTRAINER_M, FACILITY_CLASS_COOLTRAINER_M},
-    {RS_FACILITY_CLASS_COOLTRAINER_F, FACILITY_CLASS_COOLTRAINER_F},
+    {RS_FACILITY_CLASS_ACE_TRAINER_M, FACILITY_CLASS_ACE_TRAINER_M},
+    {RS_FACILITY_CLASS_ACE_TRAINER_F, FACILITY_CLASS_ACE_TRAINER_F},
     {RS_FACILITY_CLASS_HEX_MANIAC, FACILITY_CLASS_HEX_MANIAC},
     {RS_FACILITY_CLASS_LADY, FACILITY_CLASS_LADY},
     {RS_FACILITY_CLASS_BEAUTY, FACILITY_CLASS_BEAUTY},
@@ -610,14 +610,14 @@ static const u8 *const sPartnerTextsRuinManiac[] =
     PARTNER_TEXTS(RuinManiac)
 };
 
-static const u8 *const sPartnerTextsCoolTrainerM[] =
+static const u8 *const sPartnerTextsACE_TRAINERM[] =
 {
-    PARTNER_TEXTS(CoolTrainerM)
+    PARTNER_TEXTS(ACE_TRAINERM)
 };
 
-static const u8 *const sPartnerTextsCoolTrainerF[] =
+static const u8 *const sPartnerTextsACE_TRAINERF[] =
 {
-    PARTNER_TEXTS(CoolTrainerF)
+    PARTNER_TEXTS(ACE_TRAINERF)
 };
 
 static const u8 *const sPartnerTextsPokemaniac[] =
@@ -726,8 +726,8 @@ struct
     {FACILITY_CLASS_PKMN_RANGER_F,         sPartnerTextsPkmnRangerF},
     {FACILITY_CLASS_AROMA_LADY,            sPartnerTextsAromaLady},
     {FACILITY_CLASS_RUIN_MANIAC,           sPartnerTextsRuinManiac},
-    {FACILITY_CLASS_COOLTRAINER_M,         sPartnerTextsCoolTrainerM},
-    {FACILITY_CLASS_COOLTRAINER_F,         sPartnerTextsCoolTrainerF},
+    {FACILITY_CLASS_ACE_TRAINER_M,         sPartnerTextsACE_TRAINERM},
+    {FACILITY_CLASS_ACE_TRAINER_F,         sPartnerTextsACE_TRAINERF},
     {FACILITY_CLASS_POKEMANIAC,            sPartnerTextsPokemaniac},
     {FACILITY_CLASS_KINDLER,               sPartnerTextsKindler},
     {FACILITY_CLASS_CAMPER,                sPartnerTextsCamper},
@@ -2711,7 +2711,7 @@ static void SetTowerInterviewData(void)
     GetBattleTowerTrainerLanguage(&gSaveBlock2Ptr->frontier.towerInterview.opponentLanguage, gTrainerBattleOpponent_A);
     gSaveBlock2Ptr->frontier.towerInterview.opponentSpecies = GetMonData(&gEnemyParty[gBattlerPartyIndexes[1]], MON_DATA_SPECIES, NULL);
     gSaveBlock2Ptr->frontier.towerInterview.playerSpecies = GetMonData(&gPlayerParty[gBattlerPartyIndexes[0]], MON_DATA_SPECIES, NULL);
-    for (i = 0; i < POKEMON_NAME_LENGTH + 1; i++)
+    for (i = 0; i < VANILLA_POKEMON_NAME_LENGTH + 1; i++)
         gSaveBlock2Ptr->frontier.towerInterview.opponentMonNickname[i] = gBattleMons[0].nickname[i];
     gSaveBlock2Ptr->frontier.towerBattleOutcome = gBattleOutcome;
 }

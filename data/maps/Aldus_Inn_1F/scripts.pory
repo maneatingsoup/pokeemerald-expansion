@@ -1,0 +1,51 @@
+mapscripts Aldus_Inn_1F_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION: SetUpAldusInn
+}
+
+script SetUpAldusInn {
+    setflag(FLAG_TEMP_1)
+    if(var(VAR_CURRENT_RANDOM_WEATHER_VALUE) >= 35) {
+        setflag(FLAG_TEMP_2)
+    }
+}
+
+script AldusInnKeeper {
+    lock
+    faceplayer
+    if(var(VAR_TEMP_5) == 0){
+    msgbox("Welcome, dear.\p"
+    "It's nice to see someone so young\n"
+    "stop by.\p"
+    "Why don't you rest up here for the day?", MSGBOX_YESNO)
+    }
+    elif(var(VAR_TEMP_5) == 1){
+        msgbox("Want to stay another night dear?\n"
+        "Don't be shy.", MSGBOX_YESNO)
+    }
+    elif(var(VAR_TEMP_5) ==2) {
+        msgbox("Oh, did you decide to change you mind?", MSGBOX_YESNO)
+    }
+    if(var(VAR_RESULT) == YES){
+        setvar(VAR_TEMP_5, 1)
+        setrespawn(HEAL_LOCATION_ALDUS)
+        msgbox("That's right dear.\p"
+        "Wouldn't want you to push yourself too\n"
+        "hard now, would we?")
+        call(Common_EventScript_OutOfCenterPartyHeal)
+        msgbox("Don't be a stranger.\p"
+        "Come back any time you need to rest up.")
+    }
+    else{
+        setvar(VAR_TEMP_5, 2)
+        msgbox("If you're sure. But don't forget we're\n"
+        "here if you decide you need to rest.")
+    }
+    if(!flag(FLAG_INN_PC_INFO)){
+        setflag(FLAG_INN_PC_INFO)
+        msgbox("Oh, by the way, dear, there is one of\n"
+        "those PC machines upstairs.\p" 
+        "You can use it to switch which of your\n"
+        "pokémon you bring on your journey.")
+    }
+    release
+}

@@ -1,0 +1,22 @@
+mapscripts Valni_Forest_East2_MapScripts {
+    MAP_SCRIPT_ON_LOAD: AldusForestEast2OnLoad
+    MAP_SCRIPT_ON_TRANSITION: SetUpMapWeather
+}
+
+script AldusForestEast2OnLoad {
+    compare_var_to_value(VAR_CURRENT_RANDOM_WEATHER_VALUE, 35)
+    call_if_ge(AldusForestEast2RemovePuddles)
+}
+
+script AldusForestEast2RemovePuddles {
+    setmetatile(17, 12, METATILE_General_Grass, FALSE)
+    setmetatile(18, 12, METATILE_General_Grass, FALSE)
+    setmetatile(17, 13, METATILE_General_Grass, FALSE)
+    setmetatile(18, 13, METATILE_General_Grass, FALSE)
+    setmetatile(31, 4, METATILE_General_Grass, FALSE)
+    setmetatile(32, 4, METATILE_General_Grass, FALSE)
+    setmetatile(33, 4, METATILE_General_Grass, FALSE)
+    setmetatile(31, 5, METATILE_General_Grass, FALSE)
+    setmetatile(32, 5, METATILE_General_Grass, FALSE)
+    setmetatile(33, 5, METATILE_General_Grass, FALSE)
+}

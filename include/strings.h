@@ -266,6 +266,7 @@ extern const u8 gText_Floor7[];
 extern const u8 gText_Peak[];
 extern const u8 gText_SafariBallStock[];
 extern const u8 gText_BattlePyramidFloor[];
+extern const u8 gText_WeatherMenu[];
 
 extern const u8 gText_MenuOptionPokedex[];
 extern const u8 gText_MenuOptionPokemon[];
@@ -274,6 +275,16 @@ extern const u8 gText_MenuOptionPokenav[];
 extern const u8 gText_MenuOptionSave[];
 extern const u8 gText_MenuOptionOption[];
 extern const u8 gText_MenuOptionExit[];
+
+// menu weather texts
+extern const u8 gText_WeatherMenuSunny[];
+extern const u8 gText_WeatherMenuOvercast[];
+extern const u8 gText_WeatherMenuNight[];
+extern const u8 gText_WeatherMenuRain[];
+extern const u8 gText_WeatherMenuThunderstorm[];
+extern const u8 gText_WeatherMenuHarshSunlight[];
+extern const u8 gText_WeatherMenuSandstorm[];
+extern const u8 gText_WeatherMenuHail[];
 
 // save menu texts
 extern const u8 gText_ConfirmSave[];
@@ -348,50 +359,15 @@ extern const u8 gText_Birch_YourePlayer[];
 extern const u8 gText_Birch_AreYouReady[];
 extern const u8 gText_ContinueMenuPlayer[];
 extern const u8 gText_ContinueMenuTime[];
+extern const u8 gText_ContinueMenuTimeMorning[];
+extern const u8 gText_ContinueMenuTimeAfternoon[];
+extern const u8 gText_ContinueMenuTimeNight[];
 extern const u8 gText_ContinueMenuPokedex[];
 extern const u8 gText_ContinueMenuBadges[];
 extern const u8 gText_BirchBoy[];
 extern const u8 gText_BirchGirl[];
-extern const u8 gText_DefaultNameStu[];
-extern const u8 gText_DefaultNameMilton[];
-extern const u8 gText_DefaultNameTom[];
-extern const u8 gText_DefaultNameKenny[];
-extern const u8 gText_DefaultNameReid[];
-extern const u8 gText_DefaultNameJude[];
-extern const u8 gText_DefaultNameJaxson[];
-extern const u8 gText_DefaultNameEaston[];
-extern const u8 gText_DefaultNameWalker[];
-extern const u8 gText_DefaultNameTeru[];
-extern const u8 gText_DefaultNameJohnny[];
-extern const u8 gText_DefaultNameBrett[];
-extern const u8 gText_DefaultNameSeth[];
-extern const u8 gText_DefaultNameTerry[];
-extern const u8 gText_DefaultNameCasey[];
-extern const u8 gText_DefaultNameDarren[];
-extern const u8 gText_DefaultNameLandon[];
-extern const u8 gText_DefaultNameCollin[];
-extern const u8 gText_DefaultNameStanley[];
-extern const u8 gText_DefaultNameQuincy[];
-extern const u8 gText_DefaultNameKimmy[];
-extern const u8 gText_DefaultNameTiara[];
-extern const u8 gText_DefaultNameBella[];
-extern const u8 gText_DefaultNameJayla[];
-extern const u8 gText_DefaultNameAllie[];
-extern const u8 gText_DefaultNameLianna[];
-extern const u8 gText_DefaultNameSara[];
-extern const u8 gText_DefaultNameMonica[];
-extern const u8 gText_DefaultNameCamila[];
-extern const u8 gText_DefaultNameAubree[];
-extern const u8 gText_DefaultNameRuthie[];
-extern const u8 gText_DefaultNameHazel[];
-extern const u8 gText_DefaultNameNadine[];
-extern const u8 gText_DefaultNameTanja[];
-extern const u8 gText_DefaultNameYasmin[];
-extern const u8 gText_DefaultNameNicola[];
-extern const u8 gText_DefaultNameLillie[];
-extern const u8 gText_DefaultNameTerra[];
-extern const u8 gText_DefaultNameLucy[];
-extern const u8 gText_DefaultNameHalie[];
+extern const u8 gText_DefaultNameBrendan[];
+extern const u8 gText_DefaultNameMay[];
 
 extern const u8 gText_BirchInTrouble[];
 extern const u8 gText_ConfirmStarterChoice[];
@@ -944,6 +920,8 @@ extern const u8 gText_RepelEffectsLingered[];
 extern const u8 gText_LureEffectsLingered[];
 extern const u8 gText_UsedVar2WildLured[];
 extern const u8 gText_UsedVar2WildRepelled[];
+extern const u8 gText_ActivatedArumTwigBracelet[];
+extern const u8 gText_DeactivatedArumTwigBracelet[];
 extern const u8 gText_BoxFull[];
 extern const u8 gText_WontHaveEffect[];
 extern const u8 gText_NextFusionMon[];
@@ -1681,16 +1659,16 @@ extern const u8 BattleFrontier_BattleTowerMultiPartnerRoom_Text_RuinManiacMon1[]
 extern const u8 BattleFrontier_BattleTowerMultiPartnerRoom_Text_RuinManiacMon2Ask[];
 extern const u8 BattleFrontier_BattleTowerMultiPartnerRoom_Text_RuinManiacAccept[];
 extern const u8 BattleFrontier_BattleTowerMultiPartnerRoom_Text_RuinManiacReject[];
-extern const u8 BattleFrontier_BattleTowerMultiPartnerRoom_Text_CoolTrainerMIntro[];
-extern const u8 BattleFrontier_BattleTowerMultiPartnerRoom_Text_CoolTrainerMMon1[];
-extern const u8 BattleFrontier_BattleTowerMultiPartnerRoom_Text_CoolTrainerMMon2Ask[];
-extern const u8 BattleFrontier_BattleTowerMultiPartnerRoom_Text_CoolTrainerMAccept[];
-extern const u8 BattleFrontier_BattleTowerMultiPartnerRoom_Text_CoolTrainerMReject[];
-extern const u8 BattleFrontier_BattleTowerMultiPartnerRoom_Text_CoolTrainerFIntro[];
-extern const u8 BattleFrontier_BattleTowerMultiPartnerRoom_Text_CoolTrainerFMon1[];
-extern const u8 BattleFrontier_BattleTowerMultiPartnerRoom_Text_CoolTrainerFMon2Ask[];
-extern const u8 BattleFrontier_BattleTowerMultiPartnerRoom_Text_CoolTrainerFAccept[];
-extern const u8 BattleFrontier_BattleTowerMultiPartnerRoom_Text_CoolTrainerFReject[];
+extern const u8 BattleFrontier_BattleTowerMultiPartnerRoom_Text_ACE_TRAINERMIntro[];
+extern const u8 BattleFrontier_BattleTowerMultiPartnerRoom_Text_ACE_TRAINERMMon1[];
+extern const u8 BattleFrontier_BattleTowerMultiPartnerRoom_Text_ACE_TRAINERMMon2Ask[];
+extern const u8 BattleFrontier_BattleTowerMultiPartnerRoom_Text_ACE_TRAINERMAccept[];
+extern const u8 BattleFrontier_BattleTowerMultiPartnerRoom_Text_ACE_TRAINERMReject[];
+extern const u8 BattleFrontier_BattleTowerMultiPartnerRoom_Text_ACE_TRAINERFIntro[];
+extern const u8 BattleFrontier_BattleTowerMultiPartnerRoom_Text_ACE_TRAINERFMon1[];
+extern const u8 BattleFrontier_BattleTowerMultiPartnerRoom_Text_ACE_TRAINERFMon2Ask[];
+extern const u8 BattleFrontier_BattleTowerMultiPartnerRoom_Text_ACE_TRAINERFAccept[];
+extern const u8 BattleFrontier_BattleTowerMultiPartnerRoom_Text_ACE_TRAINERFReject[];
 extern const u8 BattleFrontier_BattleTowerMultiPartnerRoom_Text_PokemaniacIntro[];
 extern const u8 BattleFrontier_BattleTowerMultiPartnerRoom_Text_PokemaniacMon1[];
 extern const u8 BattleFrontier_BattleTowerMultiPartnerRoom_Text_PokemaniacMon2Ask[];
@@ -2950,25 +2928,6 @@ extern const u8 gText_NeatnessRankings[];
 extern const u8 gText_CoopRankings[];
 extern const u8 gText_PressingPowerRankings[];
 
-// Lilycove Lady
-extern const u8 gText_ContestLady_Handsome[];
-extern const u8 gText_ContestLady_Vinny[];
-extern const u8 gText_ContestLady_Moreme[];
-extern const u8 gText_ContestLady_Ironhard[];
-extern const u8 gText_ContestLady_Muscle[];
-extern const u8 gText_ContestLady_Coolness[];
-extern const u8 gText_ContestLady_Beauty[];
-extern const u8 gText_ContestLady_Cuteness[];
-extern const u8 gText_ContestLady_Smartness[];
-extern const u8 gText_ContestLady_Toughness[];
-extern const u8 gText_QuizLady_Lady[];
-extern const u8 gText_FavorLady_Slippery[];
-extern const u8 gText_FavorLady_Roundish[];
-extern const u8 gText_FavorLady_Whamish[];
-extern const u8 gText_FavorLady_Shiny[];
-extern const u8 gText_FavorLady_Sticky[];
-extern const u8 gText_FavorLady_Pointy[];
-
 extern const u8 gText_CoolnessContest[];
 extern const u8 gText_BeautyContest[];
 extern const u8 gText_CutenessContest[];
@@ -3060,5 +3019,14 @@ extern const u8 gText_BasePointsResetToZero[];
 
 extern const u8 gText_Fertilize[];
 extern const u8 gText_PlantBerry[];
+
+// Map name pop-up
+extern const u8 gText_AM[];
+extern const u8 gText_PM[];
+
+extern const u8 gText_MartBalls[];
+extern const u8 gText_MartMedicine[];
+extern const u8 gText_MartBattleItems[];
+extern const u8 gText_MartBerries[];
 
 #endif // GUARD_STRINGS_H

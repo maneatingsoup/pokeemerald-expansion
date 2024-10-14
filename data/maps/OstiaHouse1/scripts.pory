@@ -1,0 +1,21 @@
+mapscripts OstiaHouse1_MapScripts {}
+
+script OstiaFedUpLady {
+    lock
+    faceplayer
+    msgbox("My husband has been spewing crazy talk\n"
+    "all day.\p"
+    "I don't know what to do!")
+    release
+}
+
+script OstiaCrazyTalkMan {
+    lock
+    faceplayer
+    msgbox("Bleh bleeeeeh bleh bleh\p"
+    "bleh bleeeeeh bleh bleh\p"
+    "bleh bleh bleh\p"
+    "blehblehblehblehblehblehblehblehbleh\n"
+    "blehblehblehblehblehblehblehblehbleh")
+    release
+}

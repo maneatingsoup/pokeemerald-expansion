@@ -42,54 +42,54 @@
 #define TEMP_FLAGS_END   FLAG_TEMP_1F
 #define NUM_TEMP_FLAGS   (TEMP_FLAGS_END - TEMP_FLAGS_START + 1)
 
-#define FLAG_UNUSED_0x020    0x20 // Unused Flag
-#define FLAG_UNUSED_0x021    0x21 // Unused Flag
-#define FLAG_UNUSED_0x022    0x22 // Unused Flag
-#define FLAG_UNUSED_0x023    0x23 // Unused Flag
-#define FLAG_UNUSED_0x024    0x24 // Unused Flag
-#define FLAG_UNUSED_0x025    0x25 // Unused Flag
-#define FLAG_UNUSED_0x026    0x26 // Unused Flag
-#define FLAG_UNUSED_0x027    0x27 // Unused Flag
-#define FLAG_UNUSED_0x028    0x28 // Unused Flag
-#define FLAG_UNUSED_0x029    0x29 // Unused Flag
-#define FLAG_UNUSED_0x02A    0x2A // Unused Flag
-#define FLAG_UNUSED_0x02B    0x2B // Unused Flag
-#define FLAG_UNUSED_0x02C    0x2C // Unused Flag
-#define FLAG_UNUSED_0x02D    0x2D // Unused Flag
-#define FLAG_UNUSED_0x02E    0x2E // Unused Flag
-#define FLAG_UNUSED_0x02F    0x2F // Unused Flag
-#define FLAG_UNUSED_0x030    0x30 // Unused Flag
-#define FLAG_UNUSED_0x031    0x31 // Unused Flag
-#define FLAG_UNUSED_0x032    0x32 // Unused Flag
-#define FLAG_UNUSED_0x033    0x33 // Unused Flag
-#define FLAG_UNUSED_0x034    0x34 // Unused Flag
-#define FLAG_UNUSED_0x035    0x35 // Unused Flag
-#define FLAG_UNUSED_0x036    0x36 // Unused Flag
-#define FLAG_UNUSED_0x037    0x37 // Unused Flag
-#define FLAG_UNUSED_0x038    0x38 // Unused Flag
-#define FLAG_UNUSED_0x039    0x39 // Unused Flag
-#define FLAG_UNUSED_0x03A    0x3A // Unused Flag
-#define FLAG_UNUSED_0x03B    0x3B // Unused Flag
-#define FLAG_UNUSED_0x03C    0x3C // Unused Flag
-#define FLAG_UNUSED_0x03D    0x3D // Unused Flag
-#define FLAG_UNUSED_0x03E    0x3E // Unused Flag
-#define FLAG_UNUSED_0x03F    0x3F // Unused Flag
-#define FLAG_UNUSED_0x040    0x40 // Unused Flag
-#define FLAG_UNUSED_0x041    0x41 // Unused Flag
-#define FLAG_UNUSED_0x042    0x42 // Unused Flag
-#define FLAG_UNUSED_0x043    0x43 // Unused Flag
-#define FLAG_UNUSED_0x044    0x44 // Unused Flag
-#define FLAG_UNUSED_0x045    0x45 // Unused Flag
-#define FLAG_UNUSED_0x046    0x46 // Unused Flag
-#define FLAG_UNUSED_0x047    0x47 // Unused Flag
-#define FLAG_UNUSED_0x048    0x48 // Unused Flag
-#define FLAG_UNUSED_0x049    0x49 // Unused Flag
-#define FLAG_UNUSED_0x04A    0x4A // Unused Flag
-#define FLAG_UNUSED_0x04B    0x4B // Unused Flag
-#define FLAG_UNUSED_0x04C    0x4C // Unused Flag
-#define FLAG_UNUSED_0x04D    0x4D // Unused Flag
-#define FLAG_UNUSED_0x04E    0x4E // Unused Flag
-#define FLAG_UNUSED_0x04F    0x4F // Unused Flag
+#define FLAG_DEBUG_MON               0x20 // Recieved Debug Pokemon
+#define FLAG_INN_PC_INFO             0x21 // Informed that there is a PC in the inn
+#define FLAG_OSTIA_BERRY             0x22 // Received berries from lady in Ostia
+#define FLAG_RUDE_DUDE               0x23 // Received TM12 from the Rude Dude in Ostia
+#define FLAG_WISE_GLASSES            0x24 // Received Wise Glasses
+#define FLAG_SERAFEW_PROF            0x25 // Used to hide Professor when giving pokedex
+#define FLAG_RIVAL_BATTLE_1          0x26 // First Rival Battle
+#define FLAG_DISOBEY_NOTIF           0x27 // Notify the player that pokemon will disobey if leveled too much
+#define FLAG_LOST_MAN                0x28 // Received TM06 from Lost Man in Aldus Forest
+#define FLAG_OSTIA_TRADE             0x29 // OstiaHouse3 trade
+#define FLAG_TM50                    0x2A // Received TM50 in Ostia from the deaf man
+#define FLAG_BINDING_BAND            0x2B // Received the Binding Band from girl in Ostia
+#define FLAG_MUSCLE_BAND             0x2C // Received the Muscle Band from Black Belt in Ostia
+#define FLAG_OSTIA_BERRY_2           0x2D // Received berries from lady in Ostia Store
+#define FLAG_SHELLOS_GIVE            0x2E // Received a West Sea Shellos from Ostia Research Institute Scientist
+#define FLAG_RIVAL_BATTLE_2          0x2F // Second Rival Battle
+#define FLAG_ROUTE_103_ITEM          0x30 // Route 103 Nest Ball
+#define FLAG_ROUTE_101_ITEM          0x31 // Route 101 Shell Bell
+#define FLAG_ROUTE_108_ITEM          0x32 // Route 108 Soft Sand
+#define FLAG_OSTIA_ITEM              0x33 // Ostia Chilan Berry
+#define FLAG_ROUTE_108_ITEM_2        0x34 // Route 108 X Defense
+#define FLAG_ALDUS_ITEM              0x35 // Aldus Moomoo Milk
+#define FLAG_ROUTE_102_ITEM          0x36 // Route 102 Pecha Berry
+#define FLAG_VALNI_FOREST_ITEM       0x37 // Aldus Forest Pecha Berry
+#define FLAG_VALNI_FOREST_ITEM_2     0x38 // Aldus Forest Moomoo Milk
+#define FLAG_VALNI_FOREST_ITEM_3     0x39 // Aldus Forest TM16
+#define FLAG_VALNI_FOREST_ITEM_4     0x3A // Aldus Forest Miracle Seed
+#define FLAG_BRINESTONE_CAVE_ITEM    0x3B // Brinestone Cave PP Up
+#define FLAG_BRINESTONE_CAVE_ITEM_2  0x3C // Brinestone Cave Hard Stone
+#define FLAG_BRINESTONE_CAVE_ITEM_3  0x3D // Brinestone Cave Nugget
+#define FLAG_ROUTE_104_ITEM          0x3E // Route 104 Ability Capsule
+#define FLAG_TM57                    0x3F // Route 104 TM57
+#define FLAG_ROUTE_104_ITEM_2        0x40 // Route 104 Ability Patch
+#define FLAG_ROUTE_104_ITEM_3        0x41 // Route 104 Rare Candy
+#define FLAG_ROUTE_104_ITEM_4        0x42 // Route 104 Star Piece
+#define FLAG_VALNI_MINT              0x43 // Received mint in Valni
+#define FLAG_TOGEPI_EGG              0x44 // Received Togepi Egg in Valni
+#define FLAG_FAT_MAN                 0x45 // Discovered Fat Man's problems...
+#define FLAG_ARUM_TWIG               0x46 // Received Arum Twig from Route 103 girl
+#define FLAG_OSTIA_SCIENTIST         0x47 // Ostia scientist reward for returning blueprints
+#define FLAG_UNUSED_0x048            0x48 // Unused Flag
+#define FLAG_UNUSED_0x049            0x49 // Unused Flag
+#define FLAG_UNUSED_0x04A            0x4A // Unused Flag
+#define FLAG_UNUSED_0x04B            0x4B // Unused Flag
+#define FLAG_UNUSED_0x04C            0x4C // Unused Flag
+#define FLAG_UNUSED_0x04D            0x4D // Unused Flag
+#define FLAG_UNUSED_0x04E            0x4E // Unused Flag
+#define FLAG_UNUSED_0x04F            0x4F // Unused Flag
 
 // Scripts
 #define FLAG_HIDE_SKY_PILLAR_TOP_RAYQUAZA_STILL  0x50
@@ -97,8 +97,8 @@
 #define FLAG_RESCUED_BIRCH                       0x52
 #define FLAG_LEGENDARIES_IN_SOOTOPOLIS           0x53
 
-#define FLAG_UNUSED_0x054                    0x54  // Unused Flag
-#define FLAG_UNUSED_0x055                    0x55  // Unused Flag
+#define FLAG_NO_CATCHING                     0x54  // When set, prevents the player from catching pokemon
+#define FLAG_NO_ENCOUNTERS                   0x55  // When set, prevents wild encounters
 
 #define FLAG_HIDE_CONTEST_POKE_BALL          0x56  // Always set after new game, object it hides is added directly
 #define FLAG_MET_RIVAL_MOM                   0x57
@@ -119,17 +119,17 @@
 #define FLAG_MOSSDEEP_GYM_SWITCH_3           0x66 //
 #define FLAG_MOSSDEEP_GYM_SWITCH_4           0x67 //
 
-#define FLAG_UNUSED_0x068                    0x68  // Unused Flag
+#define FLAG_NO_TRAINERS                     0x68  // When set, prevents trainers from seeing the player
 
 #define FLAG_OCEANIC_MUSEUM_MET_REPORTER     0x69
-#define FLAG_RECEIVED_HM_STRENGTH            0x6A
-#define FLAG_RECEIVED_HM_ROCK_SMASH          0x6B
+#define FLAG_RECEIVED_HM04                   0x6A
+#define FLAG_RECEIVED_HM06          0x6B
 #define FLAG_WHITEOUT_TO_LAVARIDGE           0x6C // Set after defeating Flannery, so the player cant white out from poison before receiving Go Goggles
-#define FLAG_RECEIVED_HM_FLASH               0x6D
-#define FLAG_RECEIVED_HM_FLY                 0x6E
+#define FLAG_RECEIVED_HM05                   0x6D
+#define FLAG_RECEIVED_HM02                   0x6E
 #define FLAG_GROUDON_AWAKENED_MAGMA_HIDEOUT  0x6F
 #define FLAG_TEAM_AQUA_ESCAPED_IN_SUBMARINE  0x70
-#define FLAG_UNUSED_RS_LEGENDARY_BATTLE_DONE 0x71 // Unused Flag. Used in R/S to indicate whether player defeated or caught Groudon/Kyogre in Cave of Origin.
+#define FLAG_NO_RUNNING 0x71 // Unused Flag. Used in R/S to indicate whether player defeated or caught Groudon/Kyogre in Cave of Origin.
 #define FLAG_SCOTT_CALL_BATTLE_FRONTIER      0x72 // Used in order to activate a phone call from Scott, inviting the player to the SS Tidal.
 #define FLAG_RECEIVED_METEORITE              0x73
 #define FLAG_ADVENTURE_STARTED               0x74 // RECEIVED Pokédex.
@@ -140,8 +140,8 @@
 
 #define FLAG_LANDMARK_MIRAGE_TOWER           0x78
 #define FLAG_RECEIVED_TM_BRICK_BREAK         0x79
-#define FLAG_RECEIVED_HM_SURF                0x7A
-#define FLAG_RECEIVED_HM_DIVE                0x7B
+#define FLAG_RECEIVED_HM03                   0x7A
+#define FLAG_RECEIVED_HM08                   0x7B
 #define FLAG_REGISTER_RIVAL_POKENAV          0x7C
 #define FLAG_DEFEATED_RIVAL_ROUTE_104        0x7D
 #define FLAG_DEFEATED_WALLY_VICTORY_ROAD     0x7E
@@ -155,7 +155,7 @@
 #define FLAG_PENDING_DAYCARE_EGG             0x86
 #define FLAG_THANKED_FOR_PLAYING_WITH_WALLY  0x87
 #define FLAG_ENABLE_FIRST_WALLY_POKENAV_CALL 0x88 // Set after defeating Wally outside Mauville Gym. Will activate a call later to register Wally.
-#define FLAG_RECEIVED_HM_CUT                 0x89
+#define FLAG_RECEIVED_HM01                 0x89
 #define FLAG_SCOTT_CALL_FORTREE_GYM          0x8A // Triggers call from Scott after defeating Winona
 #define FLAG_DEFEATED_EVIL_TEAM_MT_CHIMNEY   0x8B
 #define FLAG_RECEIVED_6_SODA_POP             0x8C
@@ -168,7 +168,7 @@
 #define FLAG_MR_BRINEY_SAILING_INTRO         0x93
 #define FLAG_DOCK_REJECTED_DEVON_GOODS       0x94
 #define FLAG_DELIVERED_DEVON_GOODS           0x95
-#define FLAG_RECEIVED_CONTEST_PASS           0x96 // Unused, leftover from R/S
+#define FLAG_IS_NIGHT                        0x96 // Is night when flag is set
 #define FLAG_RECEIVED_CASTFORM               0x97
 #define FLAG_RECEIVED_SUPER_ROD              0x98
 #define FLAG_RUSTBORO_NPC_TRADE_COMPLETED    0x99
@@ -334,7 +334,7 @@
 #define FLAG_MET_MAXIE_SOOTOPOLIS            0x135
 #define FLAG_MET_SCOTT_RUSTBORO              0x136
 #define FLAG_WALLACE_GOES_TO_SKY_PILLAR      0x137 // Set after speaking to Wallace within the Cave of Origin.
-#define FLAG_RECEIVED_HM_WATERFALL           0x138
+#define FLAG_RECEIVED_HM07           0x138
 #define FLAG_BEAT_MAGMA_GRUNT_JAGGED_PASS    0x139
 #define FLAG_RECEIVED_AURORA_TICKET          0x13A
 #define FLAG_RECEIVED_MYSTIC_TICKET          0x13B
@@ -1383,8 +1383,8 @@
 #define FLAG_IS_CHAMPION                            (SYSTEM_FLAGS + 0x1F) // Seems to be related to linking.
 #define FLAG_NURSE_UNION_ROOM_REMINDER              (SYSTEM_FLAGS + 0x20)
 
-#define FLAG_UNUSED_0x881                           (SYSTEM_FLAGS + 0x21) // Unused Flag
-#define FLAG_UNUSED_0x882                           (SYSTEM_FLAGS + 0x22) // Unused Flag
+#define FLAG_ACTIVE_REPEL_WEAK                      (SYSTEM_FLAGS + 0x21) // Weak Repel Effect
+#define FLAG_ACTIVE_REPEL_STRONG                    (SYSTEM_FLAGS + 0x22) // Strong Repel Effect
 #define FLAG_UNUSED_0x883                           (SYSTEM_FLAGS + 0x23) // Unused Flag
 #define FLAG_UNUSED_0x884                           (SYSTEM_FLAGS + 0x24) // Unused Flag
 #define FLAG_UNUSED_0x885                           (SYSTEM_FLAGS + 0x25) // Unused Flag

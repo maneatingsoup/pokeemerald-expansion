@@ -166,6 +166,7 @@ void AgbMainLoop(void)
         }
 
         PlayTimeCounter_Update();
+        WeatherTimeCounter_Update();
         MapMusicMain();
         WaitForVBlank();
     }

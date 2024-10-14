@@ -4410,6 +4410,536 @@
       "secondary_tileset": "gTileset_MysteryEventsHouse",
       "border_filepath": "data/layouts/SootopolisCity_MysteryEventsHouse_1F_StairsUnblocked/border.bin",
       "blockdata_filepath": "data/layouts/SootopolisCity_MysteryEventsHouse_1F_StairsUnblocked/map.bin"
+    },
+    {
+      "id": "LAYOUT_SERAFEW",
+      "name": "Serafew_Layout",
+      "width": 40,
+      "height": 35,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/Serafew/border.bin",
+      "blockdata_filepath": "data/layouts/Serafew/map.bin"
+    },
+    {
+      "id": "LAYOUT_SERAFEW_PLAYER_HOUSE_1F",
+      "name": "Serafew_PlayerHouse_1F_Layout",
+      "width": 11,
+      "height": 9,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_BrendansMaysHouse",
+      "border_filepath": "data/layouts/Serafew_PlayerHouse_1F/border.bin",
+      "blockdata_filepath": "data/layouts/Serafew_PlayerHouse_1F/map.bin"
+    },
+    {
+      "id": "LAYOUT_SERAFEW_PLAYER_HOUSE_2F",
+      "name": "Serafew_PlayerHouse_2F_Layout",
+      "width": 9,
+      "height": 8,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_BrendansMaysHouse",
+      "border_filepath": "data/layouts/Serafew_PlayerHouse_2F/border.bin",
+      "blockdata_filepath": "data/layouts/Serafew_PlayerHouse_2F/map.bin"
+    },
+    {
+      "id": "LAYOUT_SERAFEW_LAB",
+      "name": "Serafew_Lab_Layout",
+      "width": 13,
+      "height": 13,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_Lab",
+      "border_filepath": "data/layouts/Serafew_Lab/border.bin",
+      "blockdata_filepath": "data/layouts/Serafew_Lab/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_101",
+      "name": "Route_101_Layout",
+      "width": 38,
+      "height": 40,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/Route_101/border.bin",
+      "blockdata_filepath": "data/layouts/Route_101/map.bin"
+    },
+    {
+      "id": "LAYOUT_ALDUS",
+      "name": "Aldus_Layout",
+      "width": 31,
+      "height": 21,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/Aldus/border.bin",
+      "blockdata_filepath": "data/layouts/Aldus/map.bin"
+    },
+    {
+      "id": "LAYOUT_ALDUS_INN_1F",
+      "name": "Aldus_Inn_1F_Layout",
+      "width": 11,
+      "height": 9,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_BrendansMaysHouse",
+      "border_filepath": "data/layouts/Aldus_Inn_1F/border.bin",
+      "blockdata_filepath": "data/layouts/Aldus_Inn_1F/map.bin"
+    },
+    {
+      "id": "LAYOUT_ALDUS_INN_2F",
+      "name": "Aldus_Inn_2F_Layout",
+      "width": 9,
+      "height": 8,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_BrendansMaysHouse",
+      "border_filepath": "data/layouts/Aldus_Inn_2F/border.bin",
+      "blockdata_filepath": "data/layouts/Aldus_Inn_2F/map.bin"
+    },
+    {
+      "id": "LAYOUT_ALDUS_FISHERMAN_HOUSE",
+      "name": "Aldus_FishermanHouse_Layout",
+      "width": 10,
+      "height": 8,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_GenericBuilding",
+      "border_filepath": "data/layouts/Aldus_FishermanHouse/border.bin",
+      "blockdata_filepath": "data/layouts/Aldus_FishermanHouse/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_102",
+      "name": "Route_102_Layout",
+      "width": 20,
+      "height": 30,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Rustboro",
+      "border_filepath": "data/layouts/Route_102/border.bin",
+      "blockdata_filepath": "data/layouts/Route_102/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_103",
+      "name": "Route_103_Layout",
+      "width": 25,
+      "height": 34,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Rustboro",
+      "border_filepath": "data/layouts/Route_103/border.bin",
+      "blockdata_filepath": "data/layouts/Route_103/map.bin"
+    },
+    {
+      "id": "LAYOUT_OSTIA",
+      "name": "Ostia_Layout",
+      "width": 41,
+      "height": 51,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Rustboro",
+      "border_filepath": "data/layouts/Ostia/border.bin",
+      "blockdata_filepath": "data/layouts/Ostia/map.bin"
+    },
+    {
+      "id": "LAYOUT_OSTIA_HOUSE1",
+      "name": "OstiaHouse1_Layout",
+      "width": 12,
+      "height": 9,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_GenericBuilding",
+      "border_filepath": "data/layouts/OstiaHouse1/border.bin",
+      "blockdata_filepath": "data/layouts/OstiaHouse1/map.bin"
+    },
+    {
+      "id": "LAYOUT_OSTIA_HOUSE2",
+      "name": "OstiaHouse2_Layout",
+      "width": 15,
+      "height": 11,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_GenericBuilding",
+      "border_filepath": "data/layouts/OstiaHouse2/border.bin",
+      "blockdata_filepath": "data/layouts/OstiaHouse2/map.bin"
+    },
+    {
+      "id": "LAYOUT_OSTIA_HOUSE3",
+      "name": "OstiaHouse3_Layout",
+      "width": 12,
+      "height": 9,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_GenericBuilding",
+      "border_filepath": "data/layouts/OstiaHouse3/border.bin",
+      "blockdata_filepath": "data/layouts/OstiaHouse3/map.bin"
+    },
+    {
+      "id": "LAYOUT_OSTIA_HOUSE4",
+      "name": "OstiaHouse4_Layout",
+      "width": 15,
+      "height": 11,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_GenericBuilding",
+      "border_filepath": "data/layouts/OstiaHouse4/border.bin",
+      "blockdata_filepath": "data/layouts/OstiaHouse4/map.bin"
+    },
+    {
+      "id": "LAYOUT_OSTIA_HOUSE5FLOOR1",
+      "name": "OstiaHouse5Floor1_Layout",
+      "width": 15,
+      "height": 11,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_GenericBuilding",
+      "border_filepath": "data/layouts/OstiaHouse5Floor1/border.bin",
+      "blockdata_filepath": "data/layouts/OstiaHouse5Floor1/map.bin"
+    },
+    {
+      "id": "LAYOUT_OSTIA_HOUSE5FLOOR2",
+      "name": "OstiaHouse5Floor2_Layout",
+      "width": 15,
+      "height": 11,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_GenericBuilding",
+      "border_filepath": "data/layouts/OstiaHouse5Floor2/border.bin",
+      "blockdata_filepath": "data/layouts/OstiaHouse5Floor2/map.bin"
+    },
+    {
+      "id": "LAYOUT_OSTIA_HOUSE6FLOOR1",
+      "name": "OstiaHouse6Floor1_Layout",
+      "width": 12,
+      "height": 9,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_GenericBuilding",
+      "border_filepath": "data/layouts/OstiaHouse6Floor1/border.bin",
+      "blockdata_filepath": "data/layouts/OstiaHouse6Floor1/map.bin"
+    },
+    {
+      "id": "LAYOUT_OSTIA_HOUSE6FLOOR2",
+      "name": "OstiaHouse6Floor2_Layout",
+      "width": 12,
+      "height": 9,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_GenericBuilding",
+      "border_filepath": "data/layouts/OstiaHouse6Floor2/border.bin",
+      "blockdata_filepath": "data/layouts/OstiaHouse6Floor2/map.bin"
+    },
+    {
+      "id": "LAYOUT_OSTIA_STORE",
+      "name": "OstiaStore_Layout",
+      "width": 12,
+      "height": 9,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_Shop",
+      "border_filepath": "data/layouts/OstiaStore/border.bin",
+      "blockdata_filepath": "data/layouts/OstiaStore/map.bin"
+    },
+    {
+      "id": "LAYOUT_OSTIA_INN",
+      "name": "OstiaInn_Layout",
+      "width": 15,
+      "height": 11,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_GenericBuilding",
+      "border_filepath": "data/layouts/OstiaInn/border.bin",
+      "blockdata_filepath": "data/layouts/OstiaInn/map.bin"
+    },
+    {
+      "id": "LAYOUT_OSTIA_GYM",
+      "name": "OstiaGym_Layout",
+      "width": 12,
+      "height": 37,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_BattleFrontier",
+      "border_filepath": "data/layouts/OstiaGym/border.bin",
+      "blockdata_filepath": "data/layouts/OstiaGym/map.bin"
+    },
+    {
+      "id": "LAYOUT_OSTIA_RESEARCH_INSTITUTE_FLOOR1",
+      "name": "OstiaResearchInstituteFloor1_Layout",
+      "width": 24,
+      "height": 16,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_Facility",
+      "border_filepath": "data/layouts/OstiaResearchInstituteFloor1/border.bin",
+      "blockdata_filepath": "data/layouts/OstiaResearchInstituteFloor1/map.bin"
+    },
+    {
+      "id": "LAYOUT_OSTIA_RESEARCH_INSTITUTE_FLOOR2",
+      "name": "OstiaResearchInstituteFloor2_Layout",
+      "width": 24,
+      "height": 10,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_Facility",
+      "border_filepath": "data/layouts/OstiaResearchInstituteFloor2/border.bin",
+      "blockdata_filepath": "data/layouts/OstiaResearchInstituteFloor2/map.bin"
+    },
+    {
+      "id": "LAYOUT_OSTIA_RESEARCH_INSTITUTE_FLOOR_B1",
+      "name": "OstiaResearchInstituteFloorB1_Layout",
+      "width": 24,
+      "height": 12,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_Facility",
+      "border_filepath": "data/layouts/OstiaResearchInstituteFloorB1/border.bin",
+      "blockdata_filepath": "data/layouts/OstiaResearchInstituteFloorB1/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_104_1",
+      "name": "Route_104_1_Layout",
+      "width": 39,
+      "height": 23,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Fortree",
+      "border_filepath": "data/layouts/Route_104_1/border.bin",
+      "blockdata_filepath": "data/layouts/Route_104_1/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_104_2",
+      "name": "Route_104_2_Layout",
+      "width": 29,
+      "height": 60,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Fortree",
+      "border_filepath": "data/layouts/Route_104_2/border.bin",
+      "blockdata_filepath": "data/layouts/Route_104_2/map.bin"
+    },
+    {
+      "id": "LAYOUT_VALNI",
+      "name": "Valni_Layout",
+      "width": 49,
+      "height": 30,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Fortree",
+      "border_filepath": "data/layouts/Valni/border.bin",
+      "blockdata_filepath": "data/layouts/Valni/map.bin"
+    },
+    {
+      "id": "LAYOUT_VALNI_INN",
+      "name": "Valni_Inn_Layout",
+      "width": 12,
+      "height": 9,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_GenericBuilding",
+      "border_filepath": "data/layouts/Valni_Inn/border.bin",
+      "blockdata_filepath": "data/layouts/Valni_Inn/map.bin"
+    },
+    {
+      "id": "LAYOUT_VALNI_SHOP",
+      "name": "Valni_Shop_Layout",
+      "width": 10,
+      "height": 8,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_GenericBuilding",
+      "border_filepath": "data/layouts/Valni_Shop/border.bin",
+      "blockdata_filepath": "data/layouts/Valni_Shop/map.bin"
+    },
+    {
+      "id": "LAYOUT_VALNI_HOUSE1",
+      "name": "ValniHouse1_Layout",
+      "width": 10,
+      "height": 8,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_GenericBuilding",
+      "border_filepath": "data/layouts/ValniHouse1/border.bin",
+      "blockdata_filepath": "data/layouts/ValniHouse1/map.bin"
+    },
+    {
+      "id": "LAYOUT_VALNI_HOUSE2",
+      "name": "ValniHouse2_Layout",
+      "width": 10,
+      "height": 8,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_GenericBuilding",
+      "border_filepath": "data/layouts/ValniHouse2/border.bin",
+      "blockdata_filepath": "data/layouts/ValniHouse2/map.bin"
+    },
+    {
+      "id": "LAYOUT_VALNI_HOUSE3",
+      "name": "ValniHouse3_Layout",
+      "width": 10,
+      "height": 8,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_GenericBuilding",
+      "border_filepath": "data/layouts/ValniHouse3/border.bin",
+      "blockdata_filepath": "data/layouts/ValniHouse3/map.bin"
+    },
+    {
+      "id": "LAYOUT_VALNI_GYM",
+      "name": "ValniGym_Layout",
+      "width": 17,
+      "height": 40,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_BattlePalace",
+      "border_filepath": "data/layouts/ValniGym/border.bin",
+      "blockdata_filepath": "data/layouts/ValniGym/map.bin"
+    },
+    {
+      "id": "LAYOUT_VALNI_GYM_LOBBY",
+      "name": "ValniGymLobby_Layout",
+      "width": 12,
+      "height": 9,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_BattlePalace",
+      "border_filepath": "data/layouts/ValniGymLobby/border.bin",
+      "blockdata_filepath": "data/layouts/ValniGymLobby/map.bin"
+    },
+    {
+      "id": "LAYOUT_VALNI_FOREST_WEST1",
+      "name": "Valni_Forest_West1_Layout",
+      "width": 36,
+      "height": 44,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Fortree",
+      "border_filepath": "data/layouts/Valni_Forest_West1/border.bin",
+      "blockdata_filepath": "data/layouts/Valni_Forest_West1/map.bin"
+    },
+    {
+      "id": "LAYOUT_VALNI_FOREST_WEST2",
+      "name": "Valni_Forest_West2_Layout",
+      "width": 41,
+      "height": 44,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Fortree",
+      "border_filepath": "data/layouts/Valni_Forest_West2/border.bin",
+      "blockdata_filepath": "data/layouts/Valni_Forest_West2/map.bin"
+    },
+    {
+      "id": "LAYOUT_VALNI_FOREST_EAST1",
+      "name": "Valni_Forest_East1_Layout",
+      "width": 30,
+      "height": 24,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Fortree",
+      "border_filepath": "data/layouts/Valni_Forest_East1/border.bin",
+      "blockdata_filepath": "data/layouts/Valni_Forest_East1/map.bin"
+    },
+    {
+      "id": "LAYOUT_VALNI_FOREST_EAST2",
+      "name": "Valni_Forest_East2_Layout",
+      "width": 40,
+      "height": 24,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Fortree",
+      "border_filepath": "data/layouts/Valni_Forest_East2/border.bin",
+      "blockdata_filepath": "data/layouts/Valni_Forest_East2/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_105_1",
+      "name": "Route_105_1_Layout",
+      "width": 75,
+      "height": 50,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Fortree",
+      "border_filepath": "data/layouts/Route_105_1/border.bin",
+      "blockdata_filepath": "data/layouts/Route_105_1/map.bin"
+    },
+    {
+      "id": "LAYOUT_RUGGED_PASS_F1",
+      "name": "Rugged_Pass_F1_Layout",
+      "width": 30,
+      "height": 30,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/Rugged_Pass_F1/border.bin",
+      "blockdata_filepath": "data/layouts/Rugged_Pass_F1/map.bin"
+    },
+    {
+      "id": "LAYOUT_RUGGED_PASS_F2",
+      "name": "Rugged_Pass_F2_Layout",
+      "width": 50,
+      "height": 30,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/Rugged_Pass_F2/border.bin",
+      "blockdata_filepath": "data/layouts/Rugged_Pass_F2/map.bin"
+    },
+    {
+      "id": "LAYOUT_RUGGED_PASS_F3",
+      "name": "Rugged_Pass_F3_Layout",
+      "width": 30,
+      "height": 30,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/Rugged_Pass_F3/border.bin",
+      "blockdata_filepath": "data/layouts/Rugged_Pass_F3/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_105_2",
+      "name": "Route_105_2_Layout",
+      "width": 64,
+      "height": 34,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Slateport",
+      "border_filepath": "data/layouts/Route_105_2/border.bin",
+      "blockdata_filepath": "data/layouts/Route_105_2/map.bin"
+    },
+    {
+      "id": "LAYOUT_PORT_NELERAS",
+      "name": "Port_Neleras_Layout",
+      "width": 42,
+      "height": 70,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Slateport",
+      "border_filepath": "data/layouts/Port_Neleras/border.bin",
+      "blockdata_filepath": "data/layouts/Port_Neleras/map.bin"
+    },
+    {
+      "id": "LAYOUT_PORT_NELERAS_INN",
+      "name": "PortNelerasInn_Layout",
+      "width": 15,
+      "height": 9,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_GenericBuilding",
+      "border_filepath": "data/layouts/PortNelerasInn/border.bin",
+      "blockdata_filepath": "data/layouts/PortNelerasInn/map.bin"
+    },
+    {
+      "id": "LAYOUT_PORT_NELERAS_HOUSE1",
+      "name": "PortNelerasHouse1_Layout",
+      "width": 11,
+      "height": 8,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_GenericBuilding",
+      "border_filepath": "data/layouts/PortNelerasHouse1/border.bin",
+      "blockdata_filepath": "data/layouts/PortNelerasHouse1/map.bin"
+    },
+    {
+      "id": "LAYOUT_PORT_NELERAS_SHOP",
+      "name": "PortNelerasShop_Layout",
+      "width": 12,
+      "height": 9,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_Shop",
+      "border_filepath": "data/layouts/PortNelerasShop/border.bin",
+      "blockdata_filepath": "data/layouts/PortNelerasShop/map.bin"
+    },
+    {
+      "id": "LAYOUT_PORT_NELERAS_SHIPYARD_F1",
+      "name": "PortNelerasShipyard_F1_Layout",
+      "width": 21,
+      "height": 15,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_Facility",
+      "border_filepath": "data/layouts/PortNelerasShipyard_F1/border.bin",
+      "blockdata_filepath": "data/layouts/PortNelerasShipyard_F1/map.bin"
+    },
+    {
+      "id": "LAYOUT_PORT_NELERAS_SHIPYARD_F2",
+      "name": "PortNelerasShipyard_F2_Layout",
+      "width": 17,
+      "height": 15,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_Facility",
+      "border_filepath": "data/layouts/PortNelerasShipyard_F2/border.bin",
+      "blockdata_filepath": "data/layouts/PortNelerasShipyard_F2/map.bin"
+    },
+    {
+      "id": "LAYOUT_PORT_NELERAS_HARBOR",
+      "name": "PortNelerasHarbor_Layout",
+      "width": 24,
+      "height": 15,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Facility",
+      "border_filepath": "data/layouts/PortNelerasHarbor/border.bin",
+      "blockdata_filepath": "data/layouts/PortNelerasHarbor/map.bin"
+    },
+    {
+      "id": "LAYOUT_PORT_NELERAS_MUSEUM",
+      "name": "PortNelerasMuseum_Layout",
+      "width": 20,
+      "height": 15,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_OceanicMuseum",
+      "border_filepath": "data/layouts/PortNelerasMuseum/border.bin",
+      "blockdata_filepath": "data/layouts/PortNelerasMuseum/map.bin"
     }
   ]
 }

@@ -4005,7 +4005,7 @@ static bool32 IsDomePopularMove(u32 move)
     u8 i;
     for (i = 0; i < NUM_TECHNICAL_MACHINES + NUM_HIDDEN_MACHINES; i++)
     {
-        if (ItemIdToBattleMoveId(ITEM_TM01 + i) == move)
+        if (ItemIdToBattleMoveId(ITEM_TM01_DOUBLE_TEAM + i) == move)
             return TRUE;
     }
     if (i == NUM_TECHNICAL_MACHINES + NUM_HIDDEN_MACHINES)
@@ -4286,6 +4286,7 @@ static void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
             textPrinter.currentChar = GetSpeciesName(DOME_MONS[trainerTourneyId][i]);
         else
             textPrinter.currentChar = GetSpeciesName(gFacilityTrainerMons[DOME_MONS[trainerTourneyId][i]].species);
+        textPrinter.fontId = GetFontIdToFit(textPrinter.currentChar, FONT_SHORT, 0, 60);
 
         textPrinter.windowId = WIN_TRAINER_MON1_NAME + i + windowId;
         if (i == 1)
@@ -4297,6 +4298,7 @@ static void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
         CopyWindowToVram(WIN_TRAINER_MON1_NAME + i + windowId, COPYWIN_FULL);
         AddTextPrinter(&textPrinter, 0, NULL);
     }
+    textPrinter.fontId = FONT_SHORT;
 
     PutWindowTilemap(windowId + WIN_TRAINER_FLAVOR_TEXT);
     CopyWindowToVram(windowId + WIN_TRAINER_FLAVOR_TEXT, COPYWIN_FULL);
@@ -4438,11 +4440,15 @@ static void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
                 else
                     nature = gSaveBlock2Ptr->frontier.domePlayerPartyData[i].nature;
 
-                if (gNatureStatTable[nature][j] > 0)
+                if (gNaturesInfo[nature].statUp == gNaturesInfo[nature].statDown)
+                {
+                    allocatedArray[j + NUM_STATS + 1] += allocatedArray[j + 1];
+                }
+                else if (gNaturesInfo[nature].statUp == j + 1)
                 {
                     allocatedArray[j + NUM_STATS + 1] += (allocatedArray[j + 1] * 110) / 100;
                 }
-                else if (gNatureStatTable[nature][j] < 0)
+                else if (gNaturesInfo[nature].statDown == j + 1)
                 {
                     allocatedArray[j + NUM_STATS + 1] += (allocatedArray[j + 1] * 90) / 100;
                     allocatedArray[j + NUM_STATS + NUM_NATURE_STATS + 2]++;
@@ -4484,11 +4490,16 @@ static void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
             for (j = 0; j < NUM_NATURE_STATS; j++)
             {
                 nature = gFacilityTrainerMons[DOME_MONS[trainerTourneyId][i]].nature;
-                if (gNatureStatTable[nature][j] > 0)
+
+                if (gNaturesInfo[nature].statUp == gNaturesInfo[nature].statDown)
+                {
+                    allocatedArray[j + NUM_STATS + 1] += allocatedArray[j + 1];
+                }
+                else if (gNaturesInfo[nature].statUp == j + 1)
                 {
                     allocatedArray[j + NUM_STATS + 1] += (allocatedArray[j + 1] * 110) / 100;
                 }
-                else if (gNatureStatTable[nature][j] < 0)
+                else if (gNaturesInfo[nature].statDown == j + 1)
                 {
                     allocatedArray[j + NUM_STATS + 1] += (allocatedArray[j + 1] * 90) / 100;
                     allocatedArray[j + NUM_STATS + NUM_NATURE_STATS + 2]++;

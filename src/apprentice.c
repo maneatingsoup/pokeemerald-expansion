@@ -107,7 +107,6 @@ static void ApprenticeBufferString(void);
 static void SetApprenticeMonMove(void);
 static void SetLeadApprenticeMon(void);
 static void Script_ApprenticeOpenBagMenu(void);
-static void TrySetApprenticeHeldItem(void);
 static void SaveApprentice(void);
 static void SetSavedApprenticeTrainerGfxId(void);
 static void SetPlayerApprenticeTrainerGfxId(void);
@@ -354,11 +353,11 @@ static u16 GetRandomAlternateMove(u8 monId)
                 do
                 {
                     id = Random() % (NUM_TECHNICAL_MACHINES + NUM_HIDDEN_MACHINES);
-                    shouldUseMove = CanLearnTeachableMove(species, ItemIdToBattleMoveId(ITEM_TM01 + id));
+                    shouldUseMove = CanLearnTeachableMove(species, ItemIdToBattleMoveId(ITEM_TM01_DOUBLE_TEAM + id));
                 }
                 while (!shouldUseMove);
 
-                moveId = ItemIdToBattleMoveId(ITEM_TM01 + id);
+                moveId = ItemIdToBattleMoveId(ITEM_TM01_DOUBLE_TEAM + id);
                 shouldUseMove = TRUE;
 
                 if (numLearnsetMoves <= MAX_MON_MOVES)
@@ -1078,44 +1077,6 @@ static void SetLeadApprenticeMon(void)
 static void Script_ApprenticeOpenBagMenu(void)
 {
     ApprenticeOpenBagMenu();
-}
-
-static void TrySetApprenticeHeldItem(void)
-{
-    u8 i, j;
-    u8 count;
-
-    if (PLAYER_APPRENTICE.questionsAnswered < NUM_WHICH_MON_QUESTIONS)
-        return;
-
-    count = 0;
-    for (j = 0; j < APPRENTICE_MAX_QUESTIONS; j++)
-    {
-        if (PLAYER_APPRENTICE.questions[j].questionId == QUESTION_ID_WIN_SPEECH)
-            break;
-        count++;
-    }
-
-    // Make sure the item hasn't already been suggested in previous questions
-    for (i = 0; i < count; i++)
-    {
-        if (i >= CURRENT_QUESTION_NUM)
-            break;
-        if (PLAYER_APPRENTICE.questions[i].questionId != QUESTION_ID_WHAT_ITEM ||
-            PLAYER_APPRENTICE.questions[i].suggestedChange == 0)
-            continue;
-        if (PLAYER_APPRENTICE.questions[i].data == gSpecialVar_0x8005)
-        {
-            PLAYER_APPRENTICE.questions[CURRENT_QUESTION_NUM].suggestedChange = FALSE;
-            PLAYER_APPRENTICE.questions[CURRENT_QUESTION_NUM].data = gSpecialVar_0x8005;
-            gSpecialVar_Result = FALSE;
-            return;
-        }
-    }
-
-    PLAYER_APPRENTICE.questions[CURRENT_QUESTION_NUM].suggestedChange = TRUE;
-    PLAYER_APPRENTICE.questions[CURRENT_QUESTION_NUM].data = gSpecialVar_0x8005;
-    gSpecialVar_Result = TRUE;
 }
 
 static void ShiftSavedApprentices(void)

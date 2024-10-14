@@ -359,6 +359,7 @@ SECTIONS {
         src/international_string_util.o(.text);
         src/pokemon_debug.o(.text);
         src/expansion_intro.o(.text);
+        src/ui_main_menu.o(.text);
     } > ROM =0
 
     script_data :
@@ -726,6 +727,7 @@ SECTIONS {
         data/sound_data.o(.rodata);
         src/pokemon_debug.o(.rodata);
         src/expansion_intro.o(.rodata);
+        src/ui_main_menu.o(.rodata);
     } > ROM =0
 
     song_data :
@@ -1210,6 +1212,13 @@ SECTIONS {
         sound/songs/midi/mus_rg_trainer_tower.o(.rodata);
         sound/songs/midi/mus_rg_slow_pallet.o(.rodata);
         sound/songs/midi/mus_rg_teachy_tv_menu.o(.rodata);
+        sound/songs/midi/mus_new_vs_cipher_admin.o(.rodata);
+        sound/songs/midi/mus_new_aegis_cave.o(.rodata);
+        sound/songs/midi/mus_new_brine_cave.o(.rodata);
+        sound/songs/midi/mus_new_bw_vs_legendary.o(.rodata);
+        sound/songs/midi/mus_new_dusk_forest.o(.rodata);
+        sound/songs/midi/mus_new_vs_champion_nemona.o(.rodata);
+        sound/songs/midi/mus_new_waterfall_colosseum.o(.rodata);
         sound/songs/midi/ph_trap_blend.o(.rodata);
         sound/songs/midi/ph_trap_held.o(.rodata);
         sound/songs/midi/ph_trap_solo.o(.rodata);

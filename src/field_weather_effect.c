@@ -1053,7 +1053,7 @@ void Downpour_InitAll(void)
 {
     Downpour_InitVars();
     while (gWeatherPtr->weatherGfxLoaded == FALSE)
-        Thunderstorm_Main();
+        Rain_Main();
 }
 
 // In a given cycle, there will be some shorter bolts of lightning, potentially
@@ -2219,7 +2219,7 @@ static void UpdateSandstormSwirlSprite(struct Sprite *sprite)
 void Shade_InitVars(void)
 {
     gWeatherPtr->initStep = 0;
-    gWeatherPtr->targetColorMapIndex = 3;
+    gWeatherPtr->targetColorMapIndex = 1;
     gWeatherPtr->colorMapStepDelay = 20;
 }
 
@@ -2233,6 +2233,31 @@ void Shade_Main(void)
 }
 
 bool8 Shade_Finish(void)
+{
+    return FALSE;
+}
+
+//------------------------------------------------------------------------------
+// WEATHER_NIGHT
+//------------------------------------------------------------------------------
+
+void Night_InitVars(void)
+{
+    gWeatherPtr->initStep = 0;
+    gWeatherPtr->targetColorMapIndex = 3;
+    gWeatherPtr->colorMapStepDelay = 20;
+}
+
+void Night_InitAll(void)
+{
+    Night_InitVars();
+}
+
+void Night_Main(void)
+{
+}
+
+bool8 Night_Finish(void)
 {
     return FALSE;
 }
@@ -2587,6 +2612,7 @@ static u8 TranslateWeatherNum(u8 weather)
     case WEATHER_ABNORMAL:           return WEATHER_ABNORMAL;
     case WEATHER_ROUTE119_CYCLE:     return sWeatherCycleRoute119[gSaveBlock1Ptr->weatherCycleStage];
     case WEATHER_ROUTE123_CYCLE:     return sWeatherCycleRoute123[gSaveBlock1Ptr->weatherCycleStage];
+    case WEATHER_NIGHT:              return WEATHER_NIGHT;
     default:                         return WEATHER_NONE;
     }
 }

@@ -733,6 +733,29 @@ const u32 gItemIconPalette_IronPlate[] = INCBIN_U32("graphics/items/icon_palette
 const u32 gItemIcon_PixiePlate[] = INCBIN_U32("graphics/items/icons/pixie_plate.4bpp.lz");
 const u32 gItemIconPalette_PixiePlate[] = INCBIN_U32("graphics/items/icon_palettes/pixie_plate.gbapal.lz");
 
+const u32 gItemIcon_BlankPlate[] = INCBIN_U32("graphics/items/icons/blank_plate.4bpp.lz");
+const u32 gItemIconPalette_BlankPlate[] = INCBIN_U32("graphics/items/icon_palettes/blank_plate.gbapal.lz");
+
+// Genes
+const u32 gItemIconPalette_FlameGene[] = INCBIN_U32("graphics/items/icon_palettes/flame_gene.gbapal.lz");
+const u32 gItemIconPalette_SplashGene[] = INCBIN_U32("graphics/items/icon_palettes/splash_gene.gbapal.lz");
+const u32 gItemIconPalette_ZapGene[] = INCBIN_U32("graphics/items/icon_palettes/zap_gene.gbapal.lz");
+const u32 gItemIconPalette_MeadowGene[] = INCBIN_U32("graphics/items/icon_palettes/meadow_gene.gbapal.lz");
+const u32 gItemIconPalette_IcicleGene[] = INCBIN_U32("graphics/items/icon_palettes/icicle_gene.gbapal.lz");
+const u32 gItemIconPalette_FistGene[] = INCBIN_U32("graphics/items/icon_palettes/fist_gene.gbapal.lz");
+const u32 gItemIconPalette_ToxicGene[] = INCBIN_U32("graphics/items/icon_palettes/toxic_gene.gbapal.lz");
+const u32 gItemIconPalette_EarthGene[] = INCBIN_U32("graphics/items/icon_palettes/earth_gene.gbapal.lz");
+const u32 gItemIconPalette_SkyGene[] = INCBIN_U32("graphics/items/icon_palettes/sky_gene.gbapal.lz");
+const u32 gItemIconPalette_MindGene[] = INCBIN_U32("graphics/items/icon_palettes/mind_gene.gbapal.lz");
+const u32 gItemIconPalette_InsectGene[] = INCBIN_U32("graphics/items/icon_palettes/insect_gene.gbapal.lz");
+const u32 gItemIconPalette_StoneGene[] = INCBIN_U32("graphics/items/icon_palettes/stone_gene.gbapal.lz");
+const u32 gItemIconPalette_SpookyGene[] = INCBIN_U32("graphics/items/icon_palettes/spooky_gene.gbapal.lz");
+const u32 gItemIconPalette_DracoGene[] = INCBIN_U32("graphics/items/icon_palettes/draco_gene.gbapal.lz");
+const u32 gItemIconPalette_DreadGene[] = INCBIN_U32("graphics/items/icon_palettes/dread_gene.gbapal.lz");
+const u32 gItemIconPalette_IronGene[] = INCBIN_U32("graphics/items/icon_palettes/iron_gene.gbapal.lz");
+const u32 gItemIconPalette_PixieGene[] = INCBIN_U32("graphics/items/icon_palettes/pixie_gene.gbapal.lz");
+const u32 gItemIconPalette_BlankGene[] = INCBIN_U32("graphics/items/icon_palettes/blank_gene.gbapal.lz");
+
 // Drives
 
 const u32 gItemIcon_DouseDrive[] = INCBIN_U32("graphics/items/icons/douse_drive.4bpp.lz");

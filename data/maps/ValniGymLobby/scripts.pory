@@ -1,0 +1,31 @@
+mapscripts ValniGymLobby_MapScripts {}
+
+script ValniGymReceptionist1 {
+    lock
+    faceplayer
+    msgbox("Hello, and welcome to Valni's Gym.\p"
+    "The gym here is designed to reflect a\n"
+    "natural environment.\p"
+    "And to that end, there are wild pokémon\n"
+    "throughout.\p"
+    "The wild pokémon are part of the gym\n"
+    "challenge, and so we ask that you\l"
+    "please refrain from capturing any.\p"
+    "We wish you the best of luck on you\n"
+    "challenge of Valni's Gym.")
+    release
+}
+
+script ValniGymReceptionist2 {
+    lock
+    faceplayer
+    msgbox("Hello, and welcome to Valni's Gym.\p"
+    "The current gym leader is Mycelian.\p"
+    "He holds to Valni's long standing\n"
+    "tradition of battling with pokémon\l"
+    "of the grass-type.\p"
+    "Victory over Mycelian might prove\n"
+    "difficult if you don't have pokémon\l"
+    "that are strong against grass-types.")
+    release
+}

@@ -229,17 +229,19 @@
 #define OBJ_EVENT_GFX_KIRLIA                     225
 #define OBJ_EVENT_GFX_DUSCLOPS                   226
 #define OBJ_EVENT_GFX_UNION_ROOM_NURSE           227
-#define OBJ_EVENT_GFX_SUDOWOODO                  228
+#define OBJ_EVENT_GFX_AVIANA                     228
 #define OBJ_EVENT_GFX_MEW                        229
 #define OBJ_EVENT_GFX_RED                        230
 #define OBJ_EVENT_GFX_LEAF                       231
 #define OBJ_EVENT_GFX_DEOXYS                     232
-#define OBJ_EVENT_GFX_DEOXYS_TRIANGLE            233
-#define OBJ_EVENT_GFX_BRANDON                    234
-#define OBJ_EVENT_GFX_LINK_RS_BRENDAN            235
-#define OBJ_EVENT_GFX_LINK_RS_MAY                236
-#define OBJ_EVENT_GFX_LUGIA                      237
-#define OBJ_EVENT_GFX_HOOH                       238
+// #define OBJ_EVENT_GFX_DEOXYS_TRIANGLE            233
+#define OBJ_EVENT_GFX_BRANDON                    233
+// #define OBJ_EVENT_GFX_LINK_RS_BRENDAN            234
+#define OBJ_EVENT_GFX_HELIX_MEMBER_F             234
+#define OBJ_EVENT_GFX_LINK_RS_MAY                235
+#define OBJ_EVENT_GFX_LUGIA                      236
+#define OBJ_EVENT_GFX_HOOH                       237
+#define OBJ_EVENT_GFX_HELIX_MEMBER_M             238
 
 // NOTE: By default, the max value for NUM_OBJ_EVENT_GFX is 239.
 //

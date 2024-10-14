@@ -3,7 +3,7 @@
 
 #include <string.h>
 #include <limits.h>
-#include "config.h" // we need to define config before gba headers as print stuff needs the functions nulled before defines.
+#include "config/general.h" // we need to define config before gba headers as print stuff needs the functions nulled before defines.
 #include "gba/gba.h"
 #include "fpmath.h"
 #include "metaprogram.h"
@@ -282,7 +282,7 @@ struct BattleTowerPokemon
     u32 gap:1;
     u32 abilityNum:1;
     u32 personality;
-    u8 nickname[POKEMON_NAME_LENGTH + 1];
+    u8 nickname[VANILLA_POKEMON_NAME_LENGTH + 1];
     u8 friendship;
 };
 
@@ -307,7 +307,7 @@ struct BattleTowerInterview
     u16 playerSpecies;
     u16 opponentSpecies;
     u8 opponentName[PLAYER_NAME_LENGTH + 1];
-    u8 opponentMonNickname[POKEMON_NAME_LENGTH + 1];
+    u8 opponentMonNickname[VANILLA_POKEMON_NAME_LENGTH + 1];
     u8 opponentLanguage;
 };
 
@@ -742,7 +742,7 @@ struct ContestWinner
     u32 trainerId;
     u16 species;
     u8 contestCategory;
-    u8 monName[POKEMON_NAME_LENGTH + 1];
+    u8 monName[VANILLA_POKEMON_NAME_LENGTH + 1];
     u8 trainerName[PLAYER_NAME_LENGTH + 1];
     u8 contestRank:7;
     bool8 isShiny:1;
@@ -762,7 +762,7 @@ struct DaycareMail
 {
     struct Mail message;
     u8 otName[PLAYER_NAME_LENGTH + 1];
-    u8 monName[POKEMON_NAME_LENGTH + 1];
+    u8 monName[VANILLA_POKEMON_NAME_LENGTH + 1];
     u8 gameLanguage:4;
     u8 monLanguage:4;
 };
@@ -1080,6 +1080,9 @@ struct SaveBlock1
     /*0x3???*/ struct TrainerHillSave trainerHill;
 #endif //FREE_TRAINER_HILL
     /*0x3???*/ struct WaldaPhrase waldaPhrase;
+               u16 weatherTimeHours;
+               u8 weatherTimeMinutes;
+               u8 weatherTimeSeconds;
     // sizeof: 0x3???
 };
 

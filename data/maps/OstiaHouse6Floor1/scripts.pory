@@ -1,0 +1,28 @@
+mapscripts OstiaHouse6Floor1_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION: SetUpOstiaHouses
+}
+
+script OstiaBlackBelt {
+    lock
+    faceplayer
+    if(!flag(FLAG_MUSCLE_BAND)) {
+        setflag(FLAG_TEMP_A)
+        msgbox("Don't say anything. Just take this.")
+        giveitem(ITEM_MUSCLE_BAND, 1)
+        setflag(FLAG_MUSCLE_BAND)
+        msgbox("They accidentally gave me two when I\n"
+        "bought mine at the store.\p"
+        "That's where people get black belts too,\n"
+        "by the way.\p"
+        "You can just buy them at the store.\n"
+        "My blackbelt is just for show.")
+    }
+    else {
+        if(!flag(FLAG_TEMP_A)) {
+            msgbox("I totally bought my black belt from the\n"
+            "old man in the inn.")
+        }
+        msgbox("Don't tell anybody I'm a big fake, okay?")
+    }
+    release
+}

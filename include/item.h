@@ -37,8 +37,8 @@ extern struct BagPocket gBagPockets[];
 void ApplyNewEncryptionKeyToBagItems(u32 newKey);
 void ApplyNewEncryptionKeyToBagItems_(u32 newKey);
 void SetBagItemsPointers(void);
-void CopyItemName(u16 itemId, u8 *dst);
-void CopyItemNameHandlePlural(u16 itemId, u8 *dst, u32 quantity);
+u8 *CopyItemName(u16 itemId, u8 *dst);
+u8 *CopyItemNameHandlePlural(u16 itemId, u8 *dst, u32 quantity);
 bool8 IsBagPocketNonEmpty(u8 pocket);
 bool8 CheckBagHasItem(u16 itemId, u16 count);
 bool8 HasAtLeastOneBerry(void);
@@ -82,7 +82,7 @@ u32 GetItemStatus2Mask(u16 itemId);
 /* Expands to:
  * enum
  * {
- *   ITEM_TM_FOCUS_PUNCH,
+ *   ITEM_TM01_DOUBLE_TEAM,
  *   ...
  *   ITEM_HM_CUT,
  *   ...
@@ -91,7 +91,7 @@ u32 GetItemStatus2Mask(u16 itemId);
 #define ENUM_HM(id) CAT(ITEM_HM_, id),
 enum
 {
-    ENUM_TM_START_ = ITEM_TM01 - 1,
+    ENUM_TM_START_ = ITEM_TM01_DOUBLE_TEAM - 1,
     FOREACH_TM(ENUM_TM)
 
     ENUM_HM_START_ = ITEM_HM01 - 1,

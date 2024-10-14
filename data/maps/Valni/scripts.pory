@@ -1,0 +1,180 @@
+mapscripts Valni_MapScripts {
+    MAP_SCRIPT_ON_LOAD: ValniOnLoad
+    MAP_SCRIPT_ON_TRANSITION: SetUpValni
+    MAP_SCRIPT_ON_RESUME: ValniOnResume
+}
+
+script ValniOnLoad {
+    compare_var_to_value(VAR_CURRENT_RANDOM_WEATHER_VALUE, 35)
+    call_if_ge(ValniRemovePuddles)
+}
+
+script ValniRemovePuddles {
+    setmetatile(3, 18, METATILE_General_Grass, FALSE)
+    setmetatile(4, 18, METATILE_General_Grass, FALSE)
+    setmetatile(3, 19, METATILE_General_Grass, FALSE)
+    setmetatile(4, 19, METATILE_General_Grass, FALSE)
+    setmetatile(14, 9, METATILE_General_Grass, FALSE)
+    setmetatile(15, 9, METATILE_General_Grass, FALSE)
+    setmetatile(14, 10, METATILE_General_Grass, FALSE)
+    setmetatile(15, 10, METATILE_General_Grass, FALSE)
+    setmetatile(24, 13, METATILE_General_Grass, FALSE)
+    setmetatile(25, 13, METATILE_General_Grass, FALSE)
+    setmetatile(26, 13, METATILE_General_Grass, FALSE)
+    setmetatile(24, 14, METATILE_General_Grass, FALSE)
+    setmetatile(25, 14, METATILE_General_Grass, FALSE)
+    setmetatile(26, 14, METATILE_General_Grass, FALSE)
+    setmetatile(39, 9, METATILE_General_Grass, FALSE)
+    setmetatile(38, 9, METATILE_General_Grass, FALSE)
+    setmetatile(39, 10, METATILE_General_Grass, FALSE)
+    setmetatile(38, 10, METATILE_General_Grass, FALSE)
+}
+
+script SetUpValni {
+    special(SetGroupWeather)
+    if(var(VAR_CURRENT_RANDOM_WEATHER_VALUE) < 35) {
+        setflag(FLAG_TEMP_1)
+        setobjectmovementtype(4, MOVEMENT_TYPE_WALK_SEQUENCE_LEFT_DOWN_RIGHT_UP)
+        
+    }
+}
+
+script ValniOnResume {
+    setstepcallback(STEP_CB_FORTREE_BRIDGE)
+}
+
+script ValniForestSignEast {
+    lock
+    msgbox("Valni Forest\n"
+    "East Entrance")
+    release
+}
+
+script ValniInnSign {
+    lock
+    msgbox("Canopy Inn\n"
+    "Take a Rest Above the Ground")
+    release
+}
+
+script ValniStoreSign {
+    lock
+    msgbox("Valni General Store\p"
+    "Local and Imported Goods")
+    release
+}
+
+script ValniGymSign {
+    lock
+    msgbox("Valni Gym\n"
+    "Leader: Mycelian\p"
+    "Holds the Grass-Type Tradition Strong")
+    release
+}
+
+script ValniYoungLady {
+    lock
+    faceplayer
+    if(flag(FLAG_TEMP_1)) {
+        msgbox("I wonder if it's raining over in Ostia\n"
+        "too.\p"
+        "I have a twin sister there, and she\n"
+        "loves to grow berries.\p"
+        "I'm sure the rain would be good for\n"
+        "her berry plants.")
+    }
+    else {
+        if(flag(FLAG_VALNI_MINT) == TRUE) {
+            msgbox("My husband sells mints like the one\n"
+            "I gave you.\p"
+            "If you want to buy some, stop by our\n"
+            "home.\p"
+            "It's the house just passed the gym.")
+        }
+        else {
+            msgbox("I haven't seen you around before.\n"
+            "Are you new to Valni?", MSGBOX_YESNO)
+            if(var(VAR_RESULT) == YES) {
+                msgbox("Then I'll give you this as a gift,\n"
+                "to welcome you to our forest home.")
+                if(var(VAR_STARTER_MON) == SPECIES_MAGBY) {
+                    giveitem(ITEM_MODEST_MINT)
+                }
+                elif(var(VAR_STARTER_MON) == SPECIES_SPHEAL) {
+                    giveitem(ITEM_QUIET_MINT)
+                }
+                else {
+                    giveitem(ITEM_ADAMANT_MINT)
+                }
+                setflag(FLAG_VALNI_MINT)
+                msgbox("That mint was made from a plant that\n"
+                "grows here in our forest.\p"
+                "It has a special property that alters\n"
+                "a pokémon's stats.\p"
+                "Try giving it to the pokémon you think\n"
+                "would benefit the most!")
+            }
+            else {
+                msgbox("Oh, I see.\p"
+                "Apologies, I must have missed you last\n"
+                "time you visited.")
+            }
+        }    
+    }
+    release
+}
+
+script ValniBoy {
+    lock
+    faceplayer
+    if(flag(FLAG_TEMP_1)) {
+        msgbox("I like to run around in the rain!")
+    }
+    else {
+        msgbox("I get to live in a treehouse!\p"
+        "My cousins are really jealous.")
+    }
+    release
+}
+
+script ValniOldLady {
+    lock
+    faceplayer
+    if (flag(FLAG_TEMP_1)) {
+        msgbox("The weather here in Valni can be\n"
+        "quite fickle.\p"
+        "We people might not enjoy how often\n"
+        "it rains, but the trees that we live\l"
+        "in do need the water.\p"
+        "And for their sake, I am grateful for\n"
+        "the rain.")
+    }
+    else {
+        msgbox("I've spent my whole life here in\n"
+        "Valni, and it's a lovely place.\p"
+        "I have a wonderful view from my porch,\n"
+        "and the ladder here keeps my old\l"
+        "muscles in tip-top shape.")
+    }
+    release
+}
+
+script ValniMan {
+    lock
+    faceplayer
+    msgbox("I tried spelunking in the Rugged Pass\n"
+    "yesterday, but it was way too dark\l"
+    "for me to see anything.\p"
+    "If you're gonna try and go through,\n"
+    "you better find a way to see.")
+    release
+}
+
+script ResetValniGymTrainers {
+    if(!flag(FLAG_BADGE02_GET)) {
+    cleartrainerflag(TRAINER_PKMN_RANGER_ZACHARY)
+    cleartrainerflag(TRAINER_AROMA_LADY_TAYLOR)
+    cleartrainerflag(TRAINER_LADY_BRIANNA)
+    }
+    setvar(VAR_TEMP_F, 1)
+}

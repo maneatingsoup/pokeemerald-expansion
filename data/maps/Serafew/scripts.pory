@@ -1,0 +1,404 @@
+mapscripts Serafew_MapScripts {
+    MAP_SCRIPT_ON_LOAD: SerafewOnLoad
+    MAP_SCRIPT_ON_TRANSITION: SetUpSerafew
+    MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE[
+        VAR_TEMP_A, 0: HideProfessor
+    ]
+}
+
+script SerafewOnLoad {
+    compare_var_to_value(VAR_CURRENT_RANDOM_WEATHER_VALUE, 35)
+    call_if_ge(SerafewRemovePuddles)
+}
+
+script SerafewRemovePuddles {
+    setmetatile(21, 16, METATILE_General_Grass, FALSE)
+    setmetatile(22, 16, METATILE_General_Grass, FALSE)
+    setmetatile(21, 17, METATILE_General_Grass, FALSE)
+    setmetatile(22, 17, METATILE_General_Grass, FALSE)
+    setmetatile(21, 9, METATILE_General_Grass, FALSE)
+    setmetatile(22, 9, METATILE_General_Grass, FALSE)
+    setmetatile(23, 9, METATILE_General_Grass, FALSE)
+    setmetatile(21, 10, METATILE_General_Grass, FALSE)
+    setmetatile(22, 10, METATILE_General_Grass, FALSE)
+    setmetatile(23, 10, METATILE_General_Grass, FALSE)
+    setmetatile(14, 19, METATILE_General_Grass, FALSE)
+    setmetatile(15, 19, METATILE_General_Grass, FALSE)
+    setmetatile(14, 20, METATILE_General_Grass, FALSE)
+    setmetatile(15, 20, METATILE_General_Grass, FALSE)
+    setmetatile(31, 26, METATILE_General_Grass, FALSE)
+    setmetatile(30, 26, METATILE_General_Grass, FALSE)
+    setmetatile(31, 25, METATILE_General_Grass, FALSE)
+    setmetatile(30, 25, METATILE_General_Grass, FALSE)
+}
+
+script SetUpSerafew {
+    special(SetGroupWeather)
+    if(var(VAR_CURRENT_RANDOM_WEATHER_VALUE) < 35) {
+        setflag(FLAG_TEMP_1)
+        setflag(FLAG_TEMP_3)
+        if(var(VAR_SERAFEW_STATE) >= 3) {
+            setflag(FLAG_TEMP_2)
+        }
+    }
+    elif (flag(FLAG_FAT_MAN)) {
+        setflag(FLAG_TEMP_3)
+    }
+    if(var(VAR_SERAFEW_STATE) >= 3){
+        setobjectxyperm(3, 18, 20)
+        setobjectmovementtype(3, MOVEMENT_TYPE_WANDER_AROUND)
+    }
+}
+
+script HideProfessor {
+    removeobject(4)
+}
+
+script PlayerHouseSign {
+    lock
+    msgbox("{PLAYER}'s House")
+    release
+}
+
+script LabSign {
+    lock
+    msgbox("Professor Birch's Laboratory")
+    release
+}
+
+script HomelessFatMan {
+    lock
+    faceplayer
+    if(flag(FLAG_TEMP_1)) {
+        if(flag(FLAG_FAT_MAN)) {
+            msgbox("Just let me be fat.")
+        }
+        else {
+            msgbox("Don't bother a man when he's busy being\n"
+            "being fat.\p"
+            "Didn't your mother teach you manners?\p"
+            "This is what's wrong with the youth\n"
+            "today.\p"
+            "People like you.\p"
+            "I don't even have a home.\p"
+            "Do you know how hard it is to own a home\n"
+            "in this economy?\p"
+            "There's only one house in the whole\n"
+            "town!\p"
+            "And even if there weren't, how am I\n"
+            "supposed to buy one when I don't even\l"
+            "have a job?\p"
+            "How did I even get fat?\p"
+            "I don't have any money!\p"
+            "I can't eat food that I can't buy.\p"
+            "There isn't even a grocery store here.\p"
+            "I'd apply for a job if there was one.\p"
+            "But there's not.\p"
+            "I can't even go to Ostia to work, because\n"
+            "I don't have a pokémon!")
+            msgbox("That little brat over by the bookshelf\n"
+            "won't let anybody leave without one.\p"
+            "And look at this place, the whole town is\n"
+            "just your house and this lab.\p"
+            "I mean, look, we all have to cram in here\n"
+            "while it's raining, because you and your\l"
+            "mom are the only property owners in the\l"
+            "whole damn town!\p"
+            "I can't even bitch about rent payments,\n"
+            "because there's no parasitic, waste of\l"
+            "DNA, piece of shit landlord to rent from\l"
+            "in the first place!\p"
+            "What kind of cruel person would engineer\n"
+            "this situation?\p"
+            "What did I do to get put in such an awful\n"
+            "place like this?\p"
+            "...\p"
+            "...\p"
+            "...")
+            msgbox("Anyway...\p"
+            "The system is rigged.\p"
+            "Nobody can afford housing.\p"
+            "There's nowhere to work.\p"
+            "I can't leave town.\p"
+            "And I'm fat!\p"
+            "How can a world without landlords and\n"
+            "CEOs be this fucked up?\p"
+            "There, are you happy?\p"
+            "This is what happens when you bother the\n"
+            "fat man, who's minding his own business.\p"
+            "Next time, just let me be fat!", MSGBOX_AUTOCLOSE)
+            setflag(FLAG_FAT_MAN)
+        }
+    }
+    else {
+        msgbox("I've spent my whole life in this town.\p"
+        "Since I don't have a pokémon,\n"
+        "I'll spend the rest of it here, too.\p"
+        "...\p"
+        "...\p"
+        "...\p"
+        "I don't even have a house...")
+    }
+    release
+}
+
+script CoastGirl {
+    lock
+    faceplayer
+    if(flag(FLAG_TEMP_1)) {
+        msgbox("I bet this place would be really good\n"
+        "for playing hide and seek.\p"
+        "There are so many places to hide!")
+    }
+    else {
+        msgbox("I wanna see what's across the ocean\n"
+        "when I grow up!")
+    }
+    release
+}
+
+script SadBoy {
+    lock
+    faceplayer
+    if(var(VAR_SERAFEW_STATE) == 3){
+        bufferspeciesname(STR_VAR_1, VAR_STARTER_MON)
+        msgbox("Wow, the professor really gave you\n"
+        "a {STR_VAR_1}?\p"
+        "That's so cool!\p"
+        "I can't wait until I have my own pokémon.")
+    }
+    else{
+        msgbox("I'm too young to have a pokémon.\n" 
+        "When I'm older, I'm gonna go on\l"
+        "an awesome adventure!")
+    }
+    release
+}
+
+script CannotLeaveYetLeft {
+    lockall
+    applymovement(3, CannotLeaveYetLeftMovement)
+    waitmovement(0)
+    msgbox(TooDangerous, MSGBOX_AUTOCLOSE)
+    applymovement(3, PushPlayer)
+    applymovement(OBJ_EVENT_ID_PLAYER, PushPlayer)
+    waitmovement(0)
+    applymovement(3, CannotLeaveYetReturnA)
+    waitmovement(0)
+    applymovement(OBJ_EVENT_ID_PLAYER, WalkUpFaceRight)
+    applymovement(3, CannotLeaveYetLeftReturnB)
+    waitmovement(0)
+    msgbox(MaybeGetPokemon)
+    release
+}
+
+script CannotLeaveYetMiddle {
+    lockall
+    applymovement(3, CannotLeaveYetMiddleMovement)
+    waitmovement(0)
+    msgbox(TooDangerous, MSGBOX_AUTOCLOSE)
+    applymovement(3, PushPlayer)
+    applymovement(OBJ_EVENT_ID_PLAYER, PushPlayer)
+    waitmovement(0)
+    applymovement(3, CannotLeaveYetReturnA)
+    waitmovement(0)
+    applymovement(OBJ_EVENT_ID_PLAYER, WalkUpFaceRight)
+    applymovement(3, WalkRightFaceLeft)
+    waitmovement(0)
+    msgbox(MaybeGetPokemon)
+    release
+}
+
+script CannotLeaveYetRight {
+    lockall
+    applymovement(3, CannotLeaveYetRightMovement)
+    waitmovement(0)
+    msgbox(TooDangerous, MSGBOX_AUTOCLOSE)
+    applymovement(3, PushPlayer)
+    applymovement(OBJ_EVENT_ID_PLAYER, PushPlayer)
+    waitmovement(0)
+    applymovement(3, CannotLeaveYetReturnA)
+    waitmovement(0)
+    applymovement(OBJ_EVENT_ID_PLAYER, WalkUpFaceRight)
+    waitmovement(0)
+    applymovement(3, CannotLeaveYetRightReturnB)
+    msgbox(MaybeGetPokemon)
+    release
+}
+
+script WaitYouNeedTheDexLeft {
+    lock
+    addobject(4)
+    applymovement(4, WalkLeft)
+    waitmovement(0)
+    goto(WaitYouNeedTheDex)
+}
+
+script WaitYouNeedTheDexMiddle {
+    lock
+    addobject(4)
+    goto(WaitYouNeedTheDex)
+}
+
+script WaitYouNeedTheDexRight {
+    lock
+    addobject(4)
+    applymovement(4, WalkRight)
+    waitmovement(0)
+    goto(WaitYouNeedTheDex)
+}
+
+script WaitYouNeedTheDex {
+    applymovement(4, WalkUp)
+    waitmovement(4)
+    msgbox("Wait, {PLAYER}!", MSGBOX_AUTOCLOSE)
+    applymovement(OBJ_EVENT_ID_PLAYER, FaceDown)
+    applymovement(4, WalkUpFour)
+    waitmovement(4)
+    msgbox("I'm glad I caught you before you left\n"
+    "town.\p"
+    "I almost forgot to give you your\n"
+    "pokédex!\p"
+    "Well, here you go. This one is yours.")
+    playfanfare(MUS_OBTAIN_ITEM)
+    msgbox("{PLAYER} received the Pokédex!")
+    waitfanfare
+    checkplayergender
+    if(var(VAR_RESULT) == MALE) {
+        msgbox("That little device is an encyclopedia of\n"
+        "information about pokémon.\p"
+        "It will automatically create entries for\n"
+        "pokémon you've seen or caught.\p"
+        "It'll also show you the locations that\n"
+        "pokémon you've seen can be found at in\l"
+        "the wild.\p"
+        "Isn't that neat?\p"
+        "{RIVAL} takes hers everywhere.\p"
+        "I bet you'll find it just as useful as\n"
+        "she does.\p"
+        "Well, that's all from me.\p"
+        "...\p"
+        "Really, it is this time!\p"
+        "Take care out there, {PLAYER}!", MSGBOX_AUTOCLOSE)
+    }
+    else {
+        msgbox("That little device is an encycopedia of\n"
+        "information about pokémon.\p"
+        "It will automatically create entries for\n"
+        "pokémon you've seen or caught.\p"
+        "It'll also show you the locations that\n"
+        "pokémon you've seen can be found at in\l"
+        "the wild.\p"
+        "Isn't that neat?\p"
+        "{RIVAL} takes his everywhere.\p"
+        "I bet you'll find it just as useful as\n"
+        "he does.\p"
+        "...\p"
+        "Well, that's all from me.\p"
+        "...\p"
+        "Really, it is this time!\p"
+        "Take care out there, {PLAYER}!", MSGBOX_AUTOCLOSE)
+    }
+    applymovement(4, WalkDownFive)
+    waitmovement(4)
+    setflag(FLAG_SYS_POKEDEX_GET)
+    special(SetUnlockedPokedexFlags)
+    setvar(VAR_SERAFEW_STATE, 4)
+    setflag(FLAG_RIVAL_BATTLE_1)
+    setflag(FLAG_RIVAL_BATTLE_2)
+    removeobject(4)
+    release
+}
+
+movement CannotLeaveYetLeftMovement {
+    walk_fast_left
+    walk_fast_up
+    walk_fast_up
+    walk_fast_left
+    walk_fast_left
+    face_down
+}
+
+movement CannotLeaveYetMiddleMovement {
+    walk_fast_left
+    walk_fast_up
+    walk_fast_up
+    walk_fast_left
+    face_down
+}
+
+movement CannotLeaveYetRightMovement {
+    walk_fast_left
+    walk_fast_left
+    walk_fast_up
+    walk_fast_up
+    walk_fast_right
+    face_down
+}
+
+movement CannotLeaveYetReturnA{
+    walk_right
+}
+
+movement CannotLeaveYetLeftReturnB{
+    walk_right
+    walk_right
+    face_left
+}
+
+movement CannotLeaveYetRightReturnB {
+    face_left
+}
+
+movement PushPlayer {
+    lock_facing_direction
+    walk_down
+    walk_down
+    unlock_facing_direction
+}
+
+movement WalkUpFaceRight {
+    walk_up
+    face_right
+}
+
+movement WalkUp {
+    walk_up
+}
+
+movement WalkUpFour {
+    walk_up * 4
+}
+
+movement WalkDownFive {
+    walk_down * 5
+}
+
+movement WalkLeft {
+    walk_left
+}
+
+movement WalkRight {
+    walk_right
+}
+
+movement WalkRightFaceLeft {
+    walk_right
+    face_left
+}
+
+movement FaceDown {
+    face_down
+}
+
+text TooDangerous {
+    "You can't go out there without\n"
+    "a pokémon.\p"
+    "It's too dangerous!"
+}
+
+text MaybeGetPokemon {
+    "If you really want to go out,\n"
+    "I bet the professor would give\l"
+    "you a pokémon."
+}
